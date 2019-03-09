@@ -1,0 +1,28 @@
+import React, { Component } from 'react';
+import { Item, Button, Icon } from 'semantic-ui-react';
+
+export default class CartItem extends Component {
+  state = {};
+
+  render() {
+    return (
+      <Item>
+        <Item.Image size="small" src={this.props.img} />
+        <Item.Content>
+          <Item.Header as="a">{this.props.name}</Item.Header>
+          <Item.Meta>
+            <span className="cinema">
+              <strong>Price: ${this.props.price}</strong>
+            </span>
+          </Item.Meta>
+          <Item.Extra>
+            <Button basic icon labelPosition="right" floated="right">
+              Remove
+              <Icon color="red" name="trash alternate" />
+            </Button>
+          </Item.Extra>
+        </Item.Content>
+      </Item>
+    );
+  }
+}
