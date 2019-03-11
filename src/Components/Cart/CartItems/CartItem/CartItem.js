@@ -3,7 +3,6 @@ import { Item, Button, Icon } from 'semantic-ui-react';
 
 export default class CartItem extends Component {
   state = {};
-
   render() {
     return (
       <Item>
@@ -16,7 +15,7 @@ export default class CartItem extends Component {
             </span>
           </Item.Meta>
           <Item.Extra>
-            <Button basic icon labelPosition="right" floated="right">
+            <Button onClick={this.props.deleteItem.bind(this,this.props.id)} basic icon labelPosition="right" floated="right">
               Remove
               <Icon color="red" name="trash alternate" />
             </Button>

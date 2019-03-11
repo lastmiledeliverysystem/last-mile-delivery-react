@@ -2,6 +2,14 @@ import React, { Component } from 'react';
 import { Card, Icon } from 'semantic-ui-react';
 
 export default class cartInfo extends Component {
+  
+ 
+  componentDidUpdate(prevProps) {
+    if (this.props.cartItems !== prevProps.cartItems) {
+     this.props.calcTotalPrice();
+    }
+  }
+
   render() {
     return (
       <Card centered>
@@ -11,7 +19,7 @@ export default class cartInfo extends Component {
         <Card.Content extra>
           <span>
             <Icon name="dollar" />
-            1900
+            {this.props.totalPrice}
           </span>
         </Card.Content>
       </Card>
