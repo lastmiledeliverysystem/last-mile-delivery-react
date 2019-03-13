@@ -1,23 +1,33 @@
 import React, { Component } from 'react'
-import { Card, Icon, Image } from 'semantic-ui-react'
+import { Card, Image } from 'semantic-ui-react'
+import './Product.css';
+import StarRating from '../../StarRatings/StarRatings';
 
 export default class Product extends Component {
   render() {
     return (
-    <Card>
-        <Image src={this.props.imgUrl} />
+    <Card color="black">
+        <Image src={this.props.imgUrl} 
+        width={170}
+        height={200} centered/>
         <Card.Content>
             <Card.Header>{this.props.name}</Card.Header>
             <Card.Meta>
-            <span className='date'>Joined in 2015</span>
+            <span className="color">{this.props.color}</span>
             </Card.Meta>
-            <Card.Description>{this.props.description}</Card.Description>
+            <Card.Description className="desc">
+            {this.props.description}
+            </Card.Description>
+                <Card.Description>
+                <span className='badge'><StarRating/></span>
+                </Card.Description>
         </Card.Content>
         <Card.Content extra>
-            <a>
-            <Icon name='user' />
-            22 Friends
+            <a className="price" id="price">
+            Price: 
+            {this.props.price} LE
             </a>
+            <i class="fas fa-shopping-cart"></i>
         </Card.Content>
       </Card>
     )

@@ -3,13 +3,15 @@ import { Grid } from 'semantic-ui-react';
 import Products from '../Products/Products'
 import Navbar from '../Navbar/Navbar'
 import Sidemenu from '../Sidemenu/Sidemenu'
+import PaginationExampleCompact from '../Pagination/Pagination';
+
 
 export default class Main extends Component {
 
   render() {
     return (
         <React.Fragment>
-            <Grid  >
+            <Grid  padded>
                 <Grid.Row>
                     <Grid.Column>
                         <Navbar/>
@@ -23,6 +25,7 @@ export default class Main extends Component {
                         <Products/>
                     </Grid.Column>
                 </Grid.Row>
+                <PaginationExampleCompact/>
             </Grid>
         </React.Fragment>
     )

@@ -26,7 +26,7 @@ export default class Products extends Component {
                 <Grid.Row centered>
                 {this.state.products.map((n) =>
                     <Grid.Column width={4}>
-                        <Product name={n.name} description={n.description} imgUrl={n.options.image}/>
+                        <Product name={n.name} description={n.description} imgUrl={n.options.image} price={n.price} color={n.options.color} rate={n.rate}/>
                     </Grid.Column>
                     )}
                 </Grid.Row>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
+import StarRating from '../StarRatings/StarRatings';
 
 export default class Sidemenu extends Component {
     handleItemClick = name => this.setState({ activeItem: name })
@@ -10,7 +11,7 @@ export default class Sidemenu extends Component {
       return (
         <Menu vertical>
           <Menu.Item>
-            <Menu.Header>Products</Menu.Header>
+            <Menu.Header>Category</Menu.Header>
   
             <Menu.Menu>
               <Menu.Item
@@ -27,7 +28,7 @@ export default class Sidemenu extends Component {
           </Menu.Item>
   
           <Menu.Item>
-            <Menu.Header>CMS Solutions</Menu.Header>
+            <Menu.Header>Color</Menu.Header>
   
             <Menu.Menu>
               <Menu.Item
@@ -45,7 +46,7 @@ export default class Sidemenu extends Component {
           </Menu.Item>
   
           <Menu.Item>
-            <Menu.Header>Hosting</Menu.Header>
+            <Menu.Header>Price</Menu.Header>
   
             <Menu.Menu>
               <Menu.Item
@@ -62,16 +63,14 @@ export default class Sidemenu extends Component {
           </Menu.Item>
   
           <Menu.Item>
-            <Menu.Header>Support</Menu.Header>
+            <Menu.Header>Rating</Menu.Header>
   
             <Menu.Menu>
-              <Menu.Item name='email' active={activeItem === 'email'} onClick={this.handleItemClick}>
-                E-mail Support
-              </Menu.Item>
-  
-              <Menu.Item name='faq' active={activeItem === 'faq'} onClick={this.handleItemClick}>
-                FAQs
-              </Menu.Item>
+            <StarRating/>
+            <StarRating/>
+            <StarRating/>
+            <StarRating/>
+            <StarRating/>
             </Menu.Menu>
           </Menu.Item>
         </Menu>
