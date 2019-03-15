@@ -57,7 +57,6 @@ export default class Main extends Component {
           <Grid.Column width={3}/>
         </Grid.Row>
       </React.Fragment>
-
     )
   }
 }
