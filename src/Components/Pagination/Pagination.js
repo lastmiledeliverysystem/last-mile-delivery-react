@@ -1,6 +1,13 @@
 import React from 'react'
 import { Pagination } from 'semantic-ui-react'
 
+const style={
+  pagination:{
+    'float': 'right'
+  }
+
+}
+
 const PaginationExampleCompact = () => (
   <Pagination
     boundaryRange={0}
@@ -10,6 +17,7 @@ const PaginationExampleCompact = () => (
     lastItem={null}
     siblingRange={1}
     totalPages={10}
+    style={style.pagination}
   />
 )
 

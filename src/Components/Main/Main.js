@@ -7,11 +7,10 @@ import PaginationExampleCompact from '../Pagination/Pagination';
 
 
 export default class Main extends Component {
-
-  render() {
+    render() {    
     return (
         <React.Fragment>
-            <Grid  padded>
+            <Grid padded verticalAlign='top'>
                 <Grid.Row>
                     <Grid.Column>
                         <Navbar/>
@@ -25,7 +24,11 @@ export default class Main extends Component {
                         <Products/>
                     </Grid.Column>
                 </Grid.Row>
-                <PaginationExampleCompact/>
+                <Grid.Row width={3}>
+                    <Grid.Column width={10}>
+                        <PaginationExampleCompact/>
+                    </Grid.Column>
+                </Grid.Row>
             </Grid>
         </React.Fragment>
     )

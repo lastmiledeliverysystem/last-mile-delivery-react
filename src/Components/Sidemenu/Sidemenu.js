@@ -1,8 +1,15 @@
 import React, { Component } from 'react'
-import { Menu } from 'semantic-ui-react'
-import StarRating from '../StarRatings/StarRatings';
+import { Menu, MenuItem } from 'semantic-ui-react'
+import { Checkbox } from 'semantic-ui-react'
 
 export default class Sidemenu extends Component {
+  state={
+    categories: ["T-shirts", "Jackets", "Sweaters"],
+    color: ["red", "black", "white"],
+    price: ["100 and ubove", "200 and ubove", "300 and ubove" ],
+    rating: ["1","2","3","4","5"]
+
+  };
     handleItemClick = name => this.setState({ activeItem: name })
 
     render() {
@@ -14,16 +21,16 @@ export default class Sidemenu extends Component {
             <Menu.Header>Category</Menu.Header>
   
             <Menu.Menu>
-              <Menu.Item
-                name='enterprise'
-                active={activeItem === 'enterprise'}
-                onClick={this.handleItemClick}
-              />
-              <Menu.Item
-                name='consumer'
-                active={activeItem === 'consumer'}
-                onClick={this.handleItemClick}
-              />
+              {this.state.categories.map((n)=>{
+                return (
+                  <React.Fragment>
+                  <Menu.Item>
+                  <Checkbox label={n}/>
+                  </Menu.Item>
+                  </React.Fragment>
+                );
+              })}
+              
             </Menu.Menu>
           </Menu.Item>
   
@@ -31,17 +38,16 @@ export default class Sidemenu extends Component {
             <Menu.Header>Color</Menu.Header>
   
             <Menu.Menu>
-              <Menu.Item
-                name='rails'
-                active={activeItem === 'rails'}
-                onClick={this.handleItemClick}
-              />
-              <Menu.Item
-                name='python'
-                active={activeItem === 'python'}
-                onClick={this.handleItemClick}
-              />
-              <Menu.Item name='php' active={activeItem === 'php'} onClick={this.handleItemClick} />
+              {this.state.color.map((n)=>{
+                return (
+                  <React.Fragment>
+                  <Menu.Item>
+                  <Checkbox label={n}/>
+                  </Menu.Item>
+                  </React.Fragment>
+                );
+              })}
+              
             </Menu.Menu>
           </Menu.Item>
   
@@ -49,28 +55,32 @@ export default class Sidemenu extends Component {
             <Menu.Header>Price</Menu.Header>
   
             <Menu.Menu>
-              <Menu.Item
-                name='shared'
-                active={activeItem === 'shared'}
-                onClick={this.handleItemClick}
-              />
-              <Menu.Item
-                name='dedicated'
-                active={activeItem === 'dedicated'}
-                onClick={this.handleItemClick}
-              />
+              {this.state.price.map((n)=>{
+                return (
+                  <React.Fragment>
+                  <Menu.Item>
+                  <Checkbox label={n}/>
+                  </Menu.Item>
+                  </React.Fragment>
+                );
+              })}
+              
             </Menu.Menu>
           </Menu.Item>
   
           <Menu.Item>
             <Menu.Header>Rating</Menu.Header>
-  
             <Menu.Menu>
-            <StarRating/>
-            <StarRating/>
-            <StarRating/>
-            <StarRating/>
-            <StarRating/>
+              {this.state.rating.map((n)=>{
+                return (
+                  <React.Fragment>
+                  <Menu.Item>
+                  <Checkbox label={n + " Stars"}/>
+                  </Menu.Item>
+                  </React.Fragment>
+                );
+              })}
+              
             </Menu.Menu>
           </Menu.Item>
         </Menu>
