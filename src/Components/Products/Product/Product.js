@@ -9,6 +9,7 @@ const style = {
   },
   cart:{
     'position': 'relative',
+     'margin-left': '10px'
   },
   desc:{
     'color':'black', 
@@ -23,7 +24,6 @@ const style = {
     'color': 'black',
     'font-size':'15px'
   }
-
 }
 export default class Product extends Component {
   handleShoppingCartClick = (event) => {
@@ -33,48 +33,28 @@ export default class Product extends Component {
   
   render() {
     return (
-     <Grid>
-    <Card color="black">
+      <Card color="black">
         <Image src={this.props.imgUrl} 
         width={170}
         height={200} centered/>
         <Card.Content>
-            <Card.Header style={style.name}>{this.props.name}</Card.Header>
-            <Card.Meta>
+          <Card.Header style={style.name}>{this.props.name}</Card.Header>
+          <Card.Meta>
             <span style={style.color}>{this.props.color}</span>
-            </Card.Meta>
-              <Grid.Column>
-            <Card.Description style={style.desc}>
-            {this.props.description}
+          </Card.Meta>
+            <Card.Description style={style.desc}>{this.props.description}</Card.Description>
+            <Card.Description>
+            <span className='badge'><StarRating/></span>
             </Card.Description>
-            </Grid.Column>
-
-            <Grid.Column width={5}>
-              </Grid.Column>
-
-            <Grid.Column>
-                <Card.Description>
-                <span className='badge'><StarRating/></span>
-                </Card.Description>
-                </Grid.Column>
         </Card.Content>
         <Card.Content extra >
-        <Grid.Row>
-          <Grid.Column>
             <a style={style.price}>
             Price: 
             {this.props.price} EGP
-            </a>
-            </Grid.Column>
-            <Grid.Column width={5}>
-              </Grid.Column>
-              <Grid.Column>
             <i class="fas fa-shopping-cart" style={style.cart} onClick={this.handleShoppingCartClick}></i>
-          </Grid.Column>
-        </Grid.Row>
+            </a>
         </Card.Content>
       </Card>
-      </Grid>
     )
   }
 }

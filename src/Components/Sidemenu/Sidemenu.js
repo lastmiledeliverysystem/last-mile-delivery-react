@@ -19,68 +19,29 @@ export default class Sidemenu extends Component {
         <Menu vertical>
           <Menu.Item>
             <Menu.Header>Category</Menu.Header>
-  
             <Menu.Menu>
-              {this.state.categories.map((n)=>{
-                return (
-                  <React.Fragment>
-                  <Menu.Item>
-                  <Checkbox label={n}/>
-                  </Menu.Item>
-                  </React.Fragment>
-                );
-              })}
-              
+              {this.state.categories.map((n)=>{return (<Menu.Item><Checkbox label={n}/></Menu.Item>);})}
             </Menu.Menu>
           </Menu.Item>
-  
+
           <Menu.Item>
             <Menu.Header>Color</Menu.Header>
-  
             <Menu.Menu>
-              {this.state.color.map((n)=>{
-                return (
-                  <React.Fragment>
-                  <Menu.Item>
-                  <Checkbox label={n}/>
-                  </Menu.Item>
-                  </React.Fragment>
-                );
-              })}
-              
+              {this.state.color.map((n)=>{return (<Menu.Item><Checkbox label={n}/></Menu.Item>);})}
             </Menu.Menu>
           </Menu.Item>
-  
+
           <Menu.Item>
             <Menu.Header>Price</Menu.Header>
-  
             <Menu.Menu>
-              {this.state.price.map((n)=>{
-                return (
-                  <React.Fragment>
-                  <Menu.Item>
-                  <Checkbox label={n}/>
-                  </Menu.Item>
-                  </React.Fragment>
-                );
-              })}
-              
+              {this.state.price.map((n)=>{return (<Menu.Item><Checkbox label={n}/></Menu.Item>);})}
             </Menu.Menu>
           </Menu.Item>
-  
+          
           <Menu.Item>
             <Menu.Header>Rating</Menu.Header>
             <Menu.Menu>
-              {this.state.rating.map((n)=>{
-                return (
-                  <React.Fragment>
-                  <Menu.Item>
-                  <Checkbox label={n + " Stars"}/>
-                  </Menu.Item>
-                  </React.Fragment>
-                );
-              })}
-              
+              {this.state.rating.map((n)=>{return (<Menu.Item><Checkbox label={n + " Stars"}/></Menu.Item>);})}
             </Menu.Menu>
           </Menu.Item>
         </Menu>

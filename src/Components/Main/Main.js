@@ -40,8 +40,8 @@ const style={
 export default class Main extends Component {
   render() {
     return (
-      <React.Fragment>
-        <Grid.Row centered columns='equal' style={style.banner}>
+      <Grid>
+        <Grid.Row verticalAlign='middle' centered columns='equal' style={style.banner}>
           <Grid.Column width={3} />
           <Grid.Column textAlign='left'>
             <Header as='h1' style={style.h1}>LMD/ DADA</Header>
@@ -55,8 +55,8 @@ export default class Main extends Component {
           <Grid.Column ><Image src={pha} label={{ as: 'a', color: 'blue', content: 'Mediacl', icon: 'medkit', ribbon: true }}/></Grid.Column>
           <Grid.Column ><Image src={bg2} label={{ as: 'a', color: 'blue', content: 'shopping', icon: 'shopping basket', ribbon: true }}/></Grid.Column>
           <Grid.Column width={3}/>
-        </Grid.Row>
-      </React.Fragment>
+        </Grid.Row>      
+      </Grid>
     )
   }
 }

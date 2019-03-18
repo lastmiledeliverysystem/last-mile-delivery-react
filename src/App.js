@@ -4,10 +4,12 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import Navbar from './Components/Navbar/Navbar'
 import Footer from './Components/Footer/Footer'
 import Main from "./Components/Main/Main";
+import Cart from './Components/Cart/Cart';
 import bg from './media/street.jpg'
 import bg2 from './media/card2.jpg'
 import './App.css';
 import NotFound from './Components/NotFound/NotFound';
+import Shop from './Components/Shop/Shop';
 
 const style={
     h1:{
@@ -33,7 +35,8 @@ const style={
     },
     navbar:{
         height:'100px',
-        'padding-bottom':'0px'
+        'padding-bottom':'0px',
+        boxShadow: '0 0 16px rgba(0, 0, 0, 0.15)'
     },
     footer:{
       backgroundColor:'#eee'
@@ -47,20 +50,33 @@ class App extends Component {
   }
 
   render() {
+    const getComp = (cmp) =>(
+      <Grid.Row centered columns='equal'>
+        <Grid.Column width={3}></Grid.Column>
+        <Grid.Column>{cmp}</Grid.Column>
+        <Grid.Column width={3}></Grid.Column>
+      </Grid.Row>
+    )
     return (
-      <Grid  verticalAlign='middle'>
+      <Grid  >
         <Grid.Row centered columns='equal' style={style.navbar}>
           <Grid.Column width={3}></Grid.Column>
           <Grid.Column><Navbar/></Grid.Column>
           <Grid.Column width={3}></Grid.Column>
         </Grid.Row>
-        <Switch>
-          <Route path='/not-found' component={NotFound} />
-          <Route path='/shop' component={NotFound} />
-          <Route path='/cart' component={Main} />
-          <Route path='/' exact component={Main} />
-          <Redirect to='/not-found'/>
-        </Switch>
+
+
+        
+
+          <Switch>
+            <Route path='/not-found' component={()=>getComp(<NotFound/>)} />
+            <Route path='/shop' component={()=>getComp(<Shop/>)} />
+            <Route path='/cart' component={()=>getComp(<Cart/>)} />
+            <Route path='/' exact component={Main} />
+            <Redirect to='/not-found'/>
+          </Switch>
+
+
         <Divider hidden/>
         <Grid.Row centered columns='equal' style={style.footer}>
           <Grid.Column width={3}></Grid.Column>
