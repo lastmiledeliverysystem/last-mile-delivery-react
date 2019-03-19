@@ -2,17 +2,17 @@ import React, { Component } from 'react';
 import { Button } from 'semantic-ui-react'
 
 const style={
-    size:{
-        position: "absolute",
-        left: "480px",
-        top: "40%"
-    },
-    word:{
-        position: "absolute",
-        left: "480px",
-        top: "35%"
+    // size:{
+    //     position: "absolute",
+    //     left: "480px",
+    //     top: "40%"
+    // },
+    // word:{
+    //     position: "absolute",
+    //     left: "480px",
+    //     top: "35%"
 
-    }
+    // }
 }
 
 

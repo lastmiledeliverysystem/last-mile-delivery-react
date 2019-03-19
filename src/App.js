@@ -10,6 +10,8 @@ import bg2 from './media/card2.jpg'
 import './App.css';
 import NotFound from './Components/NotFound/NotFound';
 import Shop from './Components/Shop/Shop';
+import ProductPage from './Components/ProductPage/ProductPage';
+import LogIn from './Components/LogIn/LogIn';
 
 const style={
     h1:{
@@ -50,6 +52,7 @@ class App extends Component {
   }
 
   render() {
+
     const getComp = (cmp) =>(
       <Grid.Row centered columns='equal'>
         <Grid.Column width={3}></Grid.Column>
@@ -57,6 +60,7 @@ class App extends Component {
         <Grid.Column width={3}></Grid.Column>
       </Grid.Row>
     )
+    
     return (
       <Grid  >
         <Grid.Row centered columns='equal' style={style.navbar}>
@@ -65,17 +69,15 @@ class App extends Component {
           <Grid.Column width={3}></Grid.Column>
         </Grid.Row>
 
-
-        
-
-          <Switch>
-            <Route path='/not-found' component={()=>getComp(<NotFound/>)} />
-            <Route path='/shop' component={()=>getComp(<Shop/>)} />
-            <Route path='/cart' component={()=>getComp(<Cart/>)} />
-            <Route path='/' exact component={Main} />
-            <Redirect to='/not-found'/>
-          </Switch>
-
+        <Switch>
+          <Route path='/not-found' component={()=>getComp(<NotFound/>)} />
+          <Route path='/ProductPage' component={()=>getComp(<ProductPage/>)} />
+          <Route path='/shop' component={()=>getComp(<Shop/>)} />
+          <Route path='/cart' component={()=>getComp(<Cart/>)} />
+          <Route path='/login' exact component={LogIn} />
+          <Route path='/' exact component={Main} />
+          <Redirect to='/not-found'/>
+        </Switch>
 
         <Divider hidden/>
         <Grid.Row centered columns='equal' style={style.footer}>

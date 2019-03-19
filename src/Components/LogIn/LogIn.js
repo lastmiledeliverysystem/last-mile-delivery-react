@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+
 import {
   Button,
   Segment,
@@ -10,6 +12,8 @@ import {
   Container,
   Icon
 } from 'semantic-ui-react';
+
+
 export default class LogIn extends Component {
   styles = {
     boxStyle: {
@@ -19,19 +23,34 @@ export default class LogIn extends Component {
     }
   };
   state = {
-    name: '',
     email: '',
-    submittedName: '',
-    submittedEmail: ''
+    password: '',
+    submittedEmail: '',
+    submittedPassword: ''
   };
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value });
 
-  handleSubmit = () => {
-    const { name, email } = this.state;
+  loginHandler = ()=>{
+    axios.post('http://localhost:8000/api/auth',{email:this.state.email, password:this.state.password})
+    .then(res => {
+      console.log(res);
+    }).catch(function (error) {
+      console.log(error);
+    });
+  }
 
-    this.setState({ submittedName: name, submittedEmail: email });
+
+  handleSubmit = () => {
+    const { email, password} = this.state;
+      this.setState({
+        submittedEmail: email,
+        submittedPassword: password
+      });
+      // alert(this.state.password)
+      this.loginHandler()
   };
+
   render() {
     return (
       <Container style={this.styles.boxStyle}>
@@ -43,23 +62,28 @@ export default class LogIn extends Component {
             </Header>
             <Segment placeholder raised textAlign="left">
               <Form size="large">
-                <Form.Input
-                  icon="user"
-                  iconPosition="left"
-                  label="Username"
-                  placeholder="Username"
-                  error={false}
+              <Form.Input
+                  name="email"
+                  type="email"
+                  value={this.email}
                   onChange={this.handleChange}
+                  placeholder="Email"
+                  label="Email"
+                  icon="mail"
+                  iconPosition="left"
+                  error={false}
                 />
                 <Form.Input
+                  name="password"
+                  type="password"
+                  value={this.password}
+                  onChange={this.handleChange}
+                  label="Password"
                   icon="lock"
                   iconPosition="left"
-                  label="Password"
-                  type="password"
                   error={false}
-                  onChange={this.handleChange}
                 />
-                <Button content="Login" size="large" primary />
+                <Button content="Login" size="large" primary onClick={this.handleSubmit} />
               </Form>
             </Segment>
             <Message floating>

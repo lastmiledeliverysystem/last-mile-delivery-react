@@ -12,7 +12,7 @@ export default class Shop extends Component {
                     <Grid.Column width={3}>
                         <Sidemenu/>
                     </Grid.Column>
-                    <Grid.Column width={13}>
+                    <Grid.Column width={10}>
                         <Products/>
                     </Grid.Column>
                 </Grid.Row>

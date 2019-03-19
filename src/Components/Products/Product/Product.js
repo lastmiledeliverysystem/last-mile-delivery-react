@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Card, Image, GridRow } from 'semantic-ui-react'
-import { Grid } from 'semantic-ui-react';
 import StarRating from '../../StarRatings/StarRatings';
+import { Link } from 'react-router-dom';
 
 const style = {
   name:{
@@ -48,11 +48,11 @@ export default class Product extends Component {
             </Card.Description>
         </Card.Content>
         <Card.Content extra >
-            <a style={style.price}>
+            <Link to='/ProductPage' style={style.price}>
             Price: 
             {this.props.price} EGP
             <i class="fas fa-shopping-cart" style={style.cart} onClick={this.handleShoppingCartClick}></i>
-            </a>
+            </Link>
         </Card.Content>
       </Card>
     )
