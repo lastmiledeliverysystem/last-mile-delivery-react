@@ -12,6 +12,9 @@ import NotFound from './Components/NotFound/NotFound';
 import Shop from './Components/Shop/Shop';
 import ProductPage from './Components/ProductPage/ProductPage';
 import LogIn from './Components/LogIn/LogIn';
+import Vendors from './Components/Vendors/Vendors'
+import Products from './Components/Products/Products'
+
 
 const style={
     h1:{
@@ -71,6 +74,8 @@ class App extends Component {
 
         <Switch>
           <Route path='/not-found' component={()=>getComp(<NotFound/>)} />
+          <Route path='/Vendors' component={()=>getComp(<Vendors/>)} />
+          <Route path='/Products' component={()=>getComp(<Products/>)} />
           <Route path='/ProductPage' component={()=>getComp(<ProductPage/>)} />
           <Route path='/shop' component={()=>getComp(<Shop/>)} />
           <Route path='/cart' component={()=>getComp(<Cart/>)} />

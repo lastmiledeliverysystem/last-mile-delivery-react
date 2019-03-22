@@ -8,8 +8,8 @@ const style = {
     'font-size':'25px'
   },
   cart:{
-    'position': 'relative',
-     'margin-left': '10px'
+    // 'position': 'relative',
+    //  'margin-left': '10px'
   },
   desc:{
     'color':'black', 
