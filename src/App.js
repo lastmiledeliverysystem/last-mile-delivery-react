@@ -74,10 +74,9 @@ class App extends Component {
 
         <Switch>
           <Route path='/not-found' component={()=>getComp(<NotFound/>)} />
-          <Route path='/Vendors' component={()=>getComp(<Vendors/>)} />
-          <Route path='/Products' component={()=>getComp(<Products/>)} />
+          <Route path='/shop' component={()=>getComp(<Shop isVendor={true} />)} />
+          <Route path='/Products' render={(props)=> getComp(<Shop isVendor={false} {...props}/>)}  />
           <Route path='/ProductPage' component={()=>getComp(<ProductPage/>)} />
-          <Route path='/shop' component={()=>getComp(<Shop/>)} />
           <Route path='/cart' component={()=>getComp(<Cart/>)} />
           <Route path='/login' exact component={LogIn} />
           <Route path='/' exact component={Main} />
