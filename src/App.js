@@ -58,26 +58,25 @@ class App extends Component {
 
     const getComp = (cmp) =>(
       <Grid.Row centered columns='equal'>
-        <Grid.Column width={3}></Grid.Column>
+        <Grid.Column width={1}></Grid.Column>
         <Grid.Column>{cmp}</Grid.Column>
-        <Grid.Column width={3}></Grid.Column>
+        <Grid.Column width={1}></Grid.Column>
       </Grid.Row>
     )
     
     return (
       <Grid  >
         <Grid.Row centered columns='equal' style={style.navbar}>
-          <Grid.Column width={3}></Grid.Column>
+          <Grid.Column width={1}></Grid.Column>
           <Grid.Column><Navbar/></Grid.Column>
-          <Grid.Column width={3}></Grid.Column>
+          <Grid.Column width={1}></Grid.Column>
         </Grid.Row>
 
         <Switch>
           <Route path='/not-found' component={()=>getComp(<NotFound/>)} />
-          <Route path='/Vendors' component={()=>getComp(<Vendors/>)} />
-          <Route path='/Products' component={()=>getComp(<Products/>)} />
+          <Route path='/shop' component={()=>getComp(<Shop isVendors/>)} />
+          <Route path='/Products' component={()=>getComp(<Shop/>)} />
           <Route path='/ProductPage' component={()=>getComp(<ProductPage/>)} />
-          <Route path='/shop' component={()=>getComp(<Shop/>)} />
           <Route path='/cart' component={()=>getComp(<Cart/>)} />
           <Route path='/login' exact component={LogIn} />
           <Route path='/' exact component={Main} />
@@ -86,9 +85,9 @@ class App extends Component {
 
         <Divider hidden/>
         <Grid.Row centered columns='equal' style={style.footer}>
-          <Grid.Column width={3}></Grid.Column>
+          <Grid.Column width={1}></Grid.Column>
           <Grid.Column><Footer/></Grid.Column>
-          <Grid.Column width={3}></Grid.Column>
+          <Grid.Column width={1}></Grid.Column>
         </Grid.Row>
       </Grid>
     );

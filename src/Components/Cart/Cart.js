@@ -62,31 +62,23 @@ export default class Cart extends Component {
   render() {
     return (
       <Grid>
-        <Grid.Row centered padded="vertically">
+        <Grid.Row  padded="vertically">
+          
           <ActionTab />
         </Grid.Row>
 
         <Grid.Row>
-          <GridColumn width={2} />
           <Grid.Column width={9}>
             <Header as="h1" padded="vertically">
               Shopping Cart
             </Header>
             <CartItems deleteItem={this.deleteItem} cartItems={this.state.items}/>
-
-            <Grid.Row textAlign="center"> 
             <Button primary onClick={this.addToCart} >Add Item</Button>
-            </Grid.Row>           
           </Grid.Column>
-
-          <GridColumn width={1} />
-
-          <Grid.Column width={4} textAlign="center" verticalAlign="middle">
-            <GridRow />
+          <Grid.Column width={4} textAlign="center" verticalAlign="top">
+            <Header as="h1" padded="vertically">asd</Header>
             <CartInfo calcTotalPrice={this.calcTotalPrice} totalPrice={this.state.totalPrice} cartItems={this.state.items} />
-            <Grid.Row>
-              <Button positive>PROCEED TO CHECKOUT</Button>
-            </Grid.Row>
+            <Button positive>PROCEED TO CHECKOUT</Button>
           </Grid.Column>
         </Grid.Row>
       </Grid>

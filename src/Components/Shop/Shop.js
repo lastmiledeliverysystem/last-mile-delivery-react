@@ -9,15 +9,18 @@ export default class Shop extends Component {
     state= {
         isVendor: true,
     }
+
+    renderProductHandler = ()=>{this.setState({isVendor:false})}
+
   render() {
     return (
             <Grid relaxed textAlign='center'>
-                <Grid.Row centered >
-                    <Grid.Column width={3}>
+                <Grid.Row centered columns='equal'>
+                    <Grid.Column floated='left' width={3}>
                         <Sidemenu/>
                     </Grid.Column>
-                    <Grid.Column width={10}>
-                    <Vendors/>
+                    <Grid.Column width={13}>
+                        {this.props.isVendors? <Vendors click={this.renderProductHandler}/>: <Products/>}
                     </Grid.Column>
                 </Grid.Row>
                 <Grid.Row centered columns='equal' textAlign='center'>

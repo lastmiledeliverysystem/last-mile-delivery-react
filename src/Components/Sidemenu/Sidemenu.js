@@ -2,6 +2,12 @@ import React, { Component } from 'react'
 import { Menu, MenuItem } from 'semantic-ui-react'
 import { Checkbox } from 'semantic-ui-react'
 
+const style = {
+  menu:{
+    width:'100%'
+  }
+}
+
 export default class Sidemenu extends Component {
   state={
     categories: ["T-shirts", "Jackets", "Sweaters"],
@@ -16,7 +22,7 @@ export default class Sidemenu extends Component {
       const { activeItem } = this.state || {}
   
       return (
-        <Menu vertical>
+        <Menu vertical style={style.menu}>
           <Menu.Item>
             <Menu.Header>Category</Menu.Header>
             <Menu.Menu>

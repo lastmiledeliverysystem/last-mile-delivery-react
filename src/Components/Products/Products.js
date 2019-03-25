@@ -23,33 +23,14 @@ export default class Products extends Component {
 
   render() {
       return (
+        <Grid centered>
+            {this.state.products.map((n) =>
+            <Grid.Column width={3}>
+            <Product name={n.name} description={n.description} imgUrl={n.options.image} price={n.price} color={n.options.color} rate={n.rate}/>                
+            </Grid.Column>
+            )}
+        </Grid>
 
-        <Grid relaxed textAlign='center'>
-                <Grid.Row centered >
-                    <Grid.Column width={3}>
-                        <Sidemenu/>
-                    </Grid.Column>
-                    
-                    <Grid.Column width={10}>
-                        <Grid centered>
-                            <Grid.Row centered>
-                                {this.state.products.map((n) =>
-                                <Grid.Column width={4}>
-                                <Product name={n.name} description={n.description} imgUrl={n.options.image} price={n.price} color={n.options.color} rate={n.rate}/>                
-                                </Grid.Column>
-                                )}
-                            </Grid.Row>
-                        </Grid>
-                    </Grid.Column>
-                </Grid.Row>
-                <Grid.Row centered columns='equal' textAlign='center'>
-                    <Grid.Column />
-                    <Grid.Column >
-                        <PaginationExampleCompact/>
-                    </Grid.Column>
-                    <Grid.Column />
-                </Grid.Row>
-        </Grid>   
     )
   }
 }
