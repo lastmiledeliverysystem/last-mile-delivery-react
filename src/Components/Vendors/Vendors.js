@@ -24,13 +24,11 @@ export default class Vendors extends Component {
       return (
         <React.Fragment>
             <Grid centered>
-                {/* <Grid.Row centered> */}
                 {this.state.vendors.map((n) =>
                     <Grid.Column width={3}>
-                        <Vendor name={n.name} category={n.category} phone={n.phone} address={n.address} click={this.props.click}/>
+                        <Vendor name={n.name} category={n.category} phone={n.phone} address={n.address} id={n._id}/>
                     </Grid.Column>
                     )}
-                {/* </Grid.Row> */}
             </Grid>
         </React.Fragment>
     )

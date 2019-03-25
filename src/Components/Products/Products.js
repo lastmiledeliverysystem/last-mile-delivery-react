@@ -15,9 +15,11 @@ export default class Products extends Component {
     }
 
     getDataHandler = ()=>{
-        axios.get('http://localhost:8000/api/products')
+        //console.log(this.props.match.params.id);
+        axios.get('http://localhost:8000/api/products/')
         .then((res)=>{
             this.setState({products:res.data[1].vendorProducts})
+            //console.log(id);
         });
     }
 

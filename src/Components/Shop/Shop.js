@@ -6,11 +6,6 @@ import PaginationExampleCompact from './../Pagination/Pagination';
 import Vendors from './../Vendors/Vendors';
 
 export default class Shop extends Component {
-    state= {
-        isVendor: true,
-    }
-
-    renderProductHandler = ()=>{this.setState({isVendor:false})}
 
   render() {
     return (
@@ -20,7 +15,7 @@ export default class Shop extends Component {
                         <Sidemenu/>
                     </Grid.Column>
                     <Grid.Column width={13}>
-                        {this.props.isVendors? <Vendors click={this.renderProductHandler}/>: <Products/>}
+                        {(this.props.isVendor)? <Vendors/> :<Products id={this.props.match.params.id} />}
                     </Grid.Column>
                 </Grid.Row>
                 <Grid.Row centered columns='equal' textAlign='center'>
