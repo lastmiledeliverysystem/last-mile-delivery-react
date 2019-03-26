@@ -14,15 +14,7 @@ const style={
 }
 export default class Description extends Component {
     state = { 
-        Description:["Brand: Brand Stores"
-            ,"Color: Brown"
-            ,"Material: Synthetic Cotton"
-            ,"Type: T-Shirt",
-            "Targeted Group: Men",
-            "Brand : null",
-            "Color : Brown",
-            "Fabric Type : Synthetic",
-            "Top Style : T-Shirts"]
+        Description:[this.props.description]
      }
     render() { 
         return ( 
@@ -30,10 +22,10 @@ export default class Description extends Component {
                 <b className="word" style={style.word}>Description:</b>   
                 <List className="description" style={style.description} as='ul'>
                 <List.Item as='li'>{this.state.Description[0]}</List.Item>
-                <List.Item as='li'>{this.state.Description[1]}</List.Item>
+                {/* <List.Item as='li'>{this.state.Description[1]}</List.Item>
                 <List.Item as='li'>{this.state.Description[2]}</List.Item>
                 <List.Item as='li'>{this.state.Description[3]}</List.Item>
-                <List.Item as='li'>{this.state.Description[4]}</List.Item>
+                <List.Item as='li'>{this.state.Description[4]}</List.Item> */}
                 </List>
             </React.Fragment>
          );

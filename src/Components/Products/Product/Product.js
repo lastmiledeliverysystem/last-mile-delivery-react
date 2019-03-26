@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Card, Image, GridRow } from 'semantic-ui-react'
+import { Card, Image } from 'semantic-ui-react'
 import StarRating from '../../StarRatings/StarRatings';
 import { Link } from 'react-router-dom';
 
@@ -48,10 +48,10 @@ export default class Product extends Component {
             </Card.Description>
         </Card.Content>
         <Card.Content extra >
-            <Link to='/ProductPage' style={style.price}>
+            <Link to='/ProductPage' style={style.price} onClick={()=>this.props.changeProductHandler(this.props.productData)}>
             Price: 
             {this.props.price} EGP
-            <i class="fas fa-shopping-cart" style={style.cart} onClick={this.handleShoppingCartClick}></i>
+            <i className="fas fa-shopping-cart" style={style.cart}></i>
             </Link>
         </Card.Content>
       </Card>

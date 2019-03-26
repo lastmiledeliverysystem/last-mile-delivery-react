@@ -1,10 +1,10 @@
 import React ,{Component} from 'react';
 import { Button,Header,Grid } from 'semantic-ui-react'
+import { Link } from 'react-router-dom';
 
 const style={
     addtocart:{
-        margin:'20px'
-
+        color:'white'
     },
     header:{
         top: "5%",
@@ -37,7 +37,7 @@ export default  class AddToCart extends Component {
                    </Grid.Row>
                    <Grid.Row centered columns='equal'>
                        <Grid.Column>
-                        <Button color="green" size='huge' fluid> ADD TO CART </Button>
+                        <Button  color="green" size='huge' fluid><Link style={style.addtocart} to='/cart'>ADD TO CART</Link></Button>
                        </Grid.Column>
                    </Grid.Row>
 

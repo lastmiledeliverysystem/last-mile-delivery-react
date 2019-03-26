@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, GridRow, GridColumn, Button, Header } from 'semantic-ui-react';
+import { Grid,Button, Header } from 'semantic-ui-react';
 import ActionTab from './ActionBar/ActionBar';
 import CartItems from './CartItems/CartItems';
 import CartInfo from './CartInfo/cartInfo';

@@ -1,5 +1,5 @@
 import React , {Component} from 'react';
-import { Rating , Divider } from 'semantic-ui-react';
+import { Rating } from 'semantic-ui-react';
 //  import '../Rating/Rating.css'
 
  const style={
@@ -9,13 +9,13 @@ import { Rating , Divider } from 'semantic-ui-react';
         // top: "15%"
      },
     name:{
-        "font-weight": "bold",
+        "fontWeight": "bold",
         "font-family":"Times New Roman",
         color:"Black ",
         'font-size':'40px',
     },
     price:{
-        "font-weight": "bold",
+        "fontWeight": "bold",
         "font-family":"Times New Roman",
         color:"green ",
         'font-size':'20px',
@@ -24,15 +24,14 @@ import { Rating , Divider } from 'semantic-ui-react';
  }
 export default class rating extends Component{
     state={
-        name:"Happy Ninja",
-        price:"55.00 EGP"
+        name:this.props.name,
+        price:this.props.price,
+        rate:this.props.rate
     }
     render(){
         return(
             <div>
-            <h1 className="name" style={style.name}>{this.state.name}</h1>
-            <p className="price" style={style.price}>{this.state.price}</p>
-            <Rating style={style.rating} defaultRating={3} maxRating={5} size="huge" />
+                <Rating style={style.rating} defaultRating={this.state.rate} maxRating={5} size="huge" />
             </div>
         )
     }

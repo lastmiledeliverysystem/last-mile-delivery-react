@@ -1,31 +1,28 @@
 import React, { Component } from 'react'
-import { Card, Image, GridRow } from 'semantic-ui-react'
+import { Card, Image } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 
 
-import { Grid } from 'semantic-ui-react';
-import StarRating from '../../StarRatings/StarRatings';
-
 const style = {
   name:{
-    'font-size':'25px'
+    'fontSize':'25px'
   },
   cash:{
     'color':'black',
-    'font-size':'20px'
+    'fontSize':'20px'
   },
   add:{
     'color':'black', 
-    'font-size':'13px'
+    'fontSize':'13px'
 
   },
   price:{
     'color':'black',
-    'font-size':'15px'
+    'fontSize':'15px'
   },
   color:{
     'color': 'black',
-    'font-size':'15px'
+    'fontSize':'15px'
   }
 
 }
@@ -56,8 +53,8 @@ export default class Vendor extends Component {
            
         </Card.Content>
         <Card.Content extra >
-            <Link to={`/Products/${this.props.id}`} style={style.price}>
-            <i class="fa fa-phone-square" aria-hidden="true" style={style.cash} onClick={this.handleShoppingCartClick}></i>
+            <Link to={`/Products/${this.props.productsId}`} style={style.price}>
+            <i className="fa fa-phone-square" aria-hidden="true" style={style.cash} onClick={this.handleShoppingCartClick}></i>
             {this.props.phone}
             </Link>
         </Card.Content>

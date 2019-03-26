@@ -15,7 +15,7 @@ export default class Shop extends Component {
                         <Sidemenu/>
                     </Grid.Column>
                     <Grid.Column width={13}>
-                        {(this.props.isVendor)? <Vendors/> :<Products id={this.props.match.params.id} />}
+                        {(this.props.isVendor)? <Vendors/> :<Products productsId={this.props.match.params.productsId} changeProductHandler={this.props.changeProductHandler} />}
                     </Grid.Column>
                 </Grid.Row>
                 <Grid.Row centered columns='equal' textAlign='center'>

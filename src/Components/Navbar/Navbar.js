@@ -1,21 +1,21 @@
 import React, { Component } from 'react'
-import { Input, Menu, Icon, icon } from 'semantic-ui-react'
+import { Input, Menu, Icon } from 'semantic-ui-react'
 import { NavLink } from "react-router-dom";
 
 
 const style={
   h1:{
       color:'#1d064b',
-      'font-size':'20px',
+      'fontSize':'20px',
   }
 }
 export default class Navbar extends Component {
-    state = { activeItem: 'home' }
+    // state = { activeItem: 'home' }
 
-    handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+    // handleItemClick = (e, { name }) => this.setState({ activeItem: name })
   
     render() {
-      const { activeItem } = this.state
+      // const { activeItem } = this.state
   
       return (
         <Menu text>

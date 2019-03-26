@@ -12,8 +12,6 @@ import NotFound from './Components/NotFound/NotFound';
 import Shop from './Components/Shop/Shop';
 import ProductPage from './Components/ProductPage/ProductPage';
 import LogIn from './Components/LogIn/LogIn';
-import Vendors from './Components/Vendors/Vendors'
-import Products from './Components/Products/Products'
 
 
 const style={
@@ -40,7 +38,7 @@ const style={
     },
     navbar:{
         height:'100px',
-        'padding-bottom':'0px',
+        'paddingBottom':'0px',
         boxShadow: '0 0 16px rgba(0, 0, 0, 0.15)'
     },
     footer:{
@@ -51,7 +49,12 @@ const style={
 class App extends Component {
 
   state = {
-    data:"First app"
+    data:"First app",
+    productData:{}
+  }
+
+  changeProductHandler = (p) => {
+    this.setState({productData:p})
   }
 
   render() {
@@ -75,8 +78,8 @@ class App extends Component {
         <Switch>
           <Route path='/not-found' component={()=>getComp(<NotFound/>)} />
           <Route path='/shop' component={()=>getComp(<Shop isVendor={true} />)} />
-          <Route path='/Products' render={(props)=> getComp(<Shop isVendor={false} {...props}/>)}  />
-          <Route path='/ProductPage' component={()=>getComp(<ProductPage/>)} />
+          <Route path='/Products/:productsId' render={(props)=> getComp(<Shop isVendor={false} {...props} changeProductHandler={this.changeProductHandler}/>)}  />
+          <Route path='/ProductPage' component={()=>getComp(<ProductPage productData={this.state.productData}/>)} />
           <Route path='/cart' component={()=>getComp(<Cart/>)} />
           <Route path='/login' exact component={LogIn} />
           <Route path='/' exact component={Main} />
