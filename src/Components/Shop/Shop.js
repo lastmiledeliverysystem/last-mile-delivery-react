@@ -21,7 +21,7 @@ export default class Shop extends Component {
                 <Grid.Row centered columns='equal' textAlign='center'>
                     <Grid.Column />
                     <Grid.Column >
-                        <PaginationExampleCompact/>
+                        {/* <PaginationExampleCompact/> */}
                     </Grid.Column>
                     <Grid.Column />
                 </Grid.Row>
