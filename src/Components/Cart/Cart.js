@@ -25,13 +25,35 @@ export default class Cart extends Component {
         img: 'https://react.semantic-ui.com/images/wireframe/image.png',
         price: 19000
       }
-    ]
+    ],
+    address: {
+      longitude: '',
+      latitude: ''
+    },
   };
 
   componentDidMount(prevState){
       this.calcTotalPrice();
   }
+ 
+  locationHandler = () => {
+    const success = (position)=> {
+      try{
+      const latitude  = position.coords.latitude;
+      const longitude = position.coords.longitude;
+      console.log(this);
+      this.setState({address: {
+        longitude,
+        latitude
+      }})
+      console.log("location", this.state.address.longitude, this.state.address.latitude);
 
+    } catch(err){
+      console.log(err);
+    }
+  }
+      navigator.geolocation.getCurrentPosition(success);
+    }
   addToCart =() =>{
     let tempItems= this.state.items;
     tempItems.push({ id:tempItems.length+1,
@@ -78,7 +100,7 @@ export default class Cart extends Component {
           <Grid.Column width={4} textAlign="center" verticalAlign="top">
             <Header as="h1" padded="vertically">asd</Header>
             <CartInfo calcTotalPrice={this.calcTotalPrice} totalPrice={this.state.totalPrice} cartItems={this.state.items} />
-            <Button positive>PROCEED TO CHECKOUT</Button>
+            <Button positive onClick={this.locationHandler}>PROCEED TO CHECKOUT</Button>
           </Grid.Column>
         </Grid.Row>
       </Grid>

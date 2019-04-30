@@ -14,7 +14,7 @@ const style={
 export default class Products extends Component {
     state = {
         products:[],
-        productsId: this.props.productsId,
+        vendorId: this.props.vendorId,
         activePage: 1
     }
 
@@ -31,9 +31,9 @@ export default class Products extends Component {
         }); 
     }
     getDataHandler = ()=>{
-        axios.get('http://localhost:8000/api/products/'+this.state.productsId+'/test?pageSize=1&pageNumber='+this.state.activePage)
+        axios.get('http://localhost:8000/api/products/'+this.state.vendorId)
         .then((res)=>{
-            this.setState({products:res.data.vendorProducts})
+            this.setState({products:res.data})
             //console.log(id);
         });
     }

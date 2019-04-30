@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { Grid, Image, Header, Divider } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 import bg from '../../media/street.jpg'
 import pha from '../../media/pha.jpg'
 import bg2 from '../../media/card2.jpg'
 import food from '../../media/food.jpg'
+import axios from 'axios'
 import './Main.css'
 
 const style={
@@ -38,6 +40,10 @@ const style={
 }
 
 export default class Main extends Component {
+
+  categoryHandler = (cat) => {
+    this.props.history.push('/shop/' + cat )
+  }
   render() {
     return (
       <Grid>
@@ -51,9 +57,9 @@ export default class Main extends Component {
         <Divider hidden/>
         <Grid.Row centered columns='equal' stretched>
           <Grid.Column width={3}/>
-          <Grid.Column ><Image src={food} label={{ as: 'a', color: 'blue', content: 'Food', icon: 'food', ribbon: true }}/></Grid.Column>
-          <Grid.Column ><Image src={pha} label={{ as: 'a', color: 'blue', content: 'Mediacl', icon: 'medkit', ribbon: true }}/></Grid.Column>
-          <Grid.Column ><Image src={bg2} label={{ as: 'a', color: 'blue', content: 'shopping', icon: 'shopping basket', ribbon: true }}/></Grid.Column>
+          <Grid.Column ><Image src={food} label={{ as: 'a', color: 'blue', content: 'Food', icon: 'food', ribbon: true }} onClick={() => this.categoryHandler('food')}/> </Grid.Column>
+          <Grid.Column ><Image src={pha} label={{ as: 'a', color: 'blue', content: 'Mediacl', icon: 'medkit', ribbon: true }} onClick={() => this.categoryHandler('medical')}/></Grid.Column>
+          <Grid.Column ><Image src={bg2} label={{ as: 'a', color: 'blue', content: 'shopping', icon: 'shopping basket', ribbon: true }} onClick={() => this.categoryHandler('clothing')}/></Grid.Column>
           <Grid.Column width={3}/>
         </Grid.Row>      
       </Grid>

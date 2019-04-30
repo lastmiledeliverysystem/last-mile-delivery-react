@@ -50,11 +50,19 @@ class App extends Component {
 
   state = {
     data:"First app",
-    productData:{}
+    productData:{},
+    category: {},
+    isLogged:false
   }
 
   changeProductHandler = (p) => {
     this.setState({productData:p})
+  }
+  changeCategoryHandler = (c) => {
+    this.setState({category :c})
+  }
+  toggleLogHandler = ()=>{
+    this.setState({isLogged:!this.state.isLogged});
   }
 
   render() {
@@ -71,17 +79,20 @@ class App extends Component {
       <Grid  >
         <Grid.Row centered columns='equal' style={style.navbar}>
           <Grid.Column width={1}></Grid.Column>
-          <Grid.Column><Navbar/></Grid.Column>
+          <Grid.Column><Navbar isLogged={this.state.isLogged}/></Grid.Column>
           <Grid.Column width={1}></Grid.Column>
         </Grid.Row>
 
         <Switch>
           <Route path='/not-found' component={()=>getComp(<NotFound/>)} />
-          <Route path='/shop' component={()=>getComp(<Shop isVendor={true} />)} />
-          <Route path='/Products/:productsId' render={(props)=> getComp(<Shop isVendor={false} {...props} changeProductHandler={this.changeProductHandler}/>)}  />
+          {/* <Route path='/shop' component={()=>getComp(<Shop isVendor={true}/>)}/> */}
+          {/* <Route path='/login' exact component={LogIn} /> */}
+          <Route path='/login' render={(props)=> <LogIn toggleLogHandler={this.toggleLogHandler} {...props}/>} />
+          <Route path='/shop/:category' render={(props)=>getComp(<Shop isVendor={true} {...props}/>)} />
+          <Route path='/Products/:vendorId' render={(props)=> getComp(<Shop isVendor={false} {...props} changeProductHandler={this.changeProductHandler}/>)}  />
           <Route path='/ProductPage' component={()=>getComp(<ProductPage productData={this.state.productData}/>)} />
           <Route path='/cart' component={()=>getComp(<Cart/>)} />
-          <Route path='/login' exact component={LogIn} />
+          {/* <Route path='/login' exact component={LogIn} /> */}
           <Route path='/' exact component={Main} />
           <Redirect to='/not-found'/>
         </Switch>

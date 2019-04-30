@@ -26,7 +26,8 @@ export default class LogIn extends Component {
     email: '',
     password: '',
     submittedEmail: '',
-    submittedPassword: ''
+    submittedPassword: '',
+    isErr:true
   };
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value });
@@ -34,9 +35,13 @@ export default class LogIn extends Component {
   loginHandler = ()=>{
     axios.post('http://localhost:8000/api/auth',{email:this.state.email, password:this.state.password})
     .then(res => {
-      console.log(res);
-    }).catch(function (error) {
+      console.log("plapla", res.data);
+      this.props.toggleLogHandler();
+      this.props.history.push("/")
+    }).catch( error => {
       console.log(error);
+      
+      this.setState({isErr:false})
     });
   }
 
@@ -85,6 +90,12 @@ export default class LogIn extends Component {
                 />
                 <Button content="Login" size="large" primary onClick={this.handleSubmit} />
               </Form>
+              <Message
+                error
+                header='Access Denied'
+                content= 'Incorrect Email or Password.'
+                hidden = {this.state.isErr}
+              />
             </Segment>
             <Message floating>
               Not registered yet? <a href="#">Sign Up</a>

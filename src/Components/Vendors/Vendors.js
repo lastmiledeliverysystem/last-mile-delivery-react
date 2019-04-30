@@ -15,13 +15,21 @@ export default class Vendors extends Component {
     state = {
         vendors:[],
         activePage: 1,
-        pageCount: 1
-    }
+        pageCount: 1,
+        }
 
     componentDidMount = () => {
       this.getDataHandler()
       //this.handlePaginationChange(false,{activePage:this.state.activePage});
     }
+
+    categoryHandler = () => {
+        console.log("hereee", this.props );
+        axios.get('http://localhost:8000/api/vendors/test?pageSize=1&pageNumber=1&filterBy=category&value='+this.props.category)
+        .then((res)=>{
+            this.setState({vendors:res.data.vendor})
+        });
+      }
     handlePaginationChange =  async (e, {activePage}) => {
             await this.setState({ activePage });
 
@@ -30,10 +38,13 @@ export default class Vendors extends Component {
         
     }
     getDataHandler = ()=>{
-        console.log("hereee", this.state.activePage);
-        axios.get('http://localhost:8000/api/vendors/test?pageSize=1&pageNumber='+this.state.activePage)
+        console.log("hereee", this.props.category);
+        
+        axios.get('http://localhost:8000/api/vendors/search?pageSize=1&pageNumber='+this.state.activePage+"&filterBy=category&value="+this.props.category)
         .then((res)=>{
             this.setState({vendors:res.data.vendor, pageCount: res.data.pageCount})
+            console.log(res.data.pageCount);
+            
             //this.setState({ activePage });
         });
     }
@@ -45,7 +56,7 @@ export default class Vendors extends Component {
             <Grid centered>
                 {this.state.vendors.map((n) =>
                     <Grid.Column width={3} key={n._id}>
-                        <Vendor name={n.name} category={n.category} phone={n.phone} address={n.address} productsId={n.vendorProducts}/>
+                        <Vendor name={n.name} category={n.category} phone={n.phone} address={n.address} vendorId={n._id}/>
                     </Grid.Column>
                     )}
                     <Grid.Row>
