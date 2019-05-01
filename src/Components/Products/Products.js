@@ -15,33 +15,35 @@ export default class Products extends Component {
     state = {
         products:[],
         vendorId: this.props.vendorId,
-        activePage: 1
+        activePage: 1,
+        pageCount: 1,
     }
 
     componentDidMount = () => {
       this.getDataHandler()
     }
     //handlePaginationChange = (e, { activePage }) => this.setState({ activePage })
-    handlePaginationChange = (e, { activePage }) => {
-        this.setState({ activePage });
-        axios.get('http://localhost:8000/api/products/test?pageSize=1&pageNumber='+this.state.activePage)
-        .then((res)=>{
-            this.setState({products:res.data.vendorProducts})
-            //console.log(id);
-        }); 
+    handlePaginationChange =  async (e, {activePage}) => {
+        await this.setState({ activePage });
+            this.getDataHandler();
+    
     }
+
     getDataHandler = ()=>{
-        axios.get('http://localhost:8000/api/products/'+this.state.vendorId)
+        axios.get('http://localhost:8000/api/products/search?pageSize=2&pageNumber='+this.state.activePage + '&filterBy=vendorId&value=5cb0a3dd6178cf340c43017b')
         .then((res)=>{
-            this.setState({products:res.data})
-            //console.log(id);
+            this.setState({products:res.data.product, pageCount: res.data.pageCount })
+        })
+        .catch((err)=> {
+            console.log("Error", err);
         });
     }
 
   render() {
     const { activePage } = this.state
       return (
-        <Grid centered>
+          <React.Fragment>
+            <Grid centered>
             {this.state.products.map((n) =>
             <Grid.Column width={3} key={n._id}>
             <Product changeProductHandler={this.props.changeProductHandler} productData={n} name={n.name} description={n.description} imgUrl={n.options.image} price={n.price} color={n.options.color} rate={n.rate}/>                
@@ -51,11 +53,12 @@ export default class Products extends Component {
             <Pagination
                 activePage={activePage}
                 onPageChange={this.handlePaginationChange}
-                totalPages={5}
+                totalPages={this.state.pageCount}
                 style={style}
                 />
             </Grid.Row>
         </Grid>
+        </React.Fragment>
     )
   }
 }

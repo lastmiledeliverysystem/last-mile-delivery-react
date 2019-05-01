@@ -16,7 +16,7 @@ export default class Shop extends Component {
                     </Grid.Column>
                     <Grid.Column width={13}>
                         {(this.props.isVendor)? <Vendors category ={this.props.match.params.category}/> :<Products vendorId={this.props.match.params.vendorId} changeProductHandler={this.props.changeProductHandler} />}
-                        {console.log("shop cat", this.props.match.params.category)}
+                        {/* {console.log("shop cat", this.props.match.params.category)} */}
                     </Grid.Column>
                 </Grid.Row>
                 <Grid.Row centered columns='equal' textAlign='center'>
