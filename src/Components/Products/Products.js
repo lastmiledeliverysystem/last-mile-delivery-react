@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Product from './Product/Product'
-import { Grid, GridColumn } from 'semantic-ui-react';
+import { Grid, Dimmer, Loader } from 'semantic-ui-react';
 import { Pagination } from 'semantic-ui-react'
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
@@ -18,6 +18,7 @@ class Products extends Component {
         vendorId: this.props.vendorId,
         activePage: 1,
         pageCount: 1,
+        dim:true
     }
 
     componentDidMount = () => {
@@ -25,7 +26,7 @@ class Products extends Component {
     }
     //handlePaginationChange = (e, { activePage }) => this.setState({ activePage })
     handlePaginationChange =  async (e, {activePage}) => {
-        await this.setState({ activePage });
+        await this.setState({ activePage, dim:true });
             this.getDataHandler();
     
     }
@@ -33,7 +34,7 @@ class Products extends Component {
     getDataHandler = ()=>{
         axios.get('http://localhost:8000/api/products/search?pageSize=10&pageNumber='+this.state.activePage + '&filterBy=vendorId&value='+this.props.vendorId)
         .then((res)=>{
-            this.setState({products:res.data.product, pageCount: res.data.pageCount })
+            this.setState({products:res.data.product, pageCount: res.data.pageCount, dim:false })
         })
         .catch((err)=> {
             console.log("Error", err);
@@ -43,11 +44,14 @@ class Products extends Component {
   render() {
     const { activePage } = this.state
       return (
-          <React.Fragment>
-            <Grid centered>
+        <React.Fragment>
+          <Grid centered>
+            <Dimmer active={this.state.dim} size='huge'>
+              <Loader />
+            </Dimmer>
             {this.state.products.map((n) =>
             <Grid.Column width={3} key={n._id}>
-            <Product changeProductHandler={this.props.changeProductHandler} productId={n._id} productData={n} name={n.name} description={n.description} imgUrl={n.options.image} price={n.price} color={n.options.color} rate={n.rate}/>                
+              <Product changeProductHandler={this.props.changeProductHandler} productId={n._id} productData={n} name={n.name} description={n.description} imgUrl={n.options.image} price={n.price} color={n.options.color} rate={n.rate}/>                
             </Grid.Column>
             )}
             <Grid.Row>
@@ -58,7 +62,7 @@ class Products extends Component {
                 style={style}
                 />
             </Grid.Row>
-        </Grid>
+          </Grid>
         </React.Fragment>
     )
   }

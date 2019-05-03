@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Vendor from './Vendor/Vendor'
 import { Grid } from 'semantic-ui-react';
-import { Pagination } from 'semantic-ui-react'
+import { Pagination, Dimmer, Loader } from 'semantic-ui-react'
 import axios from 'axios';
 
 const style={
@@ -16,23 +16,15 @@ export default class Vendors extends Component {
         vendors:[],
         activePage: 1,
         pageCount: 1,
+        dim:true
         }
 
     componentDidMount = () => {
       this.getDataHandler()
-      //this.handlePaginationChange(false,{activePage:this.state.activePage});
     }
 
-    categoryHandler = () => {
-        console.log("hereee", this.props );
-        axios.get('http://localhost:8000/api/vendors/test?pageSize=1&pageNumber=1&filterBy=category&value='+this.props.category)
-        .then((res)=>{
-            this.setState({vendors:res.data.vendor})
-        });
-      }
     handlePaginationChange =  async (e, {activePage}) => {
-            await this.setState({ activePage });
-
+            await this.setState({ activePage, dim:true });
                 console.log(this.state.activePage);
                 this.getDataHandler();
         
@@ -44,10 +36,8 @@ export default class Vendors extends Component {
          : 'http://localhost:8000/api/vendors/search?pageSize=1&pageNumber='+this.state.activePage+"&filterBy=category&value="+this.props.category
         axios.get(link)
         .then((res)=>{
-            this.setState({vendors:res.data.vendor, pageCount: res.data.pageCount})
-            console.log(res.data.pageCount);
-            
-            //this.setState({ activePage });
+            this.setState({vendors:res.data.vendor, pageCount: res.data.pageCount, dim:false})
+            console.log(res.data.pageCount);            
         });
     }
 
@@ -56,9 +46,9 @@ export default class Vendors extends Component {
       return (
         <React.Fragment>
             <Grid>
-                {/* <Dimmer active={this.state.dim} size='huge'>
+                <Dimmer active={this.state.dim} size='huge'>
                     <Loader />
-                </Dimmer> */}
+                </Dimmer>
                 {this.state.vendors.map((n) =>
                     <Grid.Column width={3} key={n._id}>
                         <Vendor name={n.name} category={n.category} imageURL={n.imageURL} phone={n.phone} address={n.address} vendorId={n._id}/>
