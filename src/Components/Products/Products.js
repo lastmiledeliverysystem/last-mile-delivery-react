@@ -12,7 +12,7 @@ const style={
   
   }
 
-export default class Products extends Component {
+class Products extends Component {
     state = {
         products:[],
         vendorId: this.props.vendorId,
@@ -31,7 +31,7 @@ export default class Products extends Component {
     }
 
     getDataHandler = ()=>{
-        axios.get('http://localhost:8000/api/products/search?pageSize=2&pageNumber='+this.state.activePage + '&filterBy=vendorId&value=5cb0a3dd6178cf340c43017b')
+        axios.get('http://localhost:8000/api/products/search?pageSize=10&pageNumber='+this.state.activePage + '&filterBy=vendorId&value='+this.props.vendorId)
         .then((res)=>{
             this.setState({products:res.data.product, pageCount: res.data.pageCount })
         })
@@ -47,7 +47,7 @@ export default class Products extends Component {
             <Grid centered>
             {this.state.products.map((n) =>
             <Grid.Column width={3} key={n._id}>
-            <Product changeProductHandler={this.props.changeProductHandler} productData={n} name={n.name} description={n.description} imgUrl={n.options.image} price={n.price} color={n.options.color} rate={n.rate}/>                
+            <Product changeProductHandler={this.props.changeProductHandler} productId={n._id} productData={n} name={n.name} description={n.description} imgUrl={n.options.image} price={n.price} color={n.options.color} rate={n.rate}/>                
             </Grid.Column>
             )}
             <Grid.Row>

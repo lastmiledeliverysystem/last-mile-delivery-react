@@ -22,7 +22,7 @@ export default class Navbar extends Component {
           <Menu.Item header style={style.h1}>LMD/DADA</Menu.Item>
           <Menu.Menu position="right">
             <NavLink to='/' className='item'>HOME</NavLink>
-            <NavLink to='/shop' className='item'>SHOP</NavLink>
+            <NavLink to='/shop/all' className='item'>SHOP</NavLink>
             <NavLink to='/cart' className='item'><Icon name="shopping cart"/>CART</NavLink>
             <Menu.Item>
               <Input icon='search' placeholder='Search...' />

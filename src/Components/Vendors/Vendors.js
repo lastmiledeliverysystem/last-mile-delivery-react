@@ -39,8 +39,10 @@ export default class Vendors extends Component {
     }
     getDataHandler = ()=>{
         console.log("hereee", this.props.category);
-        
-        axios.get('http://localhost:8000/api/vendors/search?pageSize=1&pageNumber='+this.state.activePage+"&filterBy=category&value="+this.props.category)
+        const link = this.props.category==="all"?
+         'http://localhost:8000/api/vendors/search?pageSize=1&pageNumber='+this.state.activePage 
+         : 'http://localhost:8000/api/vendors/search?pageSize=1&pageNumber='+this.state.activePage+"&filterBy=category&value="+this.props.category
+        axios.get(link)
         .then((res)=>{
             this.setState({vendors:res.data.vendor, pageCount: res.data.pageCount})
             console.log(res.data.pageCount);
@@ -54,12 +56,12 @@ export default class Vendors extends Component {
       return (
         <React.Fragment>
             <Grid>
-                <Dimmer active={this.state.dim} size='huge'>
+                {/* <Dimmer active={this.state.dim} size='huge'>
                     <Loader />
-                </Dimmer>
+                </Dimmer> */}
                 {this.state.vendors.map((n) =>
                     <Grid.Column width={3} key={n._id}>
-                        <Vendor name={n.name} category={n.category} phone={n.phone} address={n.address} vendorId={n._id}/>
+                        <Vendor name={n.name} category={n.category} imageURL={n.imageURL} phone={n.phone} address={n.address} vendorId={n._id}/>
                     </Grid.Column>
                     )}
                     <Grid.Row>

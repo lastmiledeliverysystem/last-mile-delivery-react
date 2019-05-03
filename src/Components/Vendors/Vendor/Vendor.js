@@ -46,7 +46,7 @@ export default class Vendor extends Component {
         width={230}
         height={230} centered/>
         <Card.Content>
-          <Link to={`/Products/${this.props.productsId}`} style={style.price}>
+          <Link to={`/Products/${this.props.vendorId}`} style={style.price}>
             <Card.Header style={style.name}>{this.props.name}</Card.Header>
           </Link>
             <Card.Meta>
@@ -61,7 +61,7 @@ export default class Vendor extends Component {
            
         </Card.Content>
         <Card.Content extra >
-            <Link to={`/Products/${this.props.vendorId}`} style={style.price}>
+            <Link to={'/Products/'+this.props.vendorId} style={style.price}>
             <i className="fa fa-phone-square" aria-hidden="true" style={style.cash} onClick={this.handleShoppingCartClick}></i>
             {this.props.phone}
             </Link>

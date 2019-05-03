@@ -96,7 +96,7 @@ class App extends Component {
           <Route path='/login' render={(props)=> <LogIn toggleLogHandler={this.toggleLogHandler} {...props}/>} />
           <Route path='/shop/:category' render={(props)=>getComp(<Shop isVendor={true} {...props}/>)} />
           <Route path='/Products/:vendorId' render={(props)=> getComp(<Shop isVendor={false} changeProductHandler={this.changeProductHandler} {...props}/>)}  />
-          <Route path='/ProductPage' component={()=>getComp(<ProductPage productData={this.state.productData}/>)} />
+          <Route path='/ProductPage/:productId' render={(props)=>getComp(<ProductPage {...props} productData={this.state.productData}/>)} />
           <Route path='/cart' component={()=>getComp(<Cart/>)} />
           {/* <Route path='/login' exact component={LogIn} /> */}
           <Route path='/' exact component={Main} />

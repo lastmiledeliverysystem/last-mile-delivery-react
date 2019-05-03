@@ -63,14 +63,14 @@ class ProductPage extends Component {
     axios.get('http://localhost:8000/api/products/product/'+this.props.match.params.productId)
     .then((res)=>{
         this.setState({
-          name:res.data.name,
-          img:res.data.options.image,
-          price:res.data.price,
-          rate:res.data.price,
-          description:res.data.description,
+          name:res.data[0].name,
+          img:res.data[0].options.image,
+          price:res.data[0].price,
+          rate:res.data[0].price,
+          description:res.data[0].description,
           dim:false
           })
-        console.log(res.data);
+        console.log(res.data[0]);
     });
 }
   

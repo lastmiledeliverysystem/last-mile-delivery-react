@@ -45,7 +45,7 @@ export default class Product extends Component {
         width={230}
         height={230} centered/>
         <Card.Content>
-          <Link to={'/ProductPage/'+this.props.id} style={style.price} onClick={()=>this.props.changeProductHandler(this.props.productData)}>
+          <Link to={'/ProductPage/'+this.props.productId} style={style.price} onClick={()=>this.props.changeProductHandler(this.props.productData)}>
             <Card.Header style={style.name}>{this.props.name}</Card.Header>
           </Link>
           <Card.Meta>
