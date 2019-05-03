@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { Grid, Divider } from 'semantic-ui-react';
+import React, { Component, createRef } from 'react'
+import { Grid } from 'semantic-ui-react';
 import { Route, Switch, Redirect } from "react-router-dom";
 import Navbar from './Components/Navbar/Navbar'
 import Footer from './Components/Footer/Footer'
@@ -37,12 +37,16 @@ const style={
         backgroundImage:'url('+bg2+')',
     },
     navbar:{
-        height:'100px',
+        // height:'100px',
         'paddingBottom':'0px',
-        boxShadow: '0 0 16px rgba(0, 0, 0, 0.15)'
+        boxShadow: 'rgba(0, 0, 0, 0.19) 0px 0px 2px'
     },
     footer:{
       backgroundColor:'#eee'
+    },
+    bgColor:{
+      backgroundColor:"#fafafa",
+      minHeight: 'calc(100vh - 90px - 80px)'
     }
 }
 
@@ -50,17 +54,33 @@ class App extends Component {
 
   state = {
     data:"First app",
-    productData:{}
+    productData:{
+      barCode: "sadsad",
+      category: "ayhaga",
+      description: "good quality",
+      name: "Elegant T-Shirt",
+      options: {image: "https://www.dhresource.com/0x0s/f2-albu-g6-M00-3E-B8-rBVaSFuU6LOAKMgsAADfTzjL_GE533.jpg/medium-adult-039-s-the-flash-t-shirt-logo.jpg", color: "black", size: "21"},
+      price: 100,
+      productId: 12,
+      quantity: 10,
+      rate: 5,
+      sku: "asd55",
+      specs: "pplister",
+      unit: "LE",
+      _id: "5c7f306e76e5c20bacd7e225"
+    }
   }
-
+  
   changeProductHandler = (p) => {
     this.setState({productData:p})
   }
 
+  contextRef = createRef()
+
   render() {
 
     const getComp = (cmp) =>(
-      <Grid.Row centered columns='equal'>
+      <Grid.Row centered columns='equal' style={style.bgColor}>
         <Grid.Column width={1}></Grid.Column>
         <Grid.Column>{cmp}</Grid.Column>
         <Grid.Column width={1}></Grid.Column>
@@ -79,14 +99,14 @@ class App extends Component {
           <Route path='/not-found' component={()=>getComp(<NotFound/>)} />
           <Route path='/shop' component={()=>getComp(<Shop isVendor={true} />)} />
           <Route path='/Products/:productsId' render={(props)=> getComp(<Shop isVendor={false} {...props} changeProductHandler={this.changeProductHandler}/>)}  />
-          <Route path='/ProductPage' component={()=>getComp(<ProductPage productData={this.state.productData}/>)} />
+          <Route path='/ProductPage/:productId' component={()=>getComp(<ProductPage productData={this.state.productData}/>)} />
           <Route path='/cart' component={()=>getComp(<Cart/>)} />
           <Route path='/login' exact component={LogIn} />
           <Route path='/' exact component={Main} />
           <Redirect to='/not-found'/>
         </Switch>
 
-        <Divider hidden/>
+        {/* <Divider hidden/> */}
         <Grid.Row centered columns='equal' style={style.footer}>
           <Grid.Column width={1}></Grid.Column>
           <Grid.Column><Footer/></Grid.Column>

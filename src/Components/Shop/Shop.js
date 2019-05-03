@@ -4,8 +4,9 @@ import Products from './../Products/Products';
 import Sidemenu from './../Sidemenu/Sidemenu';
 import PaginationExampleCompact from './../Pagination/Pagination';
 import Vendors from './../Vendors/Vendors';
+import {withRouter} from "react-router-dom";
 
-export default class Shop extends Component {
+class Shop extends Component {
 
   render() {
     return (
@@ -29,3 +30,5 @@ export default class Shop extends Component {
     )
   }
 }
+
+export default withRouter(Shop);

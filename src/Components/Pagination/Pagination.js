@@ -16,7 +16,7 @@ const PaginationExampleCompact = () => (
     firstItem={null}
     lastItem={null}
     siblingRange={1}
-    totalPages={10}
+    totalPages={2}
     style={style.pagination}
   />
 )

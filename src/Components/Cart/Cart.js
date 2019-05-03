@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Grid,Button, Header } from 'semantic-ui-react';
+import { withRouter } from 'react-router-dom';
 import ActionTab from './ActionBar/ActionBar';
 import CartItems from './CartItems/CartItems';
 import CartInfo from './CartInfo/cartInfo';
+// import { URLSearchParams } from 'url';
 
-export default class Cart extends Component {
+class Cart extends Component {
   state = {
     totalPrice: 0,
     items: [
@@ -18,22 +20,36 @@ export default class Cart extends Component {
         id:2,
         name: 'Another Useless Thing"',
         img: 'https://react.semantic-ui.com/images/wireframe/image.png',
-        price: 5000
+        price: 500
       },
       { id:3,
         name: 'I like Useless Stuff, Fight me!',
         img: 'https://react.semantic-ui.com/images/wireframe/image.png',
-        price: 19000
+        price: 100
       }
     ]
   };
 
   componentDidMount(prevState){
-      this.calcTotalPrice();
+    this.addItemFromQuery();
+    this.calcTotalPrice();
+  }
+
+  addItemFromQuery = ()=>{
+    const query = new URLSearchParams(this.props.location.search);
+    if (query.has('name')){
+      const item = {id:this.state.items.length+1};
+      for(let param of query.entries()){
+        param[0]==='price'? item[param[0]] = +param[1] : item[param[0]] = param[1]
+      }
+      const items = [...this.state.items]
+      items.push(item)
+      this.setState({items:items})
+    }
   }
 
   addToCart =() =>{
-    let tempItems= this.state.items;
+    let tempItems= [...this.state.items];
     tempItems.push({ id:tempItems.length+1,
       name: 'New Item ',
       img: 'https://react.semantic-ui.com/images/wireframe/image.png',
@@ -85,3 +101,5 @@ export default class Cart extends Component {
     );
   }
 }
+
+export default withRouter(Cart);

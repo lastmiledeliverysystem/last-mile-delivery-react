@@ -3,12 +3,14 @@ import { List } from 'semantic-ui-react'
 
 const style={
     description:{
-        "font-family":"Times New Roman",
         color:"Black ",
-        'font-size':'15px'
+        'fontSize':'15px',
+        marginTop:"0"
     },
     word:{
-        fontSize:'20px'
+        fontSize:'20px',
+        "fontWeight": "bold",
+        margin:"0"
     }
 
 }
@@ -19,9 +21,12 @@ export default class Description extends Component {
     render() { 
         return ( 
             <React.Fragment>
-                <b className="word" style={style.word}>Description:</b>   
+                <p className="word" style={style.word}>Description:</p>   
                 <List className="description" style={style.description} as='ul'>
-                <List.Item as='li'>{this.state.Description[0]}</List.Item>
+                <List.Item as='li'>{this.props.description}</List.Item>
+                <List.Item as='li'>{this.props.description}</List.Item>
+                <List.Item as='li'>{this.props.description}</List.Item>
+                <List.Item as='li'>{this.props.description}</List.Item>
                 {/* <List.Item as='li'>{this.state.Description[1]}</List.Item>
                 <List.Item as='li'>{this.state.Description[2]}</List.Item>
                 <List.Item as='li'>{this.state.Description[3]}</List.Item>

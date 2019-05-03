@@ -5,24 +5,30 @@ import { Link } from 'react-router-dom';
 
 const style = {
   name:{
-    'font-size':'25px'
+    fontSize:'18px',
+    fontWeight:"Bold"
   },
   cart:{
     // 'position': 'relative',
-    //  'margin-left': '10px'
+     'marginRight': '10px',
+     color:"black"
   },
   desc:{
     'color':'black', 
-    'font-size':'13px'
+    fontSize:'15px'
 
   },
   price:{
     'color':'black',
-    'font-size':'15px'
+    fontSize:'15px'
   },
   color:{
     'color': 'black',
-    'font-size':'15px'
+    fontSize:'15px'
+  },
+  img:{
+    objectFit:"cover",
+    objectPosition:"center"
   }
 }
 export default class Product extends Component {
@@ -35,10 +41,13 @@ export default class Product extends Component {
     return (
       <Card color="black">
         <Image src={this.props.imgUrl} 
-        width={170}
-        height={200} centered/>
+        style={style.img}
+        width={230}
+        height={230} centered/>
         <Card.Content>
-          <Card.Header style={style.name}>{this.props.name}</Card.Header>
+          <Link to={'/ProductPage/'+this.props.id} style={style.price} onClick={()=>this.props.changeProductHandler(this.props.productData)}>
+            <Card.Header style={style.name}>{this.props.name}</Card.Header>
+          </Link>
           <Card.Meta>
             <span style={style.color}>{this.props.color}</span>
           </Card.Meta>
@@ -48,11 +57,8 @@ export default class Product extends Component {
             </Card.Description>
         </Card.Content>
         <Card.Content extra >
-            <Link to='/ProductPage' style={style.price} onClick={()=>this.props.changeProductHandler(this.props.productData)}>
-            Price: 
-            {this.props.price} EGP
             <i className="fas fa-shopping-cart" style={style.cart}></i>
-            </Link>
+            {this.props.price} EGP
         </Card.Content>
       </Card>
     )

@@ -9,12 +9,12 @@ import './Main.css'
 const style={
     h1:{
         color:'#1d064b',
-        'font-size':'50px',
+        fontSize:'50px',
     },
     banner:{
-        'background-image': 'url('+bg+')',
+        backgroundImage: 'url('+bg+')',
         backgroundSize:'cover',
-        'background-position': 'top',
+        backgroundPosition: 'top',
         height: '600px',
         width: '100%',
         color: 'white',
@@ -38,25 +38,48 @@ const style={
 }
 
 export default class Main extends Component {
+  
+  labelClickHandler = (page)=> {
+    this.props.history.push('/'+page)
+  }
+
   render() {
+
     return (
-      <Grid>
-        <Grid.Row verticalAlign='middle' centered columns='equal' style={style.banner}>
-          <Grid.Column width={3} />
-          <Grid.Column textAlign='left'>
-            <Header as='h1' style={style.h1}>LMD/ DADA</Header>
-            <p style={style.p}>What ever you need, where ever you are!</p>
-          </Grid.Column>
-        </Grid.Row>
-        <Divider hidden/>
-        <Grid.Row centered columns='equal' stretched>
-          <Grid.Column width={3}/>
-          <Grid.Column ><Image src={food} label={{ as: 'a', color: 'blue', content: 'Food', icon: 'food', ribbon: true }}/></Grid.Column>
-          <Grid.Column ><Image src={pha} label={{ as: 'a', color: 'blue', content: 'Mediacl', icon: 'medkit', ribbon: true }}/></Grid.Column>
-          <Grid.Column ><Image src={bg2} label={{ as: 'a', color: 'blue', content: 'shopping', icon: 'shopping basket', ribbon: true }}/></Grid.Column>
-          <Grid.Column width={3}/>
-        </Grid.Row>      
-      </Grid>
+      <Grid.Row>
+        <Grid>
+          <Grid.Row verticalAlign='middle' centered columns='equal' style={style.banner}>
+            <Grid.Column width={3} />
+            <Grid.Column textAlign='left'>
+              <Header as='h1' style={style.h1}>LMD/ DADA</Header>
+              <p style={style.p}>What ever you need, where ever you are!</p>
+            </Grid.Column>
+          </Grid.Row>
+          <Divider hidden/>
+          <Grid.Row centered columns='equal' stretched>
+            <Grid.Column width={3}/>
+            <Grid.Column >
+              <Image 
+                src={food} 
+                label={{ as: 'a', color: 'blue', content: 'Food', icon: 'food', ribbon: true, onClick:()=>this.labelClickHandler('shop')}}
+                />
+            </Grid.Column>
+            <Grid.Column >
+              <Image 
+                src={pha} 
+                label={{ as: 'a', color: 'blue', content: 'Mediacl', icon: 'medkit', ribbon: true, onClick:()=>this.labelClickHandler('shop')}}
+                />
+            </Grid.Column>
+            <Grid.Column >
+              <Image 
+                src={bg2} 
+                label={{ as: 'a', color: 'blue', content: 'shopping', icon: 'shopping basket', ribbon: true, onClick:()=>this.labelClickHandler('shop')}}
+                />
+            </Grid.Column>
+            <Grid.Column width={3}/>
+          </Grid.Row>      
+        </Grid>
+      </Grid.Row>
     )
   }
 }

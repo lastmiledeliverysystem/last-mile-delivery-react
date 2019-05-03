@@ -87,7 +87,7 @@ export default class LogIn extends Component {
               </Form>
             </Segment>
             <Message floating>
-              Not registered yet? <a href="#">Sign Up</a>
+              Not registered yet? <a href="/">Sign Up</a>
             </Message>
           </GridColumn>
         </Grid>

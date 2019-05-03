@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import Product from './Product/Product'
-import { Grid } from 'semantic-ui-react';
+import { Grid, Loader, Dimmer } from 'semantic-ui-react';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 
-export default class Products extends Component {
+class Products extends Component {
     state = {
-        products:[],
-        productsId: this.props.productsId
+      products:[],
+      productsId: this.props.productsId,
+      dim:true
     }
 
     componentDidMount = () => {
@@ -16,20 +18,25 @@ export default class Products extends Component {
     getDataHandler = ()=>{
         axios.get('http://localhost:8000/api/products/'+this.state.productsId)
         .then((res)=>{
-            this.setState({products:res.data.vendorProducts})
+            this.setState({products:res.data.vendorProducts,dim:false})
             //console.log(id);
         });
     }
 
   render() {
       return (
-        <Grid centered>
-            {this.state.products.map((n) =>
-            <Grid.Column width={3} key={n._id}>
-            <Product changeProductHandler={this.props.changeProductHandler} productData={n} name={n.name} description={n.description} imgUrl={n.options.image} price={n.price} color={n.options.color} rate={n.rate}/>                
-            </Grid.Column>
-            )}
+        <Grid>
+          <Dimmer active={this.state.dim}>
+            <Loader />
+          </Dimmer>
+          {this.state.products.map((n) =>
+          <Grid.Column width={3} key={n._id}>
+          <Product changeProductHandler={this.props.changeProductHandler} id={n._id} productData={n} name={n.name} description={n.description} imgUrl={n.options.image} price={n.price} color={n.options.color} rate={n.rate}/>                
+          </Grid.Column>
+          )}
         </Grid>
     )
   }
 }
+
+export default withRouter(Products);
