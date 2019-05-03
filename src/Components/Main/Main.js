@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { Grid, Image, Header, Divider } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 import bg from '../../media/street.jpg'
 import pha from '../../media/pha.jpg'
 import bg2 from '../../media/card2.jpg'
 import food from '../../media/food.jpg'
+import axios from 'axios'
 import './Main.css'
 
 const style={
@@ -38,48 +40,30 @@ const style={
 }
 
 export default class Main extends Component {
-  
-  labelClickHandler = (page)=> {
-    this.props.history.push('/'+page)
-  }
 
+  categoryHandler = (cat) => {
+    this.props.history.push('/shop/' + cat )
+  }
   render() {
 
     return (
-      <Grid.Row>
-        <Grid>
-          <Grid.Row verticalAlign='middle' centered columns='equal' style={style.banner}>
-            <Grid.Column width={3} />
-            <Grid.Column textAlign='left'>
-              <Header as='h1' style={style.h1}>LMD/ DADA</Header>
-              <p style={style.p}>What ever you need, where ever you are!</p>
-            </Grid.Column>
-          </Grid.Row>
-          <Divider hidden/>
-          <Grid.Row centered columns='equal' stretched>
-            <Grid.Column width={3}/>
-            <Grid.Column >
-              <Image 
-                src={food} 
-                label={{ as: 'a', color: 'blue', content: 'Food', icon: 'food', ribbon: true, onClick:()=>this.labelClickHandler('shop')}}
-                />
-            </Grid.Column>
-            <Grid.Column >
-              <Image 
-                src={pha} 
-                label={{ as: 'a', color: 'blue', content: 'Mediacl', icon: 'medkit', ribbon: true, onClick:()=>this.labelClickHandler('shop')}}
-                />
-            </Grid.Column>
-            <Grid.Column >
-              <Image 
-                src={bg2} 
-                label={{ as: 'a', color: 'blue', content: 'shopping', icon: 'shopping basket', ribbon: true, onClick:()=>this.labelClickHandler('shop')}}
-                />
-            </Grid.Column>
-            <Grid.Column width={3}/>
-          </Grid.Row>      
-        </Grid>
-      </Grid.Row>
+      <Grid>
+        <Grid.Row verticalAlign='middle' centered columns='equal' style={style.banner}>
+          <Grid.Column width={3} />
+          <Grid.Column textAlign='left'>
+            <Header as='h1' style={style.h1}>LMD/ DADA</Header>
+            <p style={style.p}>What ever you need, where ever you are!</p>
+          </Grid.Column>
+        </Grid.Row>
+        <Divider hidden/>
+        <Grid.Row centered columns='equal' stretched>
+          <Grid.Column width={3}/>
+          <Grid.Column ><Image src={food} label={{ as: 'a', color: 'blue', content: 'Food', icon: 'food', ribbon: true }} onClick={() => this.categoryHandler('food')}/> </Grid.Column>
+          <Grid.Column ><Image src={pha} label={{ as: 'a', color: 'blue', content: 'Mediacl', icon: 'medkit', ribbon: true }} onClick={() => this.categoryHandler('medical')}/></Grid.Column>
+          <Grid.Column ><Image src={bg2} label={{ as: 'a', color: 'blue', content: 'shopping', icon: 'shopping basket', ribbon: true }} onClick={() => this.categoryHandler('clothing')}/></Grid.Column>
+          <Grid.Column width={3}/>
+        </Grid.Row>      
+      </Grid>
     )
   }
 }

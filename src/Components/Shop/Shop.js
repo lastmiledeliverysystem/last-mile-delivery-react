@@ -16,13 +16,14 @@ class Shop extends Component {
                         <Sidemenu/>
                     </Grid.Column>
                     <Grid.Column width={13}>
-                        {(this.props.isVendor)? <Vendors/> :<Products productsId={this.props.match.params.productsId} changeProductHandler={this.props.changeProductHandler} />}
+                        {(this.props.isVendor)? <Vendors category ={this.props.match.params.category}/> :<Products vendorId={this.props.match.params.vendorId} changeProductHandler={this.props.changeProductHandler} />}
+                        {/* {console.log("shop cat", this.props.match.params.category)} */}
                     </Grid.Column>
                 </Grid.Row>
                 <Grid.Row centered columns='equal' textAlign='center'>
                     <Grid.Column />
                     <Grid.Column >
-                        <PaginationExampleCompact/>
+                        {/* <PaginationExampleCompact/> */}
                     </Grid.Column>
                     <Grid.Column />
                 </Grid.Row>

@@ -61,8 +61,10 @@ export default class Vendor extends Component {
            
         </Card.Content>
         <Card.Content extra >
-          <i className="fa fa-phone-square" aria-hidden="true" style={style.cash} onClick={this.handleShoppingCartClick}></i>
-          {this.props.phone}
+            <Link to={`/Products/${this.props.vendorId}`} style={style.price}>
+            <i className="fa fa-phone-square" aria-hidden="true" style={style.cash} onClick={this.handleShoppingCartClick}></i>
+            {this.props.phone}
+            </Link>
         </Card.Content>
       </Card>
     )

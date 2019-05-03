@@ -1,4 +1,4 @@
-import React, { Component, createRef } from 'react'
+  import React, { Component, createRef } from 'react'
 import { Grid } from 'semantic-ui-react';
 import { Route, Switch, Redirect } from "react-router-dom";
 import Navbar from './Components/Navbar/Navbar'
@@ -54,25 +54,19 @@ class App extends Component {
 
   state = {
     data:"First app",
-    productData:{
-      barCode: "sadsad",
-      category: "ayhaga",
-      description: "good quality",
-      name: "Elegant T-Shirt",
-      options: {image: "https://www.dhresource.com/0x0s/f2-albu-g6-M00-3E-B8-rBVaSFuU6LOAKMgsAADfTzjL_GE533.jpg/medium-adult-039-s-the-flash-t-shirt-logo.jpg", color: "black", size: "21"},
-      price: 100,
-      productId: 12,
-      quantity: 10,
-      rate: 5,
-      sku: "asd55",
-      specs: "pplister",
-      unit: "LE",
-      _id: "5c7f306e76e5c20bacd7e225"
-    }
+    productData:{},
+    category: {},
+    isLogged:false
   }
   
   changeProductHandler = (p) => {
     this.setState({productData:p})
+  }
+  changeCategoryHandler = (c) => {
+    this.setState({category :c})
+  }
+  toggleLogHandler = ()=>{
+    this.setState({isLogged:!this.state.isLogged});
   }
 
   contextRef = createRef()
@@ -91,17 +85,20 @@ class App extends Component {
       <Grid  >
         <Grid.Row centered columns='equal' style={style.navbar}>
           <Grid.Column width={1}></Grid.Column>
-          <Grid.Column><Navbar/></Grid.Column>
+          <Grid.Column><Navbar isLogged={this.state.isLogged}/></Grid.Column>
           <Grid.Column width={1}></Grid.Column>
         </Grid.Row>
 
         <Switch>
           <Route path='/not-found' component={()=>getComp(<NotFound/>)} />
-          <Route path='/shop' component={()=>getComp(<Shop isVendor={true} />)} />
-          <Route path='/Products/:productsId' render={(props)=> getComp(<Shop isVendor={false} {...props} changeProductHandler={this.changeProductHandler}/>)}  />
-          <Route path='/ProductPage/:productId' component={()=>getComp(<ProductPage productData={this.state.productData}/>)} />
+          {/* <Route path='/shop' component={()=>getComp(<Shop isVendor={true}/>)}/> */}
+          {/* <Route path='/login' exact component={LogIn} /> */}
+          <Route path='/login' render={(props)=> <LogIn toggleLogHandler={this.toggleLogHandler} {...props}/>} />
+          <Route path='/shop/:category' render={(props)=>getComp(<Shop isVendor={true} {...props}/>)} />
+          <Route path='/Products/:vendorId' render={(props)=> getComp(<Shop isVendor={false} changeProductHandler={this.changeProductHandler} {...props}/>)}  />
+          <Route path='/ProductPage' component={()=>getComp(<ProductPage productData={this.state.productData}/>)} />
           <Route path='/cart' component={()=>getComp(<Cart/>)} />
-          <Route path='/login' exact component={LogIn} />
+          {/* <Route path='/login' exact component={LogIn} /> */}
           <Route path='/' exact component={Main} />
           <Redirect to='/not-found'/>
         </Switch>

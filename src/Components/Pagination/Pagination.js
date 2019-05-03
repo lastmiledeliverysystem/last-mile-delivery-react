@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Pagination } from 'semantic-ui-react'
 
 const style={
@@ -7,18 +7,20 @@ const style={
   }
 
 }
+export default class PaginationExampleCompact extends Component {
+  state = { activePage: 1 }
 
-const PaginationExampleCompact = () => (
-  <Pagination
-    boundaryRange={0}
-    defaultActivePage={1}
-    ellipsisItem={null}
-    firstItem={null}
-    lastItem={null}
-    siblingRange={1}
-    totalPages={2}
-    style={style.pagination}
-  />
-)
+  render() {
+    const { activePage } = this.state
 
-export default PaginationExampleCompact
+    return (
+          <Pagination
+            activePage={activePage}
+            onPageChange={this.handlePaginationChange}
+            totalPages={5}
+            style={style}
+          />
+    )
+  }
+}
+
