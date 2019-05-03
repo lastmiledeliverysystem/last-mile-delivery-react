@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import { Grid, Image, Header, Divider } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
 import bg from '../../media/street.jpg'
 import pha from '../../media/pha.jpg'
 import bg2 from '../../media/card2.jpg'
 import food from '../../media/food.jpg'
-import axios from 'axios'
 import './Main.css'
 
 const style={

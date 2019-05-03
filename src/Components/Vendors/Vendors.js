@@ -21,8 +21,14 @@ export default class Vendors extends Component {
 
     componentDidMount = () => {
       this.getDataHandler()
+      console.log("vendors did mount");
     }
-
+    componentDidUpdate = (prevProps)=>{
+      if (this.props.category !== prevProps.category) {
+        this.getDataHandler();
+      }
+      console.log("vendors did update");
+    }
     handlePaginationChange =  async (e, {activePage}) => {
             await this.setState({ activePage, dim:true });
                 console.log(this.state.activePage);
