@@ -24,7 +24,7 @@ export default class Vendors extends Component {
       console.log("vendors did mount");
     }
     componentDidUpdate = (prevProps)=>{
-      if (this.props.category !== prevProps.category) {
+      if (this.props.category !== prevProps.category || this.props.searchValue !== prevProps.searchValue) {
         this.getDataHandler();
       }
       console.log("vendors did update");
@@ -44,7 +44,9 @@ export default class Vendors extends Component {
         .then((res)=>{
             this.setState({vendors:res.data.vendor, pageCount: res.data.pageCount, dim:false})
             console.log(res.data.pageCount);            
-        });
+        }).catch(err=>{
+          console.log(err);
+        })
     }
 
   render() {

@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
-import { Item, Button, Icon } from 'semantic-ui-react';
+import { Item, Button, Icon,Image } from 'semantic-ui-react';
+
+const style={
+  img:{
+    objectFit:"cover",
+    objectPosition:"center"
+  }
+}
 
 export default class CartItem extends Component {
   state = {};
   render() {
+    // console.log(this.props.name);
+    
     return (
       <Item>
-        <Item.Image size="small" src={this.props.img} />
+        <Image width={150} height={150} src={this.props.img} style={style.img}/>
         <Item.Content>
           <Item.Header as="a">{this.props.name}</Item.Header>
           <Item.Meta>

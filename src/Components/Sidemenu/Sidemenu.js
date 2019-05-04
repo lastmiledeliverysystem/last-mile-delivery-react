@@ -13,8 +13,8 @@ export default class Sidemenu extends Component {
     categories: [{label:"All", value:"all"},{label:"Food", value:"food"}, {label:"Clothes",value:"clothing"}],
     color: ["red", "black", "white"],
     price: ["100 and above", "200 and above", "300 and above" ],
-    rating: ["1","2","3","4","5"]
-
+    rating: ["1","2","3","4","5"],
+    searchValue:""
   };
 
   handleChange = (e, { value }) =>{
@@ -32,7 +32,7 @@ export default class Sidemenu extends Component {
           <Menu.Item>
             <Menu.Menu>
               <Menu.Item>
-                <Input icon='search' placeholder='Search...' />
+                <Input icon='search' placeholder='Search...' onChange={(event)=>this.props.searchHandler(event.target.value)}/>
               </Menu.Item>
             </Menu.Menu>
           </Menu.Item>

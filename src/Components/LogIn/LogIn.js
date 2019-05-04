@@ -37,6 +37,7 @@ export default class LogIn extends Component {
     .then(res => {
       console.log("plapla", res.data);
       this.props.toggleLogHandler();
+      localStorage.setItem('token', res.data);
       this.props.history.push("/")
     }).catch( error => {
       console.log(error);

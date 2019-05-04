@@ -1,6 +1,7 @@
 import React ,{Component} from 'react';
 import { Button,Header,Grid } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom';
+import axios from 'axios';
 
 const style={
     addtocart:{
@@ -25,16 +26,17 @@ const style={
  class AddToCart extends Component {
   state = {  }
   addToCartHandler = ()=> {
-    const queryParams=[]
-    for(let i in this.props.item){
-      queryParams.push(encodeURIComponent(i)+'='+encodeURIComponent(this.props.item[i]))
-    }
-    const queryString = queryParams.join('&')
+    console.log(localStorage.getItem('token'));
     
-    this.props.history.push({
-      pathname:'/cart',
-      search:'?'+queryString
-    })
+    axios.post('http://localhost:8000/api/cart/',{'token':localStorage.getItem('token'),'itemId':this.props.itemId})
+      .then(res=>{
+        console.log(res.data);
+        this.props.history.push({
+          pathname:'/cart',
+        })
+      }).catch(err=>{
+        console.log(err);
+      })
   }
   
   render() { 

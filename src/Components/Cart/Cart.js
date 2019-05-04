@@ -4,53 +4,41 @@ import { withRouter } from 'react-router-dom';
 import ActionTab from './ActionBar/ActionBar';
 import CartItems from './CartItems/CartItems';
 import CartInfo from './CartInfo/cartInfo';
+import axios from 'axios';
+
 // import { URLSearchParams } from 'url';
 
 class Cart extends Component {
   state = {
     totalPrice: 0,
-    items: [
-      {
-        id:1,
-        name: 'Something Useless',
-        img: 'https://react.semantic-ui.com/images/wireframe/image.png',
-        price: 50
-      },
-      {
-        id:2,
-        name: 'Another Useless Thing"',
-        img: 'https://react.semantic-ui.com/images/wireframe/image.png',
-        price: 500
-      },
-      { id:3,
-        name: 'I like Useless Stuff, Fight me!',
-        img: 'https://react.semantic-ui.com/images/wireframe/image.png',
-        price: 100
-      }
-    ],
+    items: [],
     address: {
       longitude: '',
       latitude: ''
     },
   };
 
-  componentDidMount(prevState){
-    this.addItemFromQuery();
-    this.calcTotalPrice();
+  componentDidMount(){
+    this.getDataHandler();
+    // this.addItemFromQuery();
+    // this.calcTotalPrice();
   }
 
-  addItemFromQuery = ()=>{
-    const query = new URLSearchParams(this.props.location.search);
-    if (query.has('name')){
-      const item = {id:this.state.items.length+1};
-      for(let param of query.entries()){
-        param[0]==='price'? item[param[0]] = +param[1] : item[param[0]] = param[1]
-      }
-      const items = [...this.state.items]
-      items.push(item)
-      this.setState({items:items})
-    }
+  getDataHandler= async ()=>{
+    axios.get('http://localhost:8000/api/cart/userCart/',{headers:{'x-auth-token':localStorage.getItem('token')}})
+    .then(async(res)=>{
+      axios.post('http://localhost:8000/api/products/list',{"ids":res.data})
+      .then(res=>{
+        console.log(res.data);
+        this.setState({items:res.data})
+      }).catch(err=>{
+        console.log(err);
+      })
+    }).catch(e=>{
+      console.log("err",e);
+    })
   }
+
  
   locationHandler = () => {
     const success = (position)=> {
@@ -101,10 +89,8 @@ class Cart extends Component {
     return (
       <Grid>
         <Grid.Row  padded="vertically">
-          
           <ActionTab />
         </Grid.Row>
-
         <Grid.Row>
           <Grid.Column width={9}>
             <Header as="h1" padded="vertically">

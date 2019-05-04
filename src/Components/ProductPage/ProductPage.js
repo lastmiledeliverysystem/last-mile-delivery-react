@@ -68,6 +68,7 @@ class ProductPage extends Component {
           price:res.data[0].price,
           rate:res.data[0].price,
           description:res.data[0].description,
+          id:res.data[0]._id,
           dim:false
           })
         console.log(res.data[0]);
@@ -113,7 +114,7 @@ class ProductPage extends Component {
             </Grid.Column>
             <Grid.Column width={3} />
             <Grid.Column width={3}>
-              <AddToCart item={{img:this.state.img,name:this.state.name,price:this.state.price}}/>
+              <AddToCart itemId={this.state.id}/>
             </Grid.Column>
           </Grid.Row>
         </Grid>

@@ -27,7 +27,7 @@ export default class Navbar extends Component {
             <Menu.Item>
               <Input icon='search' placeholder='Search...' />
             </Menu.Item>
-            <NavLink to='/logout' className='item'>{this.props.isLogged? "LOGOUT": "LOGIN"}</NavLink>
+            <NavLink to='/login' className='item'>{this.props.isLogged? "LOGOUT": "LOGIN"}</NavLink>
           </Menu.Menu>
           </Menu>
       )
