@@ -3,6 +3,7 @@ import Vendor from './Vendor/Vendor'
 import { Grid } from 'semantic-ui-react';
 import { Pagination, Dimmer, Loader } from 'semantic-ui-react'
 import axios from 'axios';
+import {withRouter} from "react-router-dom";
 
 const style={
     pagination:{
@@ -11,20 +12,23 @@ const style={
   
   }
 
-export default class Vendors extends Component {
+class Vendors extends Component {
     state = {
         vendors:[],
         activePage: 1,
         pageCount: 1,
-        dim:true
+        dim:true,
+        filterBy: this.props.filterBy,
+        searchValue: this.props.searchValue
         }
-
+    
     componentDidMount = () => {
       this.getDataHandler()
       console.log("vendors did mount");
+      
     }
     componentDidUpdate = (prevProps)=>{
-      if (this.props.category !== prevProps.category || this.props.searchValue !== prevProps.searchValue) {
+      if (this.props.searchValue !== prevProps.searchValue) {
         this.getDataHandler();
       }
       console.log("vendors did update");
@@ -35,11 +39,14 @@ export default class Vendors extends Component {
                 this.getDataHandler();
         
     }
-    getDataHandler = ()=>{
-        console.log("hereee", this.props.category);
-        const link = this.props.category==="all"?
+    getDataHandler = async ()=>{
+       // await console.log("hereee", this.props.category);
+        // await console.log("filterby", this.state.filterBy, "value", this.state.searchValue);
+        
+        const link = this.props.filterBy==="all" || this.props.searchValue=== ""?
          'http://localhost:8000/api/vendors/search?pageSize=1&pageNumber='+this.state.activePage 
-         : 'http://localhost:8000/api/vendors/search?pageSize=1&pageNumber='+this.state.activePage+"&filterBy=category&value="+this.props.category
+         : 'http://localhost:8000/api/vendors/search?pageSize=1&pageNumber='+this.state.activePage+"&filterBy="+this.props.filterBy+ "&value="+this.props.searchValue
+        //  "&filterBy=category&value="+this.props.category
         axios.get(link)
         .then((res)=>{
             this.setState({vendors:res.data.vendor, pageCount: res.data.pageCount, dim:false})
@@ -59,7 +66,7 @@ export default class Vendors extends Component {
                 </Dimmer>
                 {this.state.vendors.map((n) =>
                     <Grid.Column width={3} key={n._id}>
-                        <Vendor name={n.name} category={n.category} imageURL={n.imageURL} phone={n.phone} address={n.address} vendorId={n._id}/>
+                        <Vendor searchHandler={this.props.searchHandler} name={n.name} category={n.category} imageURL={n.imageURL} phone={n.phone} address={n.address} vendorId={n._id}/>
                     </Grid.Column>
                     )}
                     <Grid.Row>
@@ -75,3 +82,4 @@ export default class Vendors extends Component {
     )
   }
 }
+export default withRouter(Vendors);

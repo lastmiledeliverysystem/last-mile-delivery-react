@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Card, Image } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
+import {withRouter} from "react-router-dom";
+
 
 
 const style = {
@@ -31,12 +33,15 @@ const style = {
   }
 
 }
-export default class Vendor extends Component {
+class Vendor extends Component {
   handleShoppingCartClick = (event) => {
     event.preventDefault();
     alert("Go to list of products page");
   }
-  
+  linkHandler = () => {
+    this.props.searchHandler('', "all");
+    this.props.history.push(`/Products/${this.props.vendorId}`);
+  }
   render() {
     return (
 
@@ -46,9 +51,9 @@ export default class Vendor extends Component {
         width={230}
         height={230} centered/>
         <Card.Content>
-          <Link to={`/Products/${this.props.vendorId}`} style={style.price}>
-            <Card.Header style={style.name}>{this.props.name}</Card.Header>
-          </Link>
+          {/* <Link to={`/Products/${this.props.vendorId}`} style={style.price}> */}
+            <Card.Header style={style.name} onClick={this.linkHandler}>{this.props.name}</Card.Header>
+          {/* </Link> */}
             <Card.Meta>
             <span style={style.color}></span>
             </Card.Meta>
@@ -70,3 +75,4 @@ export default class Vendor extends Component {
     )
   }
 }
+export default withRouter(Vendor);

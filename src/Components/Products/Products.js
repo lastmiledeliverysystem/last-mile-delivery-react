@@ -24,6 +24,12 @@ class Products extends Component {
     componentDidMount = () => {
       this.getDataHandler()
     }
+    componentDidUpdate = (prevProps)=>{
+      if (this.props.searchValue !== prevProps.searchValue) {
+        this.getDataHandler();
+      }
+      console.log("products did update");
+    }
     //handlePaginationChange = (e, { activePage }) => this.setState({ activePage })
     handlePaginationChange =  async (e, {activePage}) => {
         await this.setState({ activePage, dim:true });
@@ -32,7 +38,11 @@ class Products extends Component {
     }
 
     getDataHandler = ()=>{
-        axios.get('http://localhost:8000/api/products/search?pageSize=10&pageNumber='+this.state.activePage + '&filterBy=vendorId&value='+this.props.vendorId)
+
+      const link = this.props.filterBy==="all"?
+      'http://localhost:8000/api/products/search?pageSize=10&pageNumber='+this.state.activePage + '&filterBy=vendorId&value='+this.props.vendorId :
+      'http://localhost:8000/api/products/search?pageSize=10&pageNumber='+this.state.activePage + '&filterBy=vendorId&value='+this.props.vendorId+ '&filterBy='+ this.props.filterBy + '&value=' + this.props.searchValue;
+        axios.get(link)
         .then((res)=>{
             this.setState({products:res.data.product, pageCount: res.data.pageCount, dim:false })
         })
