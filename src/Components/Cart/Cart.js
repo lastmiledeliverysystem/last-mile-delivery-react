@@ -4,6 +4,8 @@ import { withRouter } from 'react-router-dom';
 import ActionTab from './ActionBar/ActionBar';
 import CartItems from './CartItems/CartItems';
 import CartInfo from './CartInfo/cartInfo';
+import TakeMoney from '../Payment/Payment'
+
 import axios from 'axios';
 
 // import { URLSearchParams } from 'url';
@@ -103,6 +105,7 @@ class Cart extends Component {
             <Header as="h1" padded="vertically">asd</Header>
             <CartInfo calcTotalPrice={this.calcTotalPrice} totalPrice={this.state.totalPrice} cartItems={this.state.items} />
             <Button positive onClick={this.locationHandler}>PROCEED TO CHECKOUT</Button>
+            <TakeMoney totalPrice={this.state.totalPrice} cartItems={this.state.items} />
           </Grid.Column>
         </Grid.Row>
       </Grid>

@@ -100,14 +100,16 @@ class ProductPage extends Component {
             <Grid.Column>
               <p style={style.price}>{this.state.price}<span style={style.span}> EGP</span></p>
               <p style={style.tax}>All prices include VAT</p>
-              <Divider/>
-              <Container style={style.container}>
-                <Size/>   
-              </Container>
-              <Container style={style.container}>
-                <ProductColor/>
-              </Container>
-              <Divider/>
+              {/* <Divider/> */}
+              {/* <Container style={style.container}> */}
+                {/* <Size/>    */}
+              {/* </Container> */}
+              {/* <Container style={style.container}> */}
+                {/* <ProductColor/> */}
+              {/* </Container> */}
+              {/* <Divider/> */}
+              <Grid.Row>
+                </Grid.Row>
               <Container style={style.container}>
                 <Description description={this.state.description}/>
               </Container>
