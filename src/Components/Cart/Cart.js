@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid,Button, Header } from 'semantic-ui-react';
+import { Grid,Button, Header, Card, Input } from 'semantic-ui-react';
 import { withRouter } from 'react-router-dom';
 import ActionTab from './ActionBar/ActionBar';
 import CartItems from './CartItems/CartItems';
@@ -13,11 +13,12 @@ import axios from 'axios';
 class Cart extends Component {
   state = {
     totalPrice: 0,
+    comment: '',
     items: [],
-    address: {
-      longitude: '',
-      latitude: ''
-    },
+    // address: {
+    //   longitude: '',
+    //   latitude: ''
+    // },
   };
 
   componentDidMount(){
@@ -42,24 +43,24 @@ class Cart extends Component {
   }
 
  
-  locationHandler = () => {
-    const success = (position)=> {
-      try{
-      const latitude  = position.coords.latitude;
-      const longitude = position.coords.longitude;
-      console.log(this);
-      this.setState({address: {
-        longitude,
-        latitude
-      }})
-      console.log("location", this.state.address.longitude, this.state.address.latitude);
+  // locationHandler = () => {
+  //   const success = (position)=> {
+  //     try{
+  //     const latitude  = position.coords.latitude;
+  //     const longitude = position.coords.longitude;
+  //     console.log(this);
+  //     this.setState({address: {
+  //       longitude,
+  //       latitude
+  //     }})
+  //     console.log("location", this.state.address.longitude, this.state.address.latitude);
 
-    } catch(err){
-      console.log(err);
-    }
-  }
-      navigator.geolocation.getCurrentPosition(success);
-    }
+  //   } catch(err){
+  //     console.log(err);
+  //   }
+  // }
+  //     navigator.geolocation.getCurrentPosition(success);
+  //   }
   addToCart =() =>{
     let tempItems= [...this.state.items];
     tempItems.push({ id:tempItems.length+1,
@@ -104,8 +105,17 @@ class Cart extends Component {
           <Grid.Column width={4} textAlign="center" verticalAlign="top">
             <Header as="h1" padded="vertically">asd</Header>
             <CartInfo calcTotalPrice={this.calcTotalPrice} totalPrice={this.state.totalPrice} cartItems={this.state.items} />
-            <Button positive onClick={this.locationHandler}>PROCEED TO CHECKOUT</Button>
-            <TakeMoney totalPrice={this.state.totalPrice} cartItems={this.state.items} />
+            <Card centered>
+              <Card.Content>
+              <Card.Header>Comment</Card.Header>
+            </Card.Content>
+        <Card.Content extra>
+          <Input onChange={(event, {value})=>{this.setState({ comment: value})}}/>
+        </Card.Content>
+      </Card>            
+      {/* <Button positive onClick={this.locationHandler}>PROCEED TO CHECKOUT</Button> */}
+            <TakeMoney totalPrice={this.state.totalPrice} cartItems={this.state.items.id} 
+            comment={this.state.comment}/>
           </Grid.Column>
         </Grid.Row>
       </Grid>
