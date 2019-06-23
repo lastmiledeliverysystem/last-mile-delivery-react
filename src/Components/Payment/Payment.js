@@ -1,8 +1,12 @@
 import React from 'react'
 import StripeCheckout from 'react-stripe-checkout';
 import { Button } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+
 
 import axios from 'axios';
+
+const generator = require('generate-password');
 
 export default class TakeMoney extends React.Component {
   
@@ -11,6 +15,7 @@ export default class TakeMoney extends React.Component {
           longitude: '',
           latitude: ''
         },
+        trackingPassword: '',
       };
   onToken = (token) => {
     console.log("payment done");
@@ -32,6 +37,15 @@ export default class TakeMoney extends React.Component {
     }).catch( error => {
       console.log(error.response);
     });
+  }
+  passwordHandler = () => {
+    const password = generator.generate({
+      length: 10,
+      numbers: true,
+      uppercase: false
+    });
+    this.setState({ trackingPassword: password});
+    console.log("password", this.state.trackingPassword);
   }
   locationHandler = () => {
     const success = (position)=> {
@@ -59,7 +73,9 @@ export default class TakeMoney extends React.Component {
         label= "PROCEED TO CHECKOUT"
         token={this.onToken}
         stripeKey="pk_test_moQf2agBX9vIiwTZ9EEkt4B1002nfWrMTi">
+        <Link to={'/TrackingPassword/'}>
         <Button positive onClick={this.locationHandler}>PROCEED TO CHECKOUT</Button>
+        </Link>
         </StripeCheckout>
     )
   }

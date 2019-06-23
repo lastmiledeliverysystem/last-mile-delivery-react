@@ -10,7 +10,7 @@ export default class CartItems extends Component {
       <Segment padded>
         <Item.Group divided>
           {this.props.cartItems.map(item => (
-            <CartItem deleteItem={this.props.deleteItem} key={item._id} id ={item._id} img={item.options.image} name={item.name} price={item.price} />
+            <CartItem deleteItem={this.props.deleteItem} key={item._id} id ={item._id} img={item.image} name={item.name} price={item.price} />
           ))}
         </Item.Group>
       </Segment>

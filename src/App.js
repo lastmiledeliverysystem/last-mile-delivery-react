@@ -12,6 +12,9 @@ import NotFound from './Components/NotFound/NotFound';
 import Shop from './Components/Shop/Shop';
 import ProductPage from './Components/ProductPage/ProductPage';
 import LogIn from './Components/LogIn/LogIn';
+import TrackingPassword from './Components/Tracking/TrackingPassword';
+import TrackingPage from './Components/Tracking/TrackingPage';
+
 
 
 const style={
@@ -98,6 +101,8 @@ class App extends Component {
           <Route path='/Products/:vendorId' render={(props)=> getComp(<Shop isVendor={false} changeProductHandler={this.changeProductHandler} {...props}/>)}  />
           <Route path='/ProductPage/:productId' render={(props)=>getComp(<ProductPage {...props} productData={this.state.productData}/>)} />
           <Route path='/cart' component={()=>getComp(<Cart/>)} />
+          <Route path='/TrackingPassword/' render={(props)=> <TrackingPassword {...props}/>} />
+          <Route path='/TrackingPage' component={()=>getComp(<TrackingPage/>)} />
           {/* <Route path='/login' exact component={LogIn} /> */}
           <Route path='/' exact component={Main} />
           <Redirect to='/not-found'/>
