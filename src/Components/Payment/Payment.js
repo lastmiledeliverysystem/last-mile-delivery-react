@@ -2,11 +2,12 @@ import React from 'react'
 import StripeCheckout from 'react-stripe-checkout';
 import { Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-
-
 import axios from 'axios';
 
 const generator = require('generate-password');
+
+
+
 
 export default class TakeMoney extends React.Component {
   
@@ -15,11 +16,16 @@ export default class TakeMoney extends React.Component {
           longitude: '',
           latitude: ''
         },
-        trackingPassword: '',
+        trackingPassword: generator.generate({
+          length: 8,
+          numbers: true,
+          uppercase: false
+        }),
       };
   onToken = (token) => {
     console.log("payment done");
     console.log("redirect to tracking");
+    this.props.history.push("/TrackingPage");
     axios.post('http://localhost:8000/api/orders',
         {
             total: this.props.totalPrice, 
@@ -28,12 +34,15 @@ export default class TakeMoney extends React.Component {
             address:{
                 long: this.state.address.longitude,
                 lat: this.state.address.latitude  
-            }
+            },
+            trackingPassword: this.state.trackingPassword,
           }
             , {headers:{'x-auth-token':localStorage.getItem('token')}}
         )
     .then(res => {
       console.log("blabla", res.data);
+      console.log("pass", this.state.trackingPassword);
+      
     }).catch( error => {
       console.log(error.response);
     });
@@ -73,9 +82,7 @@ export default class TakeMoney extends React.Component {
         label= "PROCEED TO CHECKOUT"
         token={this.onToken}
         stripeKey="pk_test_moQf2agBX9vIiwTZ9EEkt4B1002nfWrMTi">
-        <Link to={'/TrackingPassword/'}>
         <Button positive onClick={this.locationHandler}>PROCEED TO CHECKOUT</Button>
-        </Link>
         </StripeCheckout>
     )
   }

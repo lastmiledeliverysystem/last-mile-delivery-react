@@ -9,7 +9,6 @@ const style={
     pagination:{
       'float': 'right'
     }
-  
   }
 
 class Vendors extends Component {

@@ -114,7 +114,7 @@ class Cart extends Component {
         </Card.Content>
       </Card>            
       {/* <Button positive onClick={this.locationHandler}>PROCEED TO CHECKOUT</Button> */}
-            <TakeMoney totalPrice={this.state.totalPrice} cartItems={this.state.items} 
+            <TakeMoney history={this.props.history} totalPrice={this.state.totalPrice} cartItems={this.state.items} 
             comment={this.state.comment}/>
           </Grid.Column>
         </Grid.Row>

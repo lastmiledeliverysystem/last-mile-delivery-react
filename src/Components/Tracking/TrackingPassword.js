@@ -21,14 +21,15 @@ export default class TrackingPassword extends Component {
         this.setState({ open: false })
     }
     handleCancel = () => this.setState({ open: false })
-    passwordHandler = () => {
-        const password = generator.generate({
-          length: 8,
-          numbers: true,
-          uppercase: false
-        });
-        this.setState({ trackingPassword: password});
-      }
+    
+    // passwordHandler = () => {
+    //     const password = generator.generate({
+    //       length: 8,
+    //       numbers: true,
+    //       uppercase: false
+    //     });
+    //     this.setState({ trackingPassword: password});
+    //   }
   render() {
     return (
         <Modal
