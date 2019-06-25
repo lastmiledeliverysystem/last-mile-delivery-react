@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
 import axios from 'axios'
-import { Card, Button } from 'semantic-ui-react'
+import { Card, Button, Modal } from 'semantic-ui-react'
 
 
 export default class MapComponent extends Component {
@@ -9,12 +9,14 @@ export default class MapComponent extends Component {
       lat: 30.713990,
       lng: 31.238804,
       zoom: 13,
+      password: ''
       }
   componentDidMount() {
     // this.getLocationHandler();
   }
 
   getLocationHandler = ()=>{
+    console.log(this.state.orderId)
     axios.get('https://ce4e5547.ngrok.io/api/gps')
     .then(res => {
       console.log(res.data);
@@ -28,7 +30,6 @@ export default class MapComponent extends Component {
     this.setState({lat:this.state.lat+0.001, lng:this.state.lng+.001});
     // this.getLocationHandler();
   }
-
   render() {
     const position = [this.state.lat, this.state.lng]
     return (
@@ -50,6 +51,12 @@ export default class MapComponent extends Component {
         </Card.Content>
         <Card.Content extra>
           <Button fluid content='Refresh' primary size='medium' onClick={this.refreshLocationHandler}/>
+          <Modal
+            trigger={<Button>Show Password</Button>}
+            header='Password!'
+            content={this.props.password}
+            actions={['Cancel', { key: 'done', content: 'Ok', positive: true }]}
+          />
         </Card.Content>
       </Card>
     )

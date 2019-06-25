@@ -102,7 +102,7 @@ class App extends Component {
           <Route path='/ProductPage/:productId' render={(props)=>getComp(<ProductPage {...props} productData={this.state.productData}/>)} />
           <Route path='/cart'  render={(props)=> <Cart {...props}/>} />
           <Route path='/TrackingPassword/' render={(props)=> <TrackingPassword {...props}/>} />
-          <Route path='/TrackingPage' render={(props)=> <TrackingPage {...props}/>} />
+          <Route path='/TrackingPage/' render={(props)=>getComp(<TrackingPage isVendor={true} {...props}/>)} />
           {/* <Route path='/login' exact component={LogIn} /> */}
           <Route path='/' exact component={Main} />
           <Redirect to='/not-found'/>

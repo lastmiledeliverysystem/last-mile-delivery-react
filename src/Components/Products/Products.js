@@ -45,6 +45,7 @@ class Products extends Component {
         axios.get(link)
         .then((res)=>{
             this.setState({products:res.data.product, pageCount: res.data.pageCount, dim:false })
+
         })
         .catch((err)=> {
             console.log("Error", err);
@@ -61,7 +62,7 @@ class Products extends Component {
             </Dimmer>
             {this.state.products.map((n) =>
             <Grid.Column width={3} key={n._id}>
-              <Product changeProductHandler={this.props.changeProductHandler} productId={n._id} productData={n} name={n.name} description={n.description} imgUrl={n.options.image} price={n.price} color={n.options.color} rate={n.rate}/>                
+              <Product changeProductHandler={this.props.changeProductHandler} productId={n._id} productData={n} name={n.name} description={n.description} imgUrl={n.image} price={n.price}/>                
             </Grid.Column>
             )}
             <Grid.Row>

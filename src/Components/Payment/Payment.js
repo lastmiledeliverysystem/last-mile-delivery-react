@@ -16,16 +16,19 @@ export default class TakeMoney extends React.Component {
           longitude: '',
           latitude: ''
         },
-        trackingPassword: generator.generate({
-          length: 8,
-          numbers: true,
-          uppercase: false
-        }),
+        trackingPassword:'',
+        orderId: ''
       };
   onToken = (token) => {
     console.log("payment done");
     console.log("redirect to tracking");
-    this.props.history.push("/TrackingPage");
+    const pass = generator.generate({
+      length: 8,
+      numbers: true,
+      uppercase: false
+    });
+    this.setState({ trackingPassword: pass });
+    this.props.history.push( `/TrackingPage`, this.state.trackingPassword );
     axios.post('http://localhost:8000/api/orders',
         {
             total: this.props.totalPrice, 
@@ -41,21 +44,12 @@ export default class TakeMoney extends React.Component {
         )
     .then(res => {
       console.log("blabla", res.data);
-      console.log("pass", this.state.trackingPassword);
-      
+      console.log("pass in payment", this.state.trackingPassword);
     }).catch( error => {
       console.log(error.response);
     });
   }
-  passwordHandler = () => {
-    const password = generator.generate({
-      length: 10,
-      numbers: true,
-      uppercase: false
-    });
-    this.setState({ trackingPassword: password});
-    console.log("password", this.state.trackingPassword);
-  }
+
   locationHandler = () => {
     const success = (position)=> {
       try{
