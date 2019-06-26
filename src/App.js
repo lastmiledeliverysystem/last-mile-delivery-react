@@ -14,6 +14,7 @@ import ProductPage from './Components/ProductPage/ProductPage';
 import LogIn from './Components/LogIn/LogIn';
 import TrackingPassword from './Components/Tracking/TrackingPassword';
 import TrackingPage from './Components/Tracking/TrackingPage';
+import AddProduct from './Components/AddProduct/AddProduct';
 
 
 
@@ -104,6 +105,7 @@ class App extends Component {
           <Route path='/TrackingPassword/' render={(props)=> <TrackingPassword {...props}/>} />
           <Route path='/TrackingPage/' render={(props)=>getComp(<TrackingPage isVendor={true} {...props}/>)} />
           {/* <Route path='/login' exact component={LogIn} /> */}
+          <Route path='/AddProduct'  render={(props)=>getComp(<AddProduct isVendor={true} {...props}/>)} />
           <Route path='/' exact component={Main} />
           <Redirect to='/not-found'/>
         </Switch>
