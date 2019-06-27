@@ -62,7 +62,7 @@ class Products extends Component {
             </Dimmer>
             {this.state.products.map((n) =>
             <Grid.Column width={3} key={n._id}>
-              <Product changeProductHandler={this.props.changeProductHandler} productId={n._id} productData={n} name={n.name} description={n.description} imgUrl={n.image} price={n.price}/>                
+              <Product changeProductHandler={this.props.changeProductHandler} productId={n._id} productData={n} name={n.name} imgUrl={n.image} price={n.price}/>                
             </Grid.Column>
             )}
             <Grid.Row>
