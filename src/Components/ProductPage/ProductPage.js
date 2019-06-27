@@ -64,9 +64,9 @@ class ProductPage extends Component {
     .then((res)=>{
         this.setState({
           name:res.data[0].name,
-          img:res.data[0].options.image,
+          img:res.data[0].image,
           price:res.data[0].price,
-          rate:res.data[0].price,
+          rate:res.data[0].rate,
           description:res.data[0].description,
           id:res.data[0]._id,
           dim:false
