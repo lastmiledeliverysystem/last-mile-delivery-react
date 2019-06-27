@@ -13,9 +13,10 @@ const options = [
 ]
 export default class Sidemenu extends Component {
   state={
-    categories: [{label:"All", value:""},{label:"Food", value:"food"}, {label:"Clothes",value:"clothing"}],
-    color: ["red", "black", "white"],
-    price: ["100 and above", "200 and above", "300 and above" ],
+    categories: [{label:"All", value:""}, {label:"Pet", value:"Pet"},{label:"Kitchen", value:"Kitchen"},
+    {label:"Footwear", value:"Footwear"},{label:"Beauty", value:"Beauty"},{label:"Bags", value:"Bags"},
+    {label:"Baby", value:"Baby"},{label:"Mobile", value:"Mobile"},{label:"Health", value:"Health"},
+    {label:"Food", value:"Food"}, {label:"Computer", value:"Computer"}],
     rating: ["1","2","3","4","5"],
     searchValue:"",
     searchText: "",
@@ -55,26 +56,6 @@ export default class Sidemenu extends Component {
               {this.state.categories.map((n,i)=> 
                 <Menu.Item key={i}>
                   <Checkbox  label={n.label} value={n.value} checked={this.state.value === n.value} onChange={this.handleChange}/>
-                </Menu.Item>)}
-            </Menu.Menu>
-          </Menu.Item>
-
-          <Menu.Item>
-            <Menu.Header>Color</Menu.Header>
-            <Menu.Menu>
-              {this.state.color.map((n,i)=> 
-                <Menu.Item key={i}>
-                  <Checkbox label={n}/>
-                </Menu.Item>)}
-            </Menu.Menu>
-          </Menu.Item>
-
-          <Menu.Item>
-            <Menu.Header>Price</Menu.Header>
-            <Menu.Menu>
-              {this.state.price.map((n,i)=> 
-                <Menu.Item key={i}>
-                  <Checkbox label={n}/>
                 </Menu.Item>)}
             </Menu.Menu>
           </Menu.Item>

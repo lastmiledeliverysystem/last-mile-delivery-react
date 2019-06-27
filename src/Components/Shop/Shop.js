@@ -24,6 +24,7 @@ class Shop extends Component {
             <Grid relaxed textAlign='center'>
                 <Grid.Row centered columns='equal'>
                     <Grid.Column floated='left' width={3}>
+                        {/* {(this.props.isVendor)?}  */}
                         <Sidemenu changeCategory={this.changeVendorCategoryHandler} searchHandler={this.searchHandler}/>
                     </Grid.Column>
                     <Grid.Column width={13}>

@@ -15,7 +15,7 @@ class Vendors extends Component {
     state = {
         vendors:[],
         activePage: 1,
-        pageCount: 1,
+        pageCount: 2,
         dim:true,
         filterBy: this.props.filterBy,
         searchValue: this.props.searchValue
@@ -41,15 +41,18 @@ class Vendors extends Component {
     getDataHandler = async ()=>{
        // await console.log("hereee", this.props.category);
         // await console.log("filterby", this.state.filterBy, "value", this.state.searchValue);
-        
+        console.log("henaa ahoo")
         const link = this.props.filterBy==="all" || this.props.searchValue=== ""?
-         'http://localhost:8000/api/vendors/search?pageSize=1&pageNumber='+this.state.activePage 
-         : 'http://localhost:8000/api/vendors/search?pageSize=1&pageNumber='+this.state.activePage+"&filterBy="+this.props.filterBy+ "&value="+this.props.searchValue
+         'http://localhost:8000/api/vendors/search?pageSize=2&pageNumber='+this.state.activePage 
+         : 'http://localhost:8000/api/vendors/search?pageSize=2&pageNumber='+this.state.activePage+"&filterBy="+this.props.filterBy+ "&value="+this.props.searchValue
         //  "&filterBy=category&value="+this.props.category
         axios.get(link)
         .then((res)=>{
             this.setState({vendors:res.data.vendor, pageCount: res.data.pageCount, dim:false})
-            console.log(res.data.pageCount);            
+            console.log(res.data.pageCount); 
+            if (res.data ==='No Vendors' )  {
+                this.props.history.push("/not-found")
+            }         
         }).catch(err=>{
           console.log(err);
         })
