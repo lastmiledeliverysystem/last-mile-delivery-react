@@ -18,7 +18,9 @@ class Products extends Component {
         vendorId: this.props.vendorId,
         activePage: 1,
         pageCount: 1,
-        dim:true
+        dim:true,
+        filterBy: this.props.filterBy,
+        searchValue: this.props.searchValue
     }
 
     componentDidMount = () => {
@@ -62,7 +64,7 @@ class Products extends Component {
             </Dimmer>
             {this.state.products.map((n) =>
             <Grid.Column width={5} key={n._id}>
-              <Product changeProductHandler={this.props.changeProductHandler} productId={n._id} productData={n} name={n.name} description={n.description} imgUrl={n.image} price={n.price}/>                
+              <Product changeProductHandler={this.props.changeProductHandler} productId={n._id} productData={n} name={n.name} description={n.description} imgUrl={n.image} price={n.price} />                
             </Grid.Column>
             )}
             <Grid.Row>

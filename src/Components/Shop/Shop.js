@@ -8,7 +8,7 @@ import {withRouter} from "react-router-dom";
 class Shop extends Component {
     state = {
         vendorCategory:this.props.match.params.category,
-        searchValue:"",
+        searchValue: "",
         filterBy: "all"
         
     }
@@ -16,6 +16,7 @@ class Shop extends Component {
         this.setState({ vendorCategory });
     }
     searchHandler = async (search, filterBy)=>{
+        console.log("in shop", search, filterBy)
         await this.setState({searchValue:search, filterBy});
     }
 
@@ -23,9 +24,8 @@ class Shop extends Component {
     return (
             <Grid relaxed textAlign='center'>
                 <Grid.Row centered columns='equal'>
-                    <Grid.Column floated='left' width={3}>
-                        {/* {(this.props.isVendor)?}  */}
-                        <Sidemenu changeCategory={this.changeVendorCategoryHandler} searchHandler={this.searchHandler}/>
+                    <Grid.Column floated='left' width={3}> 
+                        <Sidemenu isVendor={this.props.isVendor} changeCategory={this.changeVendorCategoryHandler} searchHandler={this.searchHandler}/>
                     </Grid.Column>
                     <Grid.Column width={13}>
                         {(this.props.isVendor)? <Vendors searchHandler={this.searchHandler} searchValue={this.state.searchValue} filterBy={this.state.filterBy} category ={this.state.vendorCategory}/> :<Products searchValue={this.state.searchValue} filterBy={this.state.filterBy} vendorId={this.props.match.params.vendorId} changeProductHandler={this.props.changeProductHandler} />}

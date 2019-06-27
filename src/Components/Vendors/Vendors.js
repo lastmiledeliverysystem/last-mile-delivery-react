@@ -41,7 +41,6 @@ class Vendors extends Component {
     getDataHandler = async ()=>{
        // await console.log("hereee", this.props.category);
         // await console.log("filterby", this.state.filterBy, "value", this.state.searchValue);
-        console.log("henaa ahoo")
         const link = this.props.filterBy==="all" || this.props.searchValue=== ""?
          'http://localhost:8000/api/vendors/search?pageSize=2&pageNumber='+this.state.activePage 
          : 'http://localhost:8000/api/vendors/search?pageSize=2&pageNumber='+this.state.activePage+"&filterBy="+this.props.filterBy+ "&value="+this.props.searchValue

@@ -14,19 +14,29 @@ const options = [
 export default class Sidemenu extends Component {
   state={
     categories: [{label:"All", value:""}, {label:"Pet", value:"Pet"},{label:"Kitchen", value:"Kitchen"},
-    {label:"Footwear", value:"Footwear"},{label:"Beauty", value:"Beauty"},{label:"Bags", value:"Bags"},
-    {label:"Baby", value:"Baby"},{label:"Mobile", value:"Mobile"},{label:"Health", value:"Health"},
-    {label:"Food", value:"Food"}, {label:"Computer", value:"Computer"}],
-    rating: ["1","2","3","4","5"],
+                {label:"Footwear", value:"Footwear"},{label:"Beauty", value:"Beauty"},{label:"Bags", value:"Bags"},
+                {label:"Baby", value:"Baby"},{label:"Mobile", value:"Mobile"},{label:"Health", value:"Health"},
+                {label:"Food", value:"Food"}, {label:"Computer", value:"Computer"}],
+    rating: [{label: "1", value: "1"},{label: "2", value: "2"},{label: "3", value: "3"},
+            {label: "4", value: "4"},{label: "5", value: "5"},],
     searchValue:"",
     searchText: "",
     filterBy: "",
+    rateValue: "",
   };
 
   handleChange = (e, { value }) =>{
     this.setState({ value })
-    this.props.changeCategory(value);
-    this.props.searchHandler(value, 'category');
+    // this.props.changeCategory(value);
+    // this.props.searchHandler(value, 'rate');
+    if (this.props.isVendor === true){
+      this.props.searchHandler(value, 'category');
+    }
+    else if (this.props.isVendor === false){
+      console.log("value of rate", value)
+
+      this.props.searchHandler(value, 'rate');
+    }
   }
   searchTextHandler = async (searchText) => {
     await this.setState({ searchText });
@@ -49,7 +59,7 @@ export default class Sidemenu extends Component {
               </Menu.Item>
             </Menu.Menu>
           </Menu.Item>
-
+          {(this.props.isVendor) && 
           <Menu.Item>
             <Menu.Header>Category</Menu.Header>
             <Menu.Menu>
@@ -58,17 +68,17 @@ export default class Sidemenu extends Component {
                   <Checkbox  label={n.label} value={n.value} checked={this.state.value === n.value} onChange={this.handleChange}/>
                 </Menu.Item>)}
             </Menu.Menu>
-          </Menu.Item>
-          
-          <Menu.Item>
-            <Menu.Header>Rating</Menu.Header>
-            <Menu.Menu>
-              {this.state.rating.map((n,i)=> 
-                <Menu.Item key={i}>
-                  <Checkbox label={n + " Stars"}/>
-                </Menu.Item>)}
-            </Menu.Menu>
-          </Menu.Item>
+              </Menu.Item> }
+         {(! this.props.isVendor) && <Menu.Item>
+      <Menu.Header>Rating</Menu.Header>
+      <Menu.Menu>
+        {this.state.rating.map((n,i)=> 
+          <Menu.Item key={i}>
+            <Checkbox label={n.label + " Stars"} value={n.value} checked={this.state.value === n.value} onChange={this.handleChange}/>
+          </Menu.Item>)}
+      </Menu.Menu>
+    </Menu.Item>}
+
         </Menu>
       )
     }
