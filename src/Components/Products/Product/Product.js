@@ -28,7 +28,8 @@ const style = {
   },
   img:{
     objectFit:"cover",
-    objectPosition:"center"
+    objectPosition:"center",
+    width: "100%"
   }
 }
 export default class Product extends Component {
