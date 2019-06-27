@@ -79,7 +79,9 @@ class Cart extends Component {
     this.setState({items: tempItems});
     this.calcTotalPrice();
   }
-
+  goproduct=()=>{
+    this.props.history.push('/AddProduct')
+  }
   calcTotalPrice = () => {
     let sum = 0
     const items = this.state.items;
@@ -90,6 +92,8 @@ class Cart extends Component {
   }
   render() {
     return (
+      <React.Fragment>
+
       <Grid>
         <Grid.Row  padded="vertically">
           <ActionTab />
@@ -119,6 +123,8 @@ class Cart extends Component {
           </Grid.Column>
         </Grid.Row>
       </Grid>
+      <Button onClick={this.goproduct}>Add products</Button>
+      </React.Fragment>
     );
   }
 }

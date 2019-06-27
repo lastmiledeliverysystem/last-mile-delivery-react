@@ -46,14 +46,16 @@ class Vendor extends Component {
     return (
 
     <Card color="black">
+        <Link to={'/Products/'+this.props.vendorId} style={style.price}>
         <Image src={this.props.imageURL} 
         style={style.img}
         width={230}
         height={230} centered/>
+        </Link>
         <Card.Content>
-          {/* <Link to={`/Products/${this.props.vendorId}`} style={style.price}> */}
+          <Link to={`/Products/${this.props.vendorId}`} style={style.price}>
             <Card.Header style={style.name} onClick={this.linkHandler}>{this.props.name}</Card.Header>
-          {/* </Link> */}
+          </Link>
             <Card.Meta>
             <span style={style.color}></span>
             </Card.Meta>
