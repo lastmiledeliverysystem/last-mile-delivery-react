@@ -18,7 +18,9 @@ class Products extends Component {
         vendorId: this.props.vendorId,
         activePage: 1,
         pageCount: 1,
-        dim:true
+        dim:true,
+        filterBy: this.props.filterBy,
+        searchValue: this.props.searchValue
     }
 
     componentDidMount = () => {
