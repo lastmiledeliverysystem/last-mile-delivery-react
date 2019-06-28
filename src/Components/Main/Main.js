@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grid, Image, Header, Divider } from 'semantic-ui-react';
+import { Grid, Image, Header, Divider , Button } from 'semantic-ui-react';
 import bg from '../../media/street.jpg'
 import pha from '../../media/pha.jpg'
 import bg2 from '../../media/card2.jpg'
@@ -39,12 +39,17 @@ const style={
 
 export default class Main extends Component {
 
+  goproduct=()=>{
+    this.props.history.push('/AddProduct')
+  }
+
   categoryHandler = (cat) => {
     this.props.history.push('/shop/' + cat )
   }
   render() {
 
     return (
+      <React.Fragment>
       <Grid>
         <Grid.Row verticalAlign='middle' centered columns='equal' style={style.banner}>
           <Grid.Column width={3} />
@@ -62,6 +67,9 @@ export default class Main extends Component {
           <Grid.Column width={3}/>
         </Grid.Row>      
       </Grid>
+      <Button onClick={this.goproduct}>Add products</Button>
+
+      </React.Fragment>
     )
   }
 }

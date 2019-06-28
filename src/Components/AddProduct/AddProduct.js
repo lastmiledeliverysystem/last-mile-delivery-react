@@ -1,40 +1,52 @@
 import React, { Component } from 'react'
 import { Grid ,Input,Button,Segment} from 'semantic-ui-react';
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 
 
 
 export default class AddProduct extends Component{
+
   state = { 
     name:'',
     category:'',
-    specs:'',
-    price:'',
+    description:'',
+    price:1,
     unit:'',
     image:'',
     quantity:'',
-    barcode:'',
+    barCode:'',
    }
 
+
+  
   addToProducts = ()=> {
+    var token= localStorage.getItem('token');
+    var decoded = jwt_decode(token);
+    // console.log(decoded);  
+    // console.log(decoded.id)   
+
     axios.post('http://localhost:8000/api/products/',
     { name:this.state.name,
       category:this.state.category,
-      specs:this.state.specs,
+      description:this.state.description,
       price:this.state.price,
       unit:this.state.unit,
       image:this.state.image,
       quantity:this.state.quantity,
-      barcode:this.state.barcode
+      barCode:this.state.barCode,
+      vendorId:decoded.id
     }
-    ,{'token':localStorage.getItem('token'),'vendorId':this.props.vendorId})
+    ,{'token':localStorage.getItem('token')})
       .then(res=>{
-        console.log(res.data);
+        console.log("done")
+        
         this.props.history.push({
-          pathname:'/shop',
+          pathname:'/',
         })
       }).catch(err=>{
-        console.log(err);
+        
+        console.log(err.responce);
       })
   }
 
@@ -46,8 +58,7 @@ export default class AddProduct extends Component{
 
   render(){
     return(
-     
-      <React.Fragment>
+      
 
       <Grid divided>
       <Grid.Column textAlign='center' width={16}>
@@ -57,39 +68,39 @@ export default class AddProduct extends Component{
         <Grid.Row columns='equal'>
         <Grid.Column width={3}/>
           <Grid.Column width={5}>
-            <Input label='Product Name' placeholder='Product Name' onChange={(event, {value})=>{this.setState({ name: value})}} />
+            <Input label='Product Name' placeholder='Product Name' onChange={(event, {value})=>{this.setState({ name: event.target.value})}} />
           </Grid.Column>
           <Grid.Column width={5}>
-           < Input label='Category' placeholder='Category' onChange={(event, {value})=>{this.setState({ category: value})}}/>
+           < Input label='Category' placeholder='Category' onChange={(event, {value})=>{this.setState({ category:event.target.value})}}/>
           </Grid.Column>
         </Grid.Row>
     
         <Grid.Row columns='equal'>
         <Grid.Column width={3}/>
           <Grid.Column width={5}>
-            <Input label='Price' placeholder='Price' onChange={(event, {value})=>{this.setState({ price: value})}} />
+            <Input label='Price' placeholder='Price' onChange={(event, {value})=>{this.setState({ price:event.target.value})}} />
           </Grid.Column>
           <Grid.Column width={5}>
-            <Input label='Unit' placeholder='EX: LE' onChange={(event, {value})=>{this.setState({ unit: value})}} />
+            <Input label='Unit' placeholder='EX: LE' onChange={(event, {value})=>{this.setState({ unit:event.target.value})}} />
           </Grid.Column>
         </Grid.Row>
 
         <Grid.Row columns='equal'>
         <Grid.Column width={3}/>
           <Grid.Column width={5}>
-            <Input label='specs' placeholder='Specs' onChange={(event, {value})=>{this.setState({ specs: value})}} />
+            <Input label='Description' placeholder='Description' onChange={(event, {value})=>{this.setState({ description: event.target.value})}} />
           </Grid.Column>
           <Grid.Column width={5}>
-            <Input label='Quantity' placeholder='Quantity' onChange={(event, {value})=>{this.setState({ quantity: value})}}/>
+            <Input label='Quantity' placeholder='Quantity' onChange={(event, {value})=>{this.setState({ quantity:event.target.value})}}/>
           </Grid.Column>
         </Grid.Row>
         <Grid.Row columns='equal'>
         <Grid.Column width={3}/>
           <Grid.Column width={5}>
-            <Input label='Image' placeholder='ImageUrl' onChange={(event, {value})=>{this.setState({ image: value})}} />
+            <Input label='Image' placeholder='ImageUrl' onChange={(event, {value})=>{this.setState({ image: event.target.value})}} />
           </Grid.Column>
           <Grid.Column width={5}>
-            <Input label='BarCode' placeholder='BarCode' onChange={(event, {value})=>{this.setState({ barcode: value})}} />
+            <Input label='BarCode' placeholder='BarCode' onChange={(event, {value})=>{this.setState({ barCode: event.target.value})}} />
           </Grid.Column>
         </Grid.Row>
 
@@ -106,10 +117,7 @@ export default class AddProduct extends Component{
 
         <Grid.Row/>
       </Grid>
-
-
-    
-      </React.Fragment>
+      
     
    )
     }
