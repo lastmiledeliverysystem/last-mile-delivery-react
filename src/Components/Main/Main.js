@@ -61,7 +61,7 @@ export default class Main extends Component {
         <Divider hidden/>
         <Grid.Row centered columns='equal' stretched>
           <Grid.Column width={3}/>
-          <Grid.Column ><Image src={food} label={{ as: 'a', color: 'blue', content: 'Food', icon: 'food', ribbon: true }} onClick={() => this.categoryHandler('Food')}/> </Grid.Column>
+          <Grid.Column ><Image src={food} label={{ as: 'a', color: 'blue', content: 'Food', icon: 'food', ribbon: true }} onClick={() => this.categoryHandler('Kitchen')}/> </Grid.Column>
           <Grid.Column ><Image src={pha} label={{ as: 'a', color: 'blue', content: 'Mediacl', icon: 'medkit', ribbon: true }} onClick={() => this.categoryHandler('Health')}/></Grid.Column>
           <Grid.Column ><Image src={bg2} label={{ as: 'a', color: 'blue', content: 'shopping', icon: 'shopping basket', ribbon: true }} onClick={() => this.categoryHandler('Footwear')}/></Grid.Column>
           <Grid.Column width={3}/>
