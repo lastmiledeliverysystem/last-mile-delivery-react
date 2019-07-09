@@ -8,7 +8,7 @@ import {withRouter} from "react-router-dom";
 class Shop extends Component {
     state = {
         vendorCategory:this.props.match.params.category,
-        searchValue: "",
+        searchValue: this.props.match.params.category === "all"? "" : this.props.match.params.category,
         filterBy: "all"
         
     }

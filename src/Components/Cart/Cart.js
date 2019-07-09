@@ -107,7 +107,7 @@ class Cart extends Component {
             <Button primary onClick={this.addToCart} >Add Item</Button>
           </Grid.Column>
           <Grid.Column width={4} textAlign="center" verticalAlign="top">
-            <Header as="h1" padded="vertically">asd</Header>
+            <Header as="h1" padded="vertically"></Header>
             <CartInfo calcTotalPrice={this.calcTotalPrice} totalPrice={this.state.totalPrice} cartItems={this.state.items} />
             <Card centered>
               <Card.Content>

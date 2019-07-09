@@ -20,7 +20,8 @@ class Products extends Component {
         pageCount: 1,
         dim:true,
         filterBy: this.props.filterBy,
-        searchValue: this.props.searchValue
+        searchValue: this.props.searchValue,
+        rate: 1
     }
 
     componentDidMount = () => {
@@ -46,8 +47,8 @@ class Products extends Component {
       'http://localhost:8000/api/products/search?pageSize=6&pageNumber='+this.state.activePage + '&filterBy=vendorId&value='+this.props.vendorId+ '&filterBy='+ this.props.filterBy + '&value=' + this.props.searchValue;
         axios.get(link)
         .then((res)=>{
-            this.setState({products:res.data.product, pageCount: res.data.pageCount, dim:false })
-
+            this.setState({products:res.data.product, pageCount: res.data.pageCount, dim:false, rate: res.data.rate })
+            console.log("product", res.data.product, "rate", res.data.rate)
         })
         .catch((err)=> {
             console.log("Error", err);
@@ -64,7 +65,7 @@ class Products extends Component {
             </Dimmer>
             {this.state.products.map((n) =>
             <Grid.Column width={5} key={n._id}>
-              <Product changeProductHandler={this.props.changeProductHandler} productId={n._id} productData={n} name={n.name} imgUrl={n.image} price={n.price}/>                
+              <Product changeProductHandler={this.props.changeProductHandler} productId={n._id} productData={n} name={n.name} imgUrl={n.image} price={n.price} rate={n.rate}/>                
             </Grid.Column>
             )}
             <Grid.Row>
