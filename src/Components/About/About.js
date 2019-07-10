@@ -1,6 +1,6 @@
 import React from 'react';
 import { Icon } from 'semantic-ui-react'
-import { Grid, Image, Header, Divider , Button } from 'semantic-ui-react';
+import { Grid, Image, Header, Divider , Container,  Card } from 'semantic-ui-react';
 import bg from '../../media/street.jpg'
 import pha from '../../media/pha.jpg'
 import bg2 from '../../media/card2.jpg'
@@ -8,6 +8,10 @@ import food from '../../media/food.jpg'
 
 const style={
     h1:{
+        color:'#1d064b',
+        fontSize:'50px',
+    },
+    h2:{
         color:'#1d064b',
         fontSize:'50px',
     },
@@ -56,17 +60,69 @@ export default class About extends React.Component {
               <p style={style.p}>What ever you need, where ever you are!</p>
             </Grid.Column>
           </Grid.Row>
+
+          <Grid.Row>
+           <Grid.Column width={6} />
+              <Header as='h2' style={style.h2}>Careers</Header>
+                <Container textAlign="center">  
+                    <p style={style.p}> We are an experienced team passionate about advancing robotics to dramatically improve the way we live.
+                                        In previous roles, we’ve made critical contributions to technological breakthroughs in hardware, software,
+                                        robotics, and machine learning. And we’ve won international competitions and launched international products.
+                                        We've come together at Nuro to accomplish something big and meaningful. To swing the needle. Together. Join us.
+                    </p>
+                </Container>
+          </Grid.Row>
+
           <Divider hidden/>
           <Grid.Row centered columns='equal' stretched>
             <Grid.Column width={3}/>
-            <Grid.Column ><Image src={food} label={{ as: 'a', color: 'blue', content: 'Food', icon: 'food', ribbon: true }} onClick={() => this.categoryHandler('Kitchen')}/> </Grid.Column>
-            <Grid.Column ><Image src={pha} label={{ as: 'a', color: 'blue', content: 'Mediacl', icon: 'medkit', ribbon: true }} onClick={() => this.categoryHandler('Health')}/></Grid.Column>
-            <Grid.Column ><Image src={bg2} label={{ as: 'a', color: 'blue', content: 'shopping', icon: 'shopping basket', ribbon: true }} onClick={() => this.categoryHandler('Footwear')}/></Grid.Column>
+            <Header as='h2' style={style.h2}>Meet the team</Header>
+            
+            <Grid.Column ><Card>
+    <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' wrapped ui={false} />
+    <Card.Content>
+      <Card.Header>Rawan</Card.Header>
+      <Card.Meta>
+        <span className='date'>Software Engineer</span>
+      </Card.Meta>
+      <Card.Description>
+      “Nuro has a dynamic, fast-paced development environment and it has been thrilling to see how quickly the team makes breakthroughs.”
+      </Card.Description>
+    </Card.Content>
+    <Card.Content extra>
+    </Card.Content>
+  </Card> </Grid.Column>
+            <Grid.Column ><Card>
+    <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' wrapped ui={false} />
+    <Card.Content>
+      <Card.Header>Matthew</Card.Header>
+      <Card.Meta>
+        <span className='date'>Joined in 2015</span>
+      </Card.Meta>
+      <Card.Description>
+        Matthew is a musician living in Nashville.
+      </Card.Description>
+    </Card.Content>
+    <Card.Content extra>
+    </Card.Content>
+  </Card></Grid.Column>
+            <Grid.Column ><Card>
+    <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' wrapped ui={false} />
+    <Card.Content>
+      <Card.Header>Matthew</Card.Header>
+      <Card.Meta>
+        <span className='date'>Joined in 2015</span>
+      </Card.Meta>
+      <Card.Description>
+        Matthew is a musician living in Nashville.
+      </Card.Description>
+    </Card.Content>
+    <Card.Content extra>
+    </Card.Content>
+  </Card></Grid.Column>
             <Grid.Column width={3}/>
           </Grid.Row>      
         </Grid>
-        <Button onClick={this.goproduct}>Add products</Button>
-  
         </React.Fragment>
     );
   }
