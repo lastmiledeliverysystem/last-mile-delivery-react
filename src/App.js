@@ -96,16 +96,13 @@ class App extends Component {
 
         <Switch>
           <Route path='/not-found' component={()=>getComp(<NotFound/>)} />
-          {/* <Route path='/shop' component={()=>getComp(<Shop isVendor={true}/>)}/> */}
-          {/* <Route path='/login' exact component={LogIn} /> */}
           <Route path='/login' render={(props)=> <LogIn toggleLogHandler={this.toggleLogHandler} {...props}/>} />
           <Route path='/shop/:category' render={(props)=>getComp(<Shop isVendor={true} {...props}/>)} />
-          <Route path='/Products/:vendorId' render={(props)=> getComp(<Shop isVendor={false} changeProductHandler={this.changeProductHandler} {...props}/>)}  />
+          <Route path='/Products/:vendorId' render={(props)=> getComp(<Shop isVendor={false} changeProductHandler={this.changeProductHandler} {...props}/>)}/>
           <Route path='/ProductPage/:productId' render={(props)=>getComp(<ProductPage {...props} productData={this.state.productData}/>)} />
           <Route path='/cart'  render={(props)=> <Cart {...props}/>} />
           <Route path='/TrackingPassword/' render={(props)=> <TrackingPassword {...props}/>} />
           <Route path='/TrackingPage/' render={(props)=>getComp(<TrackingPage isVendor={true} {...props}/>)} />
-          {/* <Route path='/login' exact component={LogIn} /> */}
           <Route path='/AddProduct'  render={(props)=>getComp(<AddProduct isVendor={true} {...props}/>)} />
           <Route path='/Profile' render={(props)=>getComp(<Profile isVendor={true} {...props}/>)} />
 
@@ -113,6 +110,9 @@ class App extends Component {
           <Redirect to='/not-found'/>
         </Switch>
 
+        {/* <Route path='/shop' component={()=>getComp(<Shop isVendor={true}/>)}/> */}
+          {/* <Route path='/login' exact component={LogIn} /> */}
+          {/* <Route path='/login' exact component={LogIn} /> */}
         {/* <Divider hidden/> */}
         <Grid.Row centered columns='equal' style={style.footer}>
           <Grid.Column width={1}></Grid.Column>

@@ -54,7 +54,7 @@ export default class Product extends Component {
           </Card.Meta>
             {/* <Card.Description style={style.desc}>{this.props.description}</Card.Description> */}
             <Card.Description>
-            <span className='badge'><StarRating/></span>
+            <span className='badge'><StarRating rate={this.props.rate}/></span>
             </Card.Description>
         </Card.Content>
         <Card.Content extra >
