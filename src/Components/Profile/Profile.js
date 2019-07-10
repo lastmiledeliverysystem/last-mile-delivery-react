@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import {Menu,Label,Tab, Card,Icon, Feed, Image ,Grid} from 'semantic-ui-react'
 import Message from './Message'
 import Info from './Info'
+import OrderTap from './OrderTap'
 
 
  
 const panes = [
   { menuItem: 'Information', render: () => <Tab.Pane><Info/></Tab.Pane> },
-  { menuItem: 'Orders', render: () => <Tab.Pane>Tab 2 Content</Tab.Pane> },
+  { menuItem: 'Orders', render: () => <Tab.Pane><OrderTap/></Tab.Pane> },
   { menuItem: <Menu.Item key='messages'>Messages<Label>7</Label></Menu.Item>,
     render: () => <Tab.Pane><Message/></Tab.Pane>,
   },
@@ -45,6 +46,7 @@ render(){
             </Card.Content>
           </Card>
         </Grid.Column>
+        
 
         <Grid.Column >
           <Tab  panes={panes} />
@@ -52,8 +54,9 @@ render(){
         
           
         </Grid.Row>
-          <Grid.Row verticalAlign='top' centered columns='equal' >
-          <Grid.Column textAlign='left'>
+
+          <Grid.Row verticalAlign='top'  >
+          <Grid.Column width={4} textAlign='left'>
           <Card>
           <Card.Content>
             <Card.Header>Recent Activity</Card.Header>
