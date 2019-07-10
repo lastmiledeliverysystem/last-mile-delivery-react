@@ -15,7 +15,11 @@ import LogIn from './Components/LogIn/LogIn';
 import TrackingPassword from './Components/Tracking/TrackingPassword';
 import TrackingPage from './Components/Tracking/TrackingPage';
 import AddProduct from './Components/AddProduct/AddProduct';
+<<<<<<< HEAD
 import About from './Components/About/About'
+=======
+import Profile from './Components/Profile/Profile'
+>>>>>>> c0a5e79cf3c2c7e8b9910c25466d79bd62103c3c
 
 
 
@@ -105,6 +109,8 @@ class App extends Component {
           <Route path='/TrackingPage/' render={(props)=>getComp(<TrackingPage isVendor={true} {...props}/>)} />
           <Route path='/AddProduct'  render={(props)=>getComp(<AddProduct isVendor={true} {...props}/>)} />
           <Route path='/about' component={()=>getComp(<About/>)} />
+          <Route path='/Profile' render={(props)=>getComp(<Profile isVendor={true} {...props}/>)} />
+
           <Route path='/' exact component={Main} />
           <Redirect to='/not-found'/>
         </Switch>

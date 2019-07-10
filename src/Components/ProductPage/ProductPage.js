@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 // import './App.css';
 import Rating from './Rating/Rating'
-import Size from './Size/Size'
-import ProductColor from './ProductColor/ProductColor'
 import Description from './Description/Description'
 import AddToCart from './AddToCart/AddToChar'
 import { Grid, Image, Segment, Divider, Container, Dimmer, Loader } from 'semantic-ui-react';
