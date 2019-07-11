@@ -47,8 +47,11 @@ class Products extends Component {
       'http://localhost:8000/api/products/search?pageSize=6&pageNumber='+this.state.activePage + '&filterBy=vendorId&value='+this.props.vendorId+ '&filterBy='+ this.props.filterBy + '&value=' + this.props.searchValue;
         axios.get(link)
         .then((res)=>{
+            if (res.data==='No products')
+              this.setState({products:[]})
+            else {
             this.setState({products:res.data.product, pageCount: res.data.pageCount, dim:false, rate: res.data.rate })
-            console.log("product", res.data.product, "rate", res.data.rate)
+            console.log("product", res.data.product, "rate", res.data.rate) }
         })
         .catch((err)=> {
             console.log("Error", err);
@@ -57,6 +60,7 @@ class Products extends Component {
 
   render() {
     const { activePage } = this.state
+    console.log("products", this.state.products)
       return (
         <React.Fragment>
           <Grid centered>

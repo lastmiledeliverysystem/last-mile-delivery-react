@@ -62,7 +62,8 @@ export default class About extends React.Component {
           </Grid.Row>
 
           <Grid.Row>
-           <Grid.Column width={6} />
+           <Grid.Column width={3} />
+           
               <Header as='h2' style={style.h2}>Careers</Header>
                 <Container textAlign="center">  
                     <p style={style.p}> We are an experienced team passionate about advancing robotics to dramatically improve the way we live.
@@ -71,6 +72,7 @@ export default class About extends React.Component {
                                         We've come together at Nuro to accomplish something big and meaningful. To swing the needle. Together. Join us.
                     </p>
                 </Container>
+                <Grid.Column width={3} />
           </Grid.Row>
 
           <Divider hidden/>
