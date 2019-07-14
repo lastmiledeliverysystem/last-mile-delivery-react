@@ -8,7 +8,7 @@ const style= {
         marginLeft: "auto",
         marginRight: "auto",
         borderRadius: "50%",
-        width: "50%",
+        width: "30%",
         flex: 1
     },
     name: {
