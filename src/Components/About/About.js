@@ -29,21 +29,22 @@ const style={
       wordWrap: "break-word",
       fontSize:'30px',
       lineHeight:'1',
-      textShadow:'2px 2px rgba(0,0,0,0.6)',
+      // textShadow:'2px 2px rgba(0,0,0,0.6)',
       color:'#1d064b',
     },
     title:{
       textAlign: "center",
       fontSize:'30px',
       lineHeight:'1',
-      textShadow:'2px 2px rgba(0,0,0,0.6)',
+      marginBottom:'20px',
+      // textShadow:'2px 2px rgba(0,0,0,0.6)',
       color:'#1d064b',
         },
     p:{
         width:'50%',
         fontSize:'30px',
         lineHeight:'1',
-        textShadow:'2px 2px rgba(0,0,0,0.6)'
+        // textShadow:'2px 2px rgba(0,0,0,0.6)'
     },
     card:{
         backgroundImage:'url('+bg2+')',
@@ -122,31 +123,36 @@ export default class About extends React.Component {
 
           <Grid.Row>
            <Grid.Column width={3} />
-            <Container style={style.title}>
-              <Header >Careers</Header>
+           <Grid.Column width={10}>
+              <Container style={style.title}>
+                <Header >Careers</Header>
+              </Container>
+           </Grid.Column>
+           <Grid.Column width={3} />
+            <Container style={style.container}>  
+                <p> We are an experienced team passionate about advancing robotics to dramatically improve the way we live.
+                                    In previous roles, we’ve made critical contributions to technological breakthroughs in hardware, software,
+                                    robotics, and machine learning. And we’ve won international competitions and launched international products.
+                                    We've come together at Serbero to accomplish something big and meaningful. To swing the needle. Together. Join us.
+                </p>
             </Container>
-                <Container style={style.container}>  
-                    <p> We are an experienced team passionate about advancing robotics to dramatically improve the way we live.
-                                        In previous roles, we’ve made critical contributions to technological breakthroughs in hardware, software,
-                                        robotics, and machine learning. And we’ve won international competitions and launched international products.
-                                        We've come together at Serbero to accomplish something big and meaningful. To swing the needle. Together. Join us.
-                    </p>
-                </Container>
-                <Grid.Column width={3} />
+            {/* <Grid.Column width={3} /> */}
           </Grid.Row>
 
           <Divider hidden/>
           <Grid.Row centered columns='equal' stretched>
             <Grid.Column width={3}/>
-            <Container style={style.title}>
-              <Header >Meet The Team</Header>
-            </Container>
+            <Grid.Column width={10}>
+              <Container style={style.title}>
+                <Header >Meet The Team</Header>
+              </Container>
+            </Grid.Column>
+            <Grid.Column width={3}/>
             {this.state.team.map((n) =>
             <Grid.Column width={5} key={n._id}>
               <CardAbout image={n.image} name={n.name} job={n.job} word={n.word} />                
             </Grid.Column>
             )}
-    <Grid.Column width={3}/>
           </Grid.Row>      
         </Grid>
         </React.Fragment>
