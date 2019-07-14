@@ -62,38 +62,45 @@ export default class About extends React.Component {
     state = {
       team: [
         {
-          name:"Rawan",
-          job: "Software Engineer",
-          word: "“LMD has a dynamic, fast-paced development environment and it has been thrilling to see how quickly the team makes breakthroughs.”"
-        },
-        {
-          name:"Maha",
-          job: "Software Engineer",
-          word: "“LMD has a dynamic, fast-paced development environment and it has been thrilling to see how quickly the team makes breakthroughs.”"
-        },
-        {
-          name:"Zahraa",
-          job: "Software Engineer",
-          word: "“LMD has a dynamic, fast-paced development environment and it has been thrilling to see how quickly the team makes breakthroughs.”"
-        },
-        {
           name:"Alaa",
           job: "Software Engineer",
+          image: "https://semantic-ui.com/images/avatar2/large/kristy.png",
           word: "“LMD has a dynamic, fast-paced development environment and it has been thrilling to see how quickly the team makes breakthroughs.”"
         },
         {
-          name:"Kassim",
+          name:"Al-Zahraa",
           job: "Software Engineer",
+          image:"https://semantic-ui.com/images/avatar2/large/kristy.png",
           word: "“LMD has a dynamic, fast-paced development environment and it has been thrilling to see how quickly the team makes breakthroughs.”"
         },
         {
           name:"Hossam",
           job: "Software Engineer",
+          image:"https://react.semantic-ui.com/images/avatar/large/matthew.png",
+          word: "“LMD has a dynamic, fast-paced development environment and it has been thrilling to see how quickly the team makes breakthroughs.”"
+        },
+        {
+          name:"Maha",
+          job: "Software Engineer",
+          image:"https://semantic-ui.com/images/avatar2/large/kristy.png",
+          word: "“LMD has a dynamic, fast-paced development environment and it has been thrilling to see how quickly the team makes breakthroughs.”"
+        },
+        {
+          name:"Kassim",
+          job: "Software Engineer",
+          image:"https://react.semantic-ui.com/images/avatar/large/matthew.png",
           word: "“LMD has a dynamic, fast-paced development environment and it has been thrilling to see how quickly the team makes breakthroughs.”"
         },
         {
           name:"Wagih",
           job: "Software Engineer",
+          image:'https://react.semantic-ui.com/images/avatar/large/matthew.png',
+          word: "“LMD has a dynamic, fast-paced development environment and it has been thrilling to see how quickly the team makes breakthroughs.”"
+        },
+        {
+          name:"Rawan",
+          job: "Software Engineer",
+          image:"https://semantic-ui.com/images/avatar2/large/kristy.png",
           word: "“LMD has a dynamic, fast-paced development environment and it has been thrilling to see how quickly the team makes breakthroughs.”"
         },
       ]
@@ -122,7 +129,7 @@ export default class About extends React.Component {
                     <p> We are an experienced team passionate about advancing robotics to dramatically improve the way we live.
                                         In previous roles, we’ve made critical contributions to technological breakthroughs in hardware, software,
                                         robotics, and machine learning. And we’ve won international competitions and launched international products.
-                                        We've come together at Nuro to accomplish something big and meaningful. To swing the needle. Together. Join us.
+                                        We've come together at Serbero to accomplish something big and meaningful. To swing the needle. Together. Join us.
                     </p>
                 </Container>
                 <Grid.Column width={3} />
@@ -136,7 +143,7 @@ export default class About extends React.Component {
             </Container>
             {this.state.team.map((n) =>
             <Grid.Column width={5} key={n._id}>
-              <CardAbout name={n.name} job={n.job} word={n.word} />                
+              <CardAbout image={n.image} name={n.name} job={n.job} word={n.word} />                
             </Grid.Column>
             )}
     <Grid.Column width={3}/>
