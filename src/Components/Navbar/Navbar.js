@@ -22,12 +22,15 @@ export default class Navbar extends Component {
           <Menu.Item header style={style.h1}>LMD/DADA</Menu.Item>
           <Menu.Menu position="right">
             <NavLink to='/' className='item'>HOME</NavLink>
+            <NavLink to='/AddProduct' className='item'>{this.props.isVendor && this.props.isLogged? "Add Product" : "" }</NavLink>
+            <NavLink to='/Profile' className='item'>{this.props.isLogged? "Profile" : "" }</NavLink>
             <NavLink to='/shop/all' className='item'>SHOP</NavLink>
             <NavLink to='/cart' className='item'><Icon name="shopping cart"/>CART</NavLink>
             <Menu.Item>
               <Input icon='search' placeholder='Search...' />
             </Menu.Item>
             <NavLink to='/login' className='item'>{this.props.isLogged? "LOGOUT": "LOGIN"}</NavLink>
+            {/* {console.log(this.props.isVendor)} */}
           </Menu.Menu>
           </Menu>
       )

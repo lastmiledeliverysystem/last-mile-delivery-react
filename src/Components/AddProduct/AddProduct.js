@@ -40,7 +40,7 @@ export default class AddProduct extends Component{
     ,{'token':localStorage.getItem('token')})
       .then(res=>{
         console.log("done")
-        
+        this.props.toggleAddProductHandler();
         this.props.history.push({
           pathname:'/',
         })
@@ -74,7 +74,7 @@ export default class AddProduct extends Component{
            < Input label='Category' placeholder='Category' onChange={(event, {value})=>{this.setState({ category:event.target.value})}}/>
           </Grid.Column>
         </Grid.Row>
-    
+
         <Grid.Row columns='equal'>
         <Grid.Column width={3}/>
           <Grid.Column width={5}>
