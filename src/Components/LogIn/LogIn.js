@@ -27,7 +27,8 @@ export default class LogIn extends Component {
     password: '',
     submittedEmail: '',
     submittedPassword: '',
-    isErr:true
+    isErr:true,
+    isVendor: this.props.isVendor,
   };
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value });
@@ -37,16 +38,12 @@ export default class LogIn extends Component {
     .then(res => {
       console.log("plapla", res.data);
       this.props.toggleLogHandler();
+      this.props.toggleAddProductHandler();
       localStorage.setItem('token', res.data);
-      console.log(res.data)
-      this.props.history.push("/")
-    }).catch( error => {
-      console.log(error);
-      
       this.setState({isErr:false})
     });
   }
-
+s
 
   handleSubmit = () => {
     const { email, password} = this.state;

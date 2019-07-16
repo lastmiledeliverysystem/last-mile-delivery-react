@@ -3,8 +3,8 @@ import {Menu,Label,Tab, Card,Icon, Feed, Image ,Grid} from 'semantic-ui-react'
 import Message from './Message'
 import Info from './Info'
 import OrderTap from './OrderTap'
-
-
+import axios from 'axios';
+import jwt_decode from 'jwt-decode';
  
 const panes = [
   { menuItem: 'Information', render: () => <Tab.Pane><Info/></Tab.Pane> },
@@ -13,19 +13,43 @@ const panes = [
     render: () => <Tab.Pane><Message/></Tab.Pane>,
   },
 ]
+
+var token= localStorage.getItem('token');
+var decoded = jwt_decode(token);
+
 export default class Profile extends Component{
     state = { 
-        name:'',
-        image:'',
         panes : [
           { menuItem: 'Information', render: () => <Tab.Pane>Tab 1 Content</Tab.Pane> },
           { menuItem: 'Orders', render: () => <Tab.Pane>Tab 2 Content</Tab.Pane> },
           { menuItem: <Menu.Item key='messages'>Messages<Label>15</Label></Menu.Item>,
             render: () => <Tab.Pane>Tab 3 Content</Tab.Pane>,
           },
-        ]
+        ],
+        users: []
         
        }
+       componentDidMount = () => {
+        this.getUserDataHandler()
+        console.log("users did mount");
+        
+      }
+       getUserDataHandler = async ()=> {
+       
+        console.log(decoded);  
+        // console.log(decoded.id)   
+        const link = decoded.isVendor? `http://localhost:8000/api/vendors/`+decoded.id : `http://localhost:8000/api/customers/`+decoded.id
+         axios.get(link)
+          .then(res=> {
+            console.log("done")
+            console.log("res", res)
+            this.setState({users: res.data})
+            console.log(this.state.users.fName)
+          }).catch(err=>{
+            
+            console.log(err.responce);
+          })
+      }
 
 render(){
   return(
@@ -35,7 +59,7 @@ render(){
           <Card> 
             <Image src={'https://lakeshorecontracting.ca/wp-content/uploads/2017/12/Female-Avatar.png'} wrapped ui={false} />
             <Card.Content>
-              <Card.Header>Matthew</Card.Header>
+              <Card.Header>{decoded.isVendor? this.state.users.name : this.state.users.fName + " " + this.state.users.lName }</Card.Header>
               <Card.Meta>
                 <span className='date'>Joined in 2015</span>
               </Card.Meta>

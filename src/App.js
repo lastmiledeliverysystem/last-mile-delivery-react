@@ -17,7 +17,7 @@ import TrackingPage from './Components/Tracking/TrackingPage';
 import AddProduct from './Components/AddProduct/AddProduct';
 import About from './Components/About/About'
 import Profile from './Components/Profile/Profile'
-
+import jwt_decode from 'jwt-decode';
 
 
 const style={
@@ -62,7 +62,8 @@ class App extends Component {
     data:"First app",
     productData:{},
     category: {},
-    isLogged:false
+    isLogged:false,
+    isVendor: false,
   }
   
   changeProductHandler = (p) => {
@@ -73,8 +74,19 @@ class App extends Component {
   }
   toggleLogHandler = ()=>{
     this.setState({isLogged:!this.state.isLogged});
+    console.log("login toggle", this.state.isLogged)
   }
+  toggleAddProductHandler = ()=>{
+    var token= localStorage.getItem('token');
+    var decoded = jwt_decode(token);
+    this.setState({isVendor: decoded.isVendor});
+    if(this.state.isLogged === false){
+      this.setState({isVendor: false})
+    }
+    console.log("is vendor in app", this.state.isVendor)
+    // this.setState({isVendor:!this.state.isVendor});
 
+  }
   contextRef = createRef()
 
   render() {
@@ -91,20 +103,20 @@ class App extends Component {
       <Grid  >
         <Grid.Row centered columns='equal' style={style.navbar}>
           <Grid.Column width={1}></Grid.Column>
-          <Grid.Column><Navbar isLogged={this.state.isLogged}/></Grid.Column>
+          <Grid.Column><Navbar isLogged={this.state.isLogged} isVendor={this.state.isVendor} /></Grid.Column>
           <Grid.Column width={1}></Grid.Column>
         </Grid.Row>
 
         <Switch>
           <Route path='/not-found' component={()=>getComp(<NotFound/>)} />
-          <Route path='/login' render={(props)=> <LogIn toggleLogHandler={this.toggleLogHandler} {...props}/>} />
+          <Route path='/login' render={(props)=> <LogIn toggleLogHandler={this.toggleLogHandler}  toggleAddProductHandler={this.toggleAddProductHandler} isVendor={this.state.isVendor} {...props}/>} />
           <Route path='/shop/:category' render={(props)=>getComp(<Shop isVendor={true} {...props}/>)} />
           <Route path='/Products/:vendorId' render={(props)=> getComp(<Shop isVendor={false} changeProductHandler={this.changeProductHandler} {...props}/>)}/>
           <Route path='/ProductPage/:productId' render={(props)=>getComp(<ProductPage {...props} productData={this.state.productData}/>)} />
           <Route path='/cart'  render={(props)=> <Cart {...props}/>} />
           <Route path='/TrackingPassword/' render={(props)=> <TrackingPassword {...props}/>} />
           <Route path='/TrackingPage/' render={(props)=>getComp(<TrackingPage isVendor={true} {...props}/>)} />
-          <Route path='/AddProduct'  render={(props)=>getComp(<AddProduct isVendor={true} {...props}/>)} />
+          <Route path='/AddProduct'  render={(props)=>getComp(<AddProduct toggleAddProductHandler={this.toggleAddProductHandler} isVendor={true} {...props}/>)} />
           <Route path='/about' component={()=>getComp(<About/>)} />
           <Route path='/Profile' render={(props)=>getComp(<Profile {...props}/>)} />
 
