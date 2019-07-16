@@ -8,13 +8,7 @@ import jwt_decode from 'jwt-decode';
 
 
  
-const panes = [
-  { menuItem: 'Information', render: () => <Tab.Pane ><Info /></Tab.Pane> },
-  { menuItem: 'Orders', render: () => <Tab.Pane><OrderTap/></Tab.Pane> },
-  { menuItem: <Menu.Item key='messages'>Messages<Label>7</Label></Menu.Item>,
-    render: () => <Tab.Pane><Message/></Tab.Pane>,
-  },
-]
+
 
 var token= localStorage.getItem('token');
 var decoded = jwt_decode(token);
@@ -38,7 +32,7 @@ export default class Profile extends Component{
          axios.get(link)
           .then(res=> {
             console.log("done")
-            console.log("res", res)
+            console.log("res", res.data)
             this.setState({users: res.data})
             console.log("users",this.state.users.imageURL)
           }).catch(err=>{
@@ -62,12 +56,19 @@ export default class Profile extends Component{
       }
 
 render(){
+  const panes = [
+    { menuItem: 'Information', render: () => <Tab.Pane ><Info data={this.state.users} isVendor={decoded.isVendor}/></Tab.Pane> },
+    { menuItem: 'Orders', render: () => <Tab.Pane><OrderTap/></Tab.Pane> },
+    { menuItem: <Menu.Item key='messages'>Messages<Label>7</Label></Menu.Item>,
+      render: () => <Tab.Pane><Message/></Tab.Pane>,
+    },
+  ]
   return(
     <Grid>
       <Grid.Row verticalAlign='top' centered columns='equal' >
         <Grid.Column width={4}>
           <Card> 
-            <Image src={this.state.users.imageURL} wrapped ui={false} />
+            <Image src={(decoded.isVendor)? this.state.users.imageURL : "https://semantic-ui.com/images/avatar2/large/kristy.png"} wrapped ui={false} />
             <Card.Content>
               <Card.Header>{decoded.isVendor? this.state.users.name : this.state.users.fName + " " + this.state.users.lName }</Card.Header>
               <Card.Meta>
@@ -83,7 +84,7 @@ render(){
         
 
         <Grid.Column >
-          <Tab data={this.state.users} panes={panes} />
+          <Tab panes={panes} />
           </Grid.Column>
         
           
