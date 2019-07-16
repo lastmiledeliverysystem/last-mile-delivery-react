@@ -19,7 +19,7 @@ export default class Navbar extends Component {
   
       return (
         <Menu text>
-          <Menu.Item header style={style.h1}>LMD/DADA</Menu.Item>
+          <Menu.Item header style={style.h1}>Srebro-DADA</Menu.Item>
           <Menu.Menu position="right">
             <NavLink to='/' className='item'>HOME</NavLink>
             <NavLink to='/shop/all' className='item'>SHOP</NavLink>

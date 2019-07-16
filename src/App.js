@@ -106,7 +106,7 @@ class App extends Component {
           <Route path='/TrackingPage/' render={(props)=>getComp(<TrackingPage isVendor={true} {...props}/>)} />
           <Route path='/AddProduct'  render={(props)=>getComp(<AddProduct isVendor={true} {...props}/>)} />
           <Route path='/about' component={()=>getComp(<About/>)} />
-          <Route path='/Profile' render={(props)=>getComp(<Profile isVendor={true} {...props}/>)} />
+          <Route path='/Profile' render={(props)=>getComp(<Profile {...props}/>)} />
 
           <Route path='/' exact component={Main} />
           <Redirect to='/not-found'/>

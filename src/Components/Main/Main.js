@@ -54,7 +54,7 @@ export default class Main extends Component {
         <Grid.Row verticalAlign='middle' centered columns='equal' style={style.banner}>
           <Grid.Column width={3} />
           <Grid.Column textAlign='left'>
-            <Header as='h1' style={style.h1}>LMD/ DADA</Header>
+            <Header as='h1' style={style.h1}>SREBRO</Header>
             <p style={style.p}>What ever you need, where ever you are!</p>
           </Grid.Column>
         </Grid.Row>
