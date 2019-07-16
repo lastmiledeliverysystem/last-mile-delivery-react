@@ -5,9 +5,11 @@ import Info from './Info'
 import OrderTap from './OrderTap'
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
+
+
  
 const panes = [
-  { menuItem: 'Information', render: () => <Tab.Pane><Info/></Tab.Pane> },
+  { menuItem: 'Information', render: () => <Tab.Pane ><Info /></Tab.Pane> },
   { menuItem: 'Orders', render: () => <Tab.Pane><OrderTap/></Tab.Pane> },
   { menuItem: <Menu.Item key='messages'>Messages<Label>7</Label></Menu.Item>,
     render: () => <Tab.Pane><Message/></Tab.Pane>,
@@ -19,14 +21,8 @@ var decoded = jwt_decode(token);
 
 export default class Profile extends Component{
     state = { 
-        panes : [
-          { menuItem: 'Information', render: () => <Tab.Pane>Tab 1 Content</Tab.Pane> },
-          { menuItem: 'Orders', render: () => <Tab.Pane>Tab 2 Content</Tab.Pane> },
-          { menuItem: <Menu.Item key='messages'>Messages<Label>15</Label></Menu.Item>,
-            render: () => <Tab.Pane>Tab 3 Content</Tab.Pane>,
-          },
-        ],
-        users: []
+        users: [],
+        userData:[]
         
        }
        componentDidMount = () => {
@@ -44,11 +40,25 @@ export default class Profile extends Component{
             console.log("done")
             console.log("res", res)
             this.setState({users: res.data})
-            console.log(this.state.users.fName)
+            console.log("users",this.state.users.imageURL)
           }).catch(err=>{
             
             console.log(err.responce);
           })
+
+          console.log(decoded);  
+          // console.log(decoded.id)   
+           axios.get('http://localhost:8000/api/users/'+decoded.id2)
+            .then(res=> {
+              console.log("done")
+              console.log("res", res)
+
+              this.setState({userData: res.data})
+              console.log("usersdata",this.state.userData)
+            }).catch(err=>{
+              
+              console.log(err.responce);
+            })
       }
 
 render(){
@@ -57,7 +67,7 @@ render(){
       <Grid.Row verticalAlign='top' centered columns='equal' >
         <Grid.Column width={4}>
           <Card> 
-            <Image src={'https://lakeshorecontracting.ca/wp-content/uploads/2017/12/Female-Avatar.png'} wrapped ui={false} />
+            <Image src={this.state.users.imageURL} wrapped ui={false} />
             <Card.Content>
               <Card.Header>{decoded.isVendor? this.state.users.name : this.state.users.fName + " " + this.state.users.lName }</Card.Header>
               <Card.Meta>
@@ -65,7 +75,7 @@ render(){
               </Card.Meta>
               <Card.Description>
               <Icon size= {'large'} name='envelope' /> 
-                Maha@mail.comss
+                {this.state.userData.email}
               </Card.Description>
             </Card.Content>
           </Card>
@@ -73,7 +83,7 @@ render(){
         
 
         <Grid.Column >
-          <Tab  panes={panes} />
+          <Tab data={this.state.users} panes={panes} />
           </Grid.Column>
         
           
@@ -122,7 +132,6 @@ render(){
               </Grid.Row>
               </Grid>
          
-    )}
+    )}}
 
 
-}

@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 import { List ,Image} from 'semantic-ui-react'
 
 export default class Info extends Component{
+
+    
+
+  
     render(){
         return(
     <List relaxed='very'>
@@ -12,7 +16,7 @@ export default class Info extends Component{
         <List.Description>
           Last seen watching{' '}
           <a>
-            <b>Arrested Development</b>
+            <b>{this.props.users}</b>
           </a>{' '}
           just now.
         </List.Description>
