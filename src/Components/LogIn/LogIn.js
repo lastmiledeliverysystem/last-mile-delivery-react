@@ -27,7 +27,7 @@ export default class LogIn extends Component {
     password: '',
     submittedEmail: '',
     submittedPassword: '',
-    isErr:true,
+    isErr:false,
     isVendor: this.props.isVendor,
   };
 
@@ -39,11 +39,17 @@ export default class LogIn extends Component {
       console.log("plapla", res.data);
       this.props.toggleLogHandler();
       this.props.toggleAddProductHandler();
+      this.props.history.push({
+        pathname:'/',
+      })
       localStorage.setItem('token', res.data);
       this.setState({isErr:false})
-    });
+    })
+    .catch(err => {
+      this.setState({isErr:true})
+    })
   }
-s
+
 
   handleSubmit = () => {
     const { email, password} = this.state;
@@ -93,7 +99,7 @@ s
                 error
                 header='Access Denied'
                 content= 'Incorrect Email or Password.'
-                hidden = {this.state.isErr}
+                hidden = {!this.state.isErr}
               />
             </Segment>
             <Message floating>

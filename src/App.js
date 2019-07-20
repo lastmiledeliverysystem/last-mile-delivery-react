@@ -117,7 +117,7 @@ class App extends Component {
           <Route path='/TrackingPassword/' render={(props)=> <TrackingPassword {...props}/>} />
           <Route path='/TrackingPage/' render={(props)=>getComp(<TrackingPage isVendor={true} {...props}/>)} />
           <Route path='/AddProduct'  render={(props)=>getComp(<AddProduct toggleAddProductHandler={this.toggleAddProductHandler} isVendor={true} {...props}/>)} />
-          <Route path='/about' component={()=>getComp(<About/>)} />
+          <Route path='/about' render={(props)=> <About {...props}/>} />
           <Route path='/Profile' render={(props)=>getComp(<Profile {...props}/>)} />
 
           <Route path='/' exact component={Main} />
@@ -130,7 +130,7 @@ class App extends Component {
         {/* <Divider hidden/> */}
         <Grid.Row centered columns='equal' style={style.footer}>
           <Grid.Column width={1}></Grid.Column>
-          <Grid.Column><Footer/></Grid.Column>
+          <Grid.Column><Footer /></Grid.Column>
           <Grid.Column width={1}></Grid.Column>
         </Grid.Row>
       </Grid>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Menu, Grid } from 'semantic-ui-react'
-
+import { withRouter } from 'react-router-dom';
 
 const style={
   h1:{
@@ -8,11 +8,16 @@ const style={
       'font-size':'20px',
   }
 }
-export default class Footer extends Component {
+class Footer extends Component {
     state = { activeItem: 'home' }
 
-    handleItemClick = (e, { name }) => this.setState({ activeItem: name })
-  
+    handleItemClick = (e, { name }) =>{
+    this.setState({ activeItem: name });
+    console.log("henaaaaa")
+    this.props.history.push({
+        pathname:'/about',
+      });
+    }
     render() {
       const { activeItem } = this.state
       return (
@@ -49,3 +54,5 @@ export default class Footer extends Component {
     }
   
 }
+export default withRouter(Footer);
+

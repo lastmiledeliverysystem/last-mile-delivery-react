@@ -55,7 +55,10 @@ const style={
     },
     footer:{
       backgroundColor:'#eee'
-    }
+    },
+    // background:{
+    //   backgroundColor: "#eee"
+    // }
 }
 
 export default class About extends React.Component {
@@ -111,8 +114,8 @@ export default class About extends React.Component {
   render() {
     
     return (                
-        <React.Fragment>
-        <Grid>
+        <React.Fragment >
+        <Grid style={style.background}>
           <Grid.Row verticalAlign='middle' centered columns='equal' style={style.banner}>
             <Grid.Column width={3} />
             <Grid.Column textAlign='left'>

@@ -67,8 +67,6 @@ export default class Main extends Component {
           <Grid.Column width={3}/>
         </Grid.Row>      
       </Grid>
-      <Button onClick={this.goproduct}>Add products</Button>
-
       </React.Fragment>
     )
   }
