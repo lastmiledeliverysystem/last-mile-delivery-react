@@ -49,11 +49,11 @@ export default class Sidemenu extends Component {
         <Menu vertical style={style.menu}>
           <Menu.Item>
             <Menu.Menu>
-              <Menu.Item>
-              <Dropdown clearable options={options} selection onChange={(event, {value})=>{this.setState({ filterBy: value});
-              }}/>
-                <Input icon='search' placeholder='Search...' value={this.state.searchText} onChange={(event)=>{this.searchTextHandler(event.target.value)}}/>
-                <Button name="searchButton" onClick={this.props.searchHandler.bind(this, this.state.searchText, this.state.filterBy)}>
+              <Menu.Item style={{display:'flex',flexDirection:'column'}}>
+                <Dropdown style={{marginTop:'8px'}} clearable options={options} selection onChange={(event, {value})=>{this.setState({ filterBy: value});
+                }}/>
+                <Input style={{marginTop:'8px'}} icon='search' placeholder='Search...' value={this.state.searchText} onChange={(event)=>{this.searchTextHandler(event.target.value)}}/>
+                <Button style={{marginTop:'8px'}} name="searchButton" onClick={this.props.searchHandler.bind(this, this.state.searchText, this.state.filterBy)}>
                   Search
                   </Button>
               </Menu.Item>

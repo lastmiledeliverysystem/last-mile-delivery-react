@@ -42,8 +42,8 @@ class Vendors extends Component {
        // await console.log("hereee", this.props.category);
         // await console.log("filterby", this.state.filterBy, "value", this.state.searchValue);
         const link = this.props.filterBy==="all" || this.props.searchValue=== ""?
-         'http://localhost:8000/api/vendors/search?pageSize=2&pageNumber='+this.state.activePage 
-         : 'http://localhost:8000/api/vendors/search?pageSize=2&pageNumber='+this.state.activePage+"&filterBy="+this.props.filterBy+ "&value="+this.props.searchValue
+         'http://localhost:8000/api/vendors/search?pageSize=6&pageNumber='+this.state.activePage 
+         : 'http://localhost:8000/api/vendors/search?pageSize=6&pageNumber='+this.state.activePage+"&filterBy="+this.props.filterBy+ "&value="+this.props.searchValue
         //  "&filterBy=category&value="+this.props.category
         axios.get(link)
         .then((res)=>{
@@ -61,24 +61,24 @@ class Vendors extends Component {
     const { activePage } = this.state
       return (
         <React.Fragment>
-            <Grid>
-                <Dimmer active={this.state.dim} size='huge'>
-                    <Loader />
-                </Dimmer>
-                {this.state.vendors.map((n) =>
-                    <Grid.Column width={3} key={n._id}>
-                        <Vendor searchHandler={this.props.searchHandler} name={n.name} category={n.category} imageURL={n.imageURL} phone={n.phone} address={n.address} vendorId={n._id}/>
-                    </Grid.Column>
-                    )}
-                    <Grid.Row>
-                <Pagination
-                    activePage={activePage}
-                    onPageChange={this.handlePaginationChange}
-                    totalPages={this.state.pageCount}
-                    style={style}
-                />
+          <Grid style={{backgroundColor:'rgba(204, 204, 204, .1)',margin:'0px',borderRadius:'10px'}}>
+            <Dimmer active={this.state.dim} size='huge'>
+                <Loader />
+            </Dimmer>
+            {this.state.vendors.map((n) =>
+              <Grid.Column width={3} key={n._id}>
+                  <Vendor searchHandler={this.props.searchHandler} name={n.name} category={n.category} imageURL={n.imageURL} phone={n.phone} address={n.address} vendorId={n._id}/>
+              </Grid.Column>
+                )}
+            <Grid.Row style={{justifyContent:'center'}}>
+              <Pagination
+                  activePage={activePage}
+                  onPageChange={this.handlePaginationChange}
+                  totalPages={this.state.pageCount}
+                  style={style}
+              />
             </Grid.Row>
-            </Grid>
+          </Grid>
         </React.Fragment>
     )
   }

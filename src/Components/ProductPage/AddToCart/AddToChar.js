@@ -18,13 +18,16 @@ const style={
     //     left: "950px",
     //     top: "42%",
         color:'red',
+        textAlign:'center',
         "fontFamily":"Times New Roman",
         "fontSize":"15px"
     }
 }
 
  class AddToCart extends Component {
-  state = {  }
+  state = { 
+    addToCartErr:false
+   }
   addToCartHandler = ()=> {
     console.log(localStorage.getItem('token'));
     
@@ -36,6 +39,7 @@ const style={
         })
       }).catch(err=>{
         console.log(err);
+        this.setState({addToCartErr:true});
       })
   }
   
@@ -53,9 +57,15 @@ const style={
             </Grid.Row>
             <Grid.Row centered columns='equal'>
               <Grid.Column>
-              <Button  color="green" size='huge' style={style.addtocart} onClick={this.addToCartHandler} fluid>ADD TO CART</Button>
+                <Button  color="green" size='huge' style={style.addtocart} onClick={this.addToCartHandler} fluid>ADD TO CART</Button>
               </Grid.Column>
             </Grid.Row>
+            {this.state.addToCartErr?
+            <Grid.Row centered columns='equal'>
+              <Grid.Column >
+                <p style={{textAlign:'center', color:'red'}}>You have To Login First</p>
+              </Grid.Column>
+            </Grid.Row>:null}
           </Grid>
         </Header>
           <header className="note" style={style.note}>Only two left in stock</header>

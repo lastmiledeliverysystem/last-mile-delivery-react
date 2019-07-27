@@ -24,9 +24,9 @@ export default class Description extends Component {
                 <p className="word" style={style.word}>Description:</p>   
                 <List className="description" style={style.description} as='ul'>
                 <List.Item as='li'>{this.props.description}</List.Item>
+                {/* <List.Item as='li'>{this.props.description}</List.Item>
                 <List.Item as='li'>{this.props.description}</List.Item>
-                <List.Item as='li'>{this.props.description}</List.Item>
-                <List.Item as='li'>{this.props.description}</List.Item>
+                <List.Item as='li'>{this.props.description}</List.Item> */}
                 {/* <List.Item as='li'>{this.state.Description[1]}</List.Item>
                 <List.Item as='li'>{this.state.Description[2]}</List.Item>
                 <List.Item as='li'>{this.state.Description[3]}</List.Item>

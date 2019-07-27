@@ -43,8 +43,8 @@ class Products extends Component {
     getDataHandler = ()=>{
 
       const link = this.props.filterBy==="all"?
-      'http://localhost:8000/api/products/search?pageSize=6&pageNumber='+this.state.activePage + '&filterBy=vendorId&value='+this.props.vendorId :
-      'http://localhost:8000/api/products/search?pageSize=6&pageNumber='+this.state.activePage + '&filterBy=vendorId&value='+this.props.vendorId+ '&filterBy='+ this.props.filterBy + '&value=' + this.props.searchValue;
+      'http://localhost:8000/api/products/search?pageSize=10&pageNumber='+this.state.activePage + '&filterBy=vendorId&value='+this.props.vendorId :
+      'http://localhost:8000/api/products/search?pageSize=10&pageNumber='+this.state.activePage + '&filterBy=vendorId&value='+this.props.vendorId+ '&filterBy='+ this.props.filterBy + '&value=' + this.props.searchValue;
         axios.get(link)
         .then((res)=>{
             if (res.data==='No products')
@@ -63,12 +63,12 @@ class Products extends Component {
     console.log("products", this.state.products)
       return (
         <React.Fragment>
-          <Grid centered>
+          <Grid centered style={{backgroundColor:'rgba(204, 204, 204, .1)',margin:'0px',borderRadius:'10px'}}>
             <Dimmer active={this.state.dim} size='huge'>
               <Loader />
             </Dimmer>
             {this.state.products.map((n) =>
-            <Grid.Column width={5} key={n._id}>
+            <Grid.Column width={3} key={n._id}>
               <Product changeProductHandler={this.props.changeProductHandler} productId={n._id} productData={n} name={n.name} imgUrl={n.image} price={n.price} rate={n.rate}/>                
             </Grid.Column>
             )}

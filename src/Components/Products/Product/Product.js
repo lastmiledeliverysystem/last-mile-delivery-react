@@ -40,7 +40,7 @@ export default class Product extends Component {
   
   render() {
     return (
-      <Card color="black">
+      <Card color="black" style={{minHeight:'400px'}}>
         <Image src={this.props.imgUrl} 
         style={style.img}
         width={230}
