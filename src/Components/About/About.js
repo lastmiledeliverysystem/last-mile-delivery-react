@@ -55,7 +55,10 @@ const style={
     },
     footer:{
       backgroundColor:'#eee'
-    }
+    },
+    // background:{
+    //   backgroundColor: "#eee"
+    // }
 }
 
 export default class About extends React.Component {
@@ -66,43 +69,43 @@ export default class About extends React.Component {
           name:"Alaa",
           job: "Software Engineer",
           image: "https://semantic-ui.com/images/avatar2/large/kristy.png",
-          word: "“LMD has a dynamic, fast-paced development environment and it has been thrilling to see how quickly the team makes breakthroughs.”"
+          word: "Serbro has a dynamic, fast-paced development environment and it has been thrilling to see how quickly the team makes breakthroughs.”"
         },
         {
           name:"Al-Zahraa",
           job: "Software Engineer",
           image:"https://semantic-ui.com/images/avatar2/large/kristy.png",
-          word: "“LMD has a dynamic, fast-paced development environment and it has been thrilling to see how quickly the team makes breakthroughs.”"
+          word: "Serbro has a dynamic, fast-paced development environment and it has been thrilling to see how quickly the team makes breakthroughs.”"
         },
         {
           name:"Hossam",
           job: "Software Engineer",
           image:"https://react.semantic-ui.com/images/avatar/large/matthew.png",
-          word: "“LMD has a dynamic, fast-paced development environment and it has been thrilling to see how quickly the team makes breakthroughs.”"
+          word: "Serbro has a dynamic, fast-paced development environment and it has been thrilling to see how quickly the team makes breakthroughs.”"
         },
         {
           name:"Maha",
           job: "Software Engineer",
           image:"https://semantic-ui.com/images/avatar2/large/kristy.png",
-          word: "“LMD has a dynamic, fast-paced development environment and it has been thrilling to see how quickly the team makes breakthroughs.”"
+          word: "Serbro has a dynamic, fast-paced development environment and it has been thrilling to see how quickly the team makes breakthroughs.”"
         },
         {
           name:"Kassim",
           job: "Software Engineer",
           image:"https://react.semantic-ui.com/images/avatar/large/matthew.png",
-          word: "“LMD has a dynamic, fast-paced development environment and it has been thrilling to see how quickly the team makes breakthroughs.”"
+          word: "Serbro has a dynamic, fast-paced development environment and it has been thrilling to see how quickly the team makes breakthroughs.”"
         },
         {
           name:"Wagih",
           job: "Software Engineer",
           image:'https://react.semantic-ui.com/images/avatar/large/matthew.png',
-          word: "“LMD has a dynamic, fast-paced development environment and it has been thrilling to see how quickly the team makes breakthroughs.”"
+          word: "Serbro has a dynamic, fast-paced development environment and it has been thrilling to see how quickly the team makes breakthroughs.”"
         },
         {
           name:"Rawan",
           job: "Software Engineer",
           image:"https://semantic-ui.com/images/avatar2/large/kristy.png",
-          word: "“LMD has a dynamic, fast-paced development environment and it has been thrilling to see how quickly the team makes breakthroughs.”"
+          word: "Serbro has a dynamic, fast-paced development environment and it has been thrilling to see how quickly the team makes breakthroughs.”"
         },
       ]
   }
@@ -111,12 +114,12 @@ export default class About extends React.Component {
   render() {
     
     return (                
-        <React.Fragment>
-        <Grid>
+        <React.Fragment >
+        <Grid style={style.background}>
           <Grid.Row verticalAlign='middle' centered columns='equal' style={style.banner}>
             <Grid.Column width={3} />
             <Grid.Column textAlign='left'>
-              <Header as='h1' style={style.h1}>LMD/ DADA</Header>
+              <Header as='h1' style={style.h1}>SERBRO</Header>
               <p style={style.p}>What ever you need, where ever you are!</p>
             </Grid.Column>
           </Grid.Row>
@@ -133,7 +136,7 @@ export default class About extends React.Component {
                 <p> We are an experienced team passionate about advancing robotics to dramatically improve the way we live.
                                     In previous roles, we’ve made critical contributions to technological breakthroughs in hardware, software,
                                     robotics, and machine learning. And we’ve won international competitions and launched international products.
-                                    We've come together at Serbero to accomplish something big and meaningful. To swing the needle. Together. Join us.
+                                    We've come together at Serbro to accomplish something big and meaningful. To swing the needle. Together. Join us.
                 </p>
             </Container>
             {/* <Grid.Column width={3} /> */}
