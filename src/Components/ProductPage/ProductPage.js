@@ -114,7 +114,10 @@ class ProductPage extends Component {
             </Grid.Column>
             <Grid.Column width={3} />
             <Grid.Column width={3}>
+            {
+              (!this.props.isVendor) &&
               <AddToCart itemId={this.state.id}/>
+            }
             </Grid.Column>
           </Grid.Row>
         </Grid>

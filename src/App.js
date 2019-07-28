@@ -112,7 +112,7 @@ class App extends Component {
           <Route path='/login' render={(props)=> <LogIn toggleLogHandler={this.toggleLogHandler}  toggleAddProductHandler={this.toggleAddProductHandler} isVendor={this.state.isVendor} {...props}/>} />
           <Route path='/shop/:category' render={(props)=>getComp(<Shop isVendor={true} {...props}/>)} />
           <Route path='/Products/:vendorId' render={(props)=> getComp(<Shop isVendor={false} changeProductHandler={this.changeProductHandler} {...props}/>)}/>
-          <Route path='/ProductPage/:productId' render={(props)=>getComp(<ProductPage {...props} productData={this.state.productData}/>)} />
+          <Route path='/ProductPage/:productId' render={(props)=>getComp(<ProductPage isVendor={this.state.isVendor} {...props} productData={this.state.productData}/>)} />
           <Route path='/cart'  render={(props)=> <Cart {...props}/>} />
           <Route path='/TrackingPassword/' render={(props)=> <TrackingPassword {...props}/>} />
           <Route path='/TrackingPage/' render={(props)=>getComp(<TrackingPage isVendor={true} {...props}/>)} />

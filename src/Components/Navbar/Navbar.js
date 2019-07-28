@@ -30,11 +30,11 @@ class Navbar extends Component {
         <Menu text>
           <Menu.Item header style={style.h1}>Srebro-DADA</Menu.Item>
           <Menu.Menu position="right">
-            <Button onClick={()=>this.linkClickHandler('/' )}className='item'>HOME</Button>
+            <Button onClick={()=>this.linkClickHandler('/' )}className='item'>Home</Button>
             <Button onClick={()=>this.linkClickHandler('/AddProduct')} className='item'>{this.props.isVendor && this.props.isLogged? "Add Product" : "" }</Button>
             <Button onClick={()=>this.linkClickHandler('/Profile')} className='item'>{this.props.isLogged? "Profile" : "" }</Button>
-            <Button onClick={()=>this.linkClickHandler('/shop/all')} className='item'>SHOP</Button>
-            <Button onClick={()=>this.linkClickHandler('/cart')} className='item'><Icon name="shopping cart"/>CART</Button>
+            <Button onClick={()=>this.linkClickHandler('/shop/all')} className='item'>Shop</Button>
+            <Button onClick={()=>this.linkClickHandler('/cart')} className='item'>{this.props.isVendor && this.props.isLogged? "" : "Cart" }</Button>
             <Menu.Item>
               <Input icon='search' placeholder='Search...' />
             </Menu.Item>
