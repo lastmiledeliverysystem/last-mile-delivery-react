@@ -17,9 +17,9 @@ import {
 export default class LogIn extends Component {
   styles = {
     boxStyle: {
-      position: 'absolute',
-      top: '20%',
-      left: '20%'
+      // position: 'absolute',
+      // top: '20%',
+      // left: '20%'
     }
   };
   state = {
@@ -38,15 +38,17 @@ export default class LogIn extends Component {
     .then(res => {
       console.log("plapla", res.data);
       this.props.toggleLogHandler();
-      this.props.toggleAddProductHandler();
       this.props.history.push({
         pathname:'/',
       })
+      console.log('history Pushed')
       localStorage.setItem('token', res.data);
+      this.props.toggleAddProductHandler();
       this.setState({isErr:false})
     })
     .catch(err => {
-      this.setState({isErr:true})
+      this.setState({isErr:true});
+      console.log('errrrrrr')
     })
   }
 
@@ -63,51 +65,56 @@ export default class LogIn extends Component {
 
   render() {
     return (
-      <Container style={this.styles.boxStyle}>
-        <Grid centered columns={2}>
-          <GridColumn textAlign="center">
-            <Header as="h2" textAlign="center">
-              <Icon name="sign in alternate" />
-              Login
-            </Header>
-            <Segment placeholder raised textAlign="left">
-              <Form size="large">
-              <Form.Input
-                  name="email"
-                  type="email"
-                  value={this.email}
-                  onChange={this.handleChange}
-                  placeholder="Email"
-                  label="Email"
-                  icon="mail"
-                  iconPosition="left"
-                  error={false}
-                />
+      // <Container style={this.styles.boxStyle}>
+        // <Grid centered>
+        //   <Grid.Row textAlign="center" >
+            <div style={{display:'flex',flexDirection:'column', margin:'0 auto',marginTop:'20px', marginBottom:'20px'}}>
+              <Header as="h2" textAlign="center">
+                <Icon name="sign in alternate" />
+                Login
+              </Header>
+
+              <Segment placeholder raised textAlign="left">
+                <Form size="large">
                 <Form.Input
-                  name="password"
-                  type="password"
-                  value={this.password}
-                  onChange={this.handleChange}
-                  label="Password"
-                  icon="lock"
-                  iconPosition="left"
-                  error={false}
+                    name="email"
+                    type="email"
+                    value={this.email}
+                    onChange={this.handleChange}
+                    placeholder="Email"
+                    label="Email"
+                    icon="mail"
+                    iconPosition="left"
+                    error={false}
+                  />
+                  <Form.Input
+                    name="password"
+                    type="password"
+                    value={this.password}
+                    onChange={this.handleChange}
+                    label="Password"
+                    icon="lock"
+                    iconPosition="left"
+                    error={false}
+                  />
+                  <Button content="Login" size="large" primary onClick={this.handleSubmit} />
+                </Form>
+                <Message
+                  error
+                  header='Access Denied'
+                  content= 'Incorrect Email or Password.'
+                  hidden = {!this.state.isErr}
                 />
-                <Button content="Login" size="large" primary onClick={this.handleSubmit} />
-              </Form>
-              <Message
-                error
-                header='Access Denied'
-                content= 'Incorrect Email or Password.'
-                hidden = {!this.state.isErr}
-              />
-            </Segment>
-            <Message floating>
-              Not registered yet? <a href="/">Sign Up</a>
-            </Message>
-          </GridColumn>
-        </Grid>
-      </Container>
+              </Segment>
+
+              <Message floating>
+                Not registered yet? <a href="/">Sign Up</a>
+              </Message>
+            </div>
+
+        //   </Grid.Row>
+        // </Grid>
+      // </Container>
     );
   }
 }

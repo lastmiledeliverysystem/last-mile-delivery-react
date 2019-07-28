@@ -10,8 +10,8 @@ import jwt_decode from 'jwt-decode';
  
 
 
-var token= localStorage.getItem('token');
-var decoded = jwt_decode(token);
+
+var decoded=''
 
 export default class Profile extends Component{
     state = { 
@@ -25,7 +25,8 @@ export default class Profile extends Component{
         
       }
        getUserDataHandler = async ()=> {
-       
+        var token = localStorage.getItem('token');
+        decoded = jwt_decode(token);
         console.log(decoded);  
         // console.log(decoded.id)   
         const link = decoded.isVendor? `http://localhost:8000/api/vendors/`+decoded.id : `http://localhost:8000/api/customers/`+decoded.id

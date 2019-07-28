@@ -15,12 +15,12 @@ import LogIn from './Components/LogIn/LogIn';
 import TrackingPassword from './Components/Tracking/TrackingPassword';
 import TrackingPage from './Components/Tracking/TrackingPage';
 import AddProduct from './Components/AddProduct/AddProduct';
-import About from './Components/About/About'
-import Profile from './Components/Profile/Profile'
+import About from './Components/About/About';
+import Profile from './Components/Profile/Profile';
 import jwt_decode from 'jwt-decode';
 
 
-const style={
+const style = {
     h1:{
         color:'#1d064b',
         'font-size':'50px',
@@ -62,7 +62,7 @@ class App extends Component {
     data:"First app",
     productData:{},
     category: {},
-    isLogged:false,
+    isLogged: localStorage.getItem('token')?true:false,
     isVendor: false,
   }
   

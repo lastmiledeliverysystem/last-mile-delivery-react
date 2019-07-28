@@ -64,7 +64,7 @@ export default class TakeMoney extends React.Component {
 
     } catch(err){
 
-      console.log(err.response);
+      console.log("err getting location ",err.response);
     }
   }
       navigator.geolocation.getCurrentPosition(success);

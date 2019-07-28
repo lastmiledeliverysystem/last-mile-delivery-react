@@ -33,12 +33,12 @@ const style={
     
     axios.post('http://localhost:8000/api/cart/',{'token':localStorage.getItem('token'),'itemId':this.props.itemId})
       .then(res=>{
-        console.log(res.data);
+        console.log('data',res.data);
         this.props.history.push({
           pathname:'/cart',
         })
       }).catch(err=>{
-        console.log(err);
+        console.log('err',err);
         this.setState({addToCartErr:true});
       })
   }

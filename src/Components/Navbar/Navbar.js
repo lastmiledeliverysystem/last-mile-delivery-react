@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Input, Menu, Icon, Button } from 'semantic-ui-react'
 import { NavLink } from "react-router-dom";
+import {withRouter} from "react-router-dom";
 
 
 const style={
@@ -9,9 +10,17 @@ const style={
       'fontSize':'20px',
   }
 }
-export default class Navbar extends Component {
-    // state = { activeItem: 'home' }
+class Navbar extends Component {
+  // state = { activeItem: 'home' }
+    linkClickHandler = (link)=>{
+      this.props.history.push(link)
+    }
 
+    logOutHandler = ()=>{
+      localStorage.removeItem('token');
+      this.props.history.push('/login');
+      window.location.reload();
+    }
     // handleItemClick = (e, { name }) => this.setState({ activeItem: name })
   
     render() {
@@ -21,15 +30,15 @@ export default class Navbar extends Component {
         <Menu text>
           <Menu.Item header style={style.h1}>Srebro-DADA</Menu.Item>
           <Menu.Menu position="right">
-            <NavLink to='/' className='item'>HOME</NavLink>
-            <NavLink to='/AddProduct' className='item'>{this.props.isVendor && this.props.isLogged? "Add Product" : "" }</NavLink>
-            <NavLink to='/Profile' className='item'>{this.props.isLogged? "Profile" : "" }</NavLink>
-            <NavLink to='/shop/all' className='item'>SHOP</NavLink>
-            <NavLink to='/cart' className='item'><Icon name="shopping cart"/>CART</NavLink>
+            <Button onClick={()=>this.linkClickHandler('/' )}className='item'>HOME</Button>
+            <Button onClick={()=>this.linkClickHandler('/AddProduct')} className='item'>{this.props.isVendor && this.props.isLogged? "Add Product" : "" }</Button>
+            <Button onClick={()=>this.linkClickHandler('/Profile')} className='item'>{this.props.isLogged? "Profile" : "" }</Button>
+            <Button onClick={()=>this.linkClickHandler('/shop/all')} className='item'>SHOP</Button>
+            <Button onClick={()=>this.linkClickHandler('/cart')} className='item'><Icon name="shopping cart"/>CART</Button>
             <Menu.Item>
               <Input icon='search' placeholder='Search...' />
             </Menu.Item>
-            <NavLink to='/login' className='item'>{this.props.isLogged? "LOGOUT": "LOGIN"}</NavLink>
+            <Button onClick={this.logOutHandler} className='item'>{this.props.isLogged? "LOGOUT": "LOGIN"}</Button>
             {/* {console.log(this.props.isVendor)} */}
           </Menu.Menu>
           </Menu>
@@ -37,3 +46,4 @@ export default class Navbar extends Component {
     }
   
 }
+export default withRouter(Navbar);

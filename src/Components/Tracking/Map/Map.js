@@ -6,9 +6,9 @@ import { Card, Button, Modal } from 'semantic-ui-react'
 
 export default class MapComponent extends Component {
   state = {
-      lat: 30.713990,
-      lng: 31.238804,
-      zoom: 13,
+      lat: 30.0784211,
+      lng: 31.0185611,
+      zoom: 14,
       password: ''
       }
   componentDidMount() {
@@ -33,7 +33,7 @@ export default class MapComponent extends Component {
   render() {
     const position = [this.state.lat, this.state.lng]
     return (
-      <Card fluid>
+      <Card fluid style={{width:'50%', margin:'0 auto'}}>
         <Card.Content header='Robot Location' />
         <Card.Content >
           <Map center={position} zoom={this.state.zoom}>
@@ -52,7 +52,7 @@ export default class MapComponent extends Component {
         <Card.Content extra>
           <Button fluid content='Refresh' primary size='medium' onClick={this.refreshLocationHandler}/>
           <Modal
-            trigger={<Button>Show Password</Button>}
+            trigger={<Button style={{margin:'0 auto'}}>Show Password</Button>}
             header='Password!'
             content={this.props.password}
             actions={['Cancel', { key: 'done', content: 'Ok', positive: true }]}
